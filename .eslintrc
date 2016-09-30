@@ -1,0 +1,29 @@
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "__SUPER_ADMIN_URL__": true,
+    "__API_URL__": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true
+    }
+  },
+  "rules": {
+    "max-len": ["error", 80, 2],
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "strict": 0
+  }
+}
