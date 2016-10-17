@@ -4,6 +4,7 @@
   "description": "ECP skeleton for React/Redux super admin application",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
+    "prod": "node prod.js",
     "start": "node server.js"
   },
   "author": "ECP",
