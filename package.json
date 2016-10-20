@@ -5,7 +5,9 @@
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
     "prod": "node prod.js",
-    "start": "node server.js"
+    "snapshots": "jest -u",
+    "start": "node server.js",
+    "test": "jest"
   },
   "author": "ECP",
   "license": "MIT",
@@ -16,14 +18,15 @@
   "devDependencies": {
     "babel-core": "^6.16.0",
     "babel-eslint": "^7.0.0",
+    "babel-jest": "^16.0.0",
     "babel-loader": "^6.2.5",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.16.0",
     "connect-history-api-fallback": "^1.3.0",
     "css-loader": "^0.25.0",
+    "enzyme": "^2.4.1",
     "eslint": "^3.6.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-loader": "^1.5.0",
@@ -31,8 +34,14 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
     "express": "^4.14.0",
+    "fetch-mock": "^5.5.0",
     "file-loader": "^0.9.0",
+    "form-data": "^2.1.1",
     "html-webpack-plugin": "^2.22.0",
+    "jest": "^16.0.0",
+    "react-addons-test-utils": "^15.3.2",
+    "react-test-renderer": "^15.3.2",
+    "redux-mock-store": "^1.2.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
@@ -48,6 +57,7 @@
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
+    "recompose": "^0.20.2",
     "redux": "^3.6.0",
     "redux-form": "^6.0.5",
     "redux-immutablejs": "0.0.8",
@@ -55,5 +65,23 @@
     "store": "^1.3.20",
     "validator": "^6.0.0",
     "whatwg-fetch": "^1.0.0"
+  },
+  "jest": {
+    "cacheDirectory": "../test/cache",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coverageDirectory": "../test/coverage",
+    "globals": {
+      "__APP_URL__": "http://192.168.50.4:9000",
+      "__API_URL__": "http://192.168.50.4:3000"
+    },
+    "setupFiles": [
+      "./setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "timers": "fake",
+    "rootDir": "src"
   }
 }

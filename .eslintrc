@@ -7,7 +7,7 @@
     "es6": true
   },
   "globals": {
-    "__SUPER_ADMIN_URL__": true,
+    "__APP_URL__": true,
     "__API_URL__": true
   },
   "plugins": [

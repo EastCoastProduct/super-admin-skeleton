@@ -1,0 +1,22 @@
+exports[`Page404 component snapshot renders page 1`] = `
+<section>
+  <p>
+    This is page 404. Nothing here to see.
+  </p>
+  <p>
+    Go back to 
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Home
+    </a>
+     page or 
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Login
+    </a>
+     page.
+  </p>
+</section>
+`;

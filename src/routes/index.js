@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 import App from '../containers/App';
 import Home from '../containers/Home';
+import Login from '../containers/Login';
 import Page404 from '../containers/Page404';
 
 const Routes = ({ store, history }) =>
@@ -12,6 +13,7 @@ const Routes = ({ store, history }) =>
         <Route component={App}>
           <IndexRoute component={Home} />
         </Route>
+        <Route path="login" component={Login} />
         <Route path="*" component={Page404} />
       </Route>
     </Router>

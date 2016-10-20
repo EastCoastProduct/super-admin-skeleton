@@ -1,0 +1,5 @@
+exports[`Home component snapshot renders page 1`] = `
+<p>
+  Home Page
+</p>
+`;
