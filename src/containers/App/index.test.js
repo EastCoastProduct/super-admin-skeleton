@@ -1,15 +1,25 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { fromJS } from 'immutable';
+import { StyleSheetTestUtils } from 'aphrodite/no-important';
 import { AppComponent } from './';
 import * as Actions from '../../actions/auth';
 
 describe('App component', () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   const children = <div>Test</div>;
   const mockDispatch = jest.fn();
   const wrapper = shallow(
     <AppComponent
       dispatch={mockDispatch}
       router={{}}
+      superadmin={fromJS({})}
     >{children}</AppComponent>
   );
   const instance = wrapper.instance();

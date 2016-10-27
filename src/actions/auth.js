@@ -4,9 +4,9 @@ import { API_URL } from '../constants/application';
 import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
-export const loginSuccess = user => ({
+export const loginSuccess = superadmin => ({
   type: LOGIN_SUCCESS,
-  user,
+  superadmin,
 });
 
 export const logoutSuccess = () => ({
@@ -20,8 +20,8 @@ export const loginFetch = (values, router) =>
       body: JSON.stringify(values),
     }).then((resp) => {
       store.set('token', `Bearer ${resp.token}`);
-      store.set('user', resp.user);
-      dispatch(loginSuccess(resp.user));
+      store.set('superadmin', resp.superadmin);
+      dispatch(loginSuccess(resp.superadmin));
       return router.push('/');
     }).catch(err =>
       Promise.reject(parseErrors(err))

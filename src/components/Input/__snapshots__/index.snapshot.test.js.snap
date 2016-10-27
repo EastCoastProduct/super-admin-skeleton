@@ -1,71 +1,101 @@
 exports[`Input component snapshot renders basic required data 1`] = `
 <div>
   <label
-    htmlFor="email">
+    className="label_v6d5pr"
+    htmlFor="email" />
+  <div
+    className="holder_zse0vq">
     <input
+      className="input_dfg5pn"
       id="email"
       name="email"
       value="" />
-  </label>
+  </div>
 </div>
 `;
 
 exports[`Input component snapshot renders extra info and it is active and invalid 1`] = `
 <div>
   <label
+    className="label_v6d5pr"
     htmlFor="email">
     Email
+  </label>
+  <div
+    className="holder_zse0vq">
     <input
+      className="input_dfg5pn"
       id="email"
       name="email"
       placeholder="Email"
       type="email"
       value="notAnEmail" />
-  </label>
+  </div>
 </div>
 `;
 
 exports[`Input component snapshot renders label and input is invalid 1`] = `
 <div>
   <label
+    className="label_v6d5pr"
     htmlFor="email">
     Email
+  </label>
+  <div
+    className="holder_zse0vq-o_O-holderErr_229bd5">
     <input
+      className="input_dfg5pn"
       id="email"
       name="email"
       value="notAnEmail" />
-  </label>
-  <p>
-    Input is invalid
-  </p>
+    <p
+      className="error_u4vpf">
+      <i
+        className="icon_1w16ibx fa fa-exclamation-triangle" />
+      Input is invalid
+    </p>
+  </div>
 </div>
 `;
 
 exports[`Input component snapshot renders label and input is required 1`] = `
 <div>
   <label
+    className="label_v6d5pr"
     htmlFor="email">
     Email
+  </label>
+  <div
+    className="holder_zse0vq-o_O-holderErr_229bd5">
     <input
+      className="input_dfg5pn"
       id="email"
       name="email"
       value="" />
-  </label>
-  <p>
-    Input required
-  </p>
+    <p
+      className="error_u4vpf">
+      <i
+        className="icon_1w16ibx fa fa-exclamation-triangle" />
+      Input required
+    </p>
+  </div>
 </div>
 `;
 
 exports[`Input component snapshot renders label and is focused 1`] = `
 <div>
   <label
+    className="label_v6d5pr"
     htmlFor="email">
     Email
+  </label>
+  <div
+    className="holder_zse0vq">
     <input
+      className="input_dfg5pn"
       id="email"
       name="email"
       value="test@email.com" />
-  </label>
+  </div>
 </div>
 `;

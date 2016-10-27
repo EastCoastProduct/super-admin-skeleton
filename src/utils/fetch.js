@@ -29,11 +29,7 @@ export default function (url, options) {
     .then(parseJSON)
     .then(checkStatus)
     .catch((err) => {
-      switch (err.error.status) {
-        case 401:
-          return browserHistory.push('/login');
-        default:
-          return Promise.reject(err);
-      }
+      if (err.error.status === 401) browserHistory.push('/login');
+      return Promise.reject(err);
     });
 }

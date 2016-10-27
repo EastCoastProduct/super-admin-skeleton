@@ -2,9 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
+import { css } from 'aphrodite/no-important';
 import { loginFetch } from '../../actions/auth';
 import { isEmail, isPassword, isRequired } from '../../utils/validator';
 import Input from '../../components/Input';
+import ErrorMsg from '../../components/ErrorMsg';
+import Button from '../../components/Button';
+import styles from './index.style';
 
 export const validate = (values) => {
   const errors = {};
@@ -38,26 +42,43 @@ export class LoginComponent extends Component {
     const { error, handleSubmit, submitting } = this.props;
 
     return (
-      <article>
-        <form onSubmit={handleSubmit(this.handleLogin)} noValidate>
-          <Field
-            name="email"
-            component={Input}
-            label="Email"
-            type="email"
-            placeholder="Email"
+      <main className={css(styles.page)}>
+        <section className={css(styles.box, error && styles.boxErr)}>
+          <img
+            className={css(styles.logo)}
+            src={'http://wp.streetwise.co/wp-content/uploads//2015/10//' +
+              'fullECPlogo_Black4.png'}
+            alt="Company Logo"
           />
-          <Field
-            name="password"
-            component={Input}
-            label="Password"
-            type="password"
-            placeholder="Password"
-          />
-          {error && <p>{error}</p>}
-          <button type="submit" disabled={submitting}>Login</button>
-        </form>
-      </article>
+          <h1 className={css(styles.header)}>Login to your account</h1>
+          <form
+            className={css(styles.form)}
+            onSubmit={handleSubmit(this.handleLogin)}
+            noValidate
+          >
+            <Field
+              name="email"
+              component={Input}
+              label="Email"
+              type="email"
+              placeholder="Email"
+            />
+            <Field
+              name="password"
+              component={Input}
+              label="Password"
+              type="password"
+              placeholder="Password"
+            />
+            <Button
+              style={styles.button}
+              type="submit"
+              disabled={submitting}
+            >Login</Button>
+            {error && <ErrorMsg style={styles.error}>{error}</ErrorMsg>}
+          </form>
+        </section>
+      </main>
     );
   }
 }

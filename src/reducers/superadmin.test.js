@@ -1,8 +1,8 @@
 import { fromJS } from 'immutable';
-import reducer from './user';
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../constants/actions';
+import reducer from './superadmin';
+import { LOGIN_SUCCESS } from '../constants/actions';
 
-const defaultUser = {
+const superadmin = {
   bio: null,
   createdAt: '2016-10-20T10:02:47.000Z',
   email: 'super.admin@mail.com',
@@ -18,7 +18,7 @@ describe('user reducer', () => {
   });
 
   it('should return initial state', () => {
-    expect(reducer(fromJS(defaultUser), {})).toEqual(fromJS({
+    expect(reducer(fromJS(superadmin), {})).toEqual(fromJS({
       bio: null,
       createdAt: '2016-10-20T10:02:47.000Z',
       email: 'super.admin@mail.com',
@@ -32,7 +32,7 @@ describe('user reducer', () => {
   it('should handle LOGIN_SUCCESS', () => {
     expect(reducer(undefined, {
       type: LOGIN_SUCCESS,
-      user: defaultUser,
+      superadmin: superadmin,
     })).toEqual(fromJS({
       bio: null,
       createdAt: '2016-10-20T10:02:47.000Z',
@@ -42,11 +42,5 @@ describe('user reducer', () => {
       lastname: 'superadmin',
       updatedAt: '2016-10-20T10:02:47.000Z',
     }));
-  });
-
-  it('should handle LOGOUT_SUCCESS', () => {
-    expect(reducer(undefined, {
-      type: LOGOUT_SUCCESS,
-    })).toEqual(fromJS({}));
   });
 });

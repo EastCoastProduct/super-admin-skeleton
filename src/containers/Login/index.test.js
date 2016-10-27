@@ -1,10 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
+import { StyleSheetTestUtils } from 'aphrodite/no-important';
 import { LoginComponent, validate } from './';
 import * as Actions from '../../actions/auth';
 
 describe('Login component', () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   const mockDispatch = jest.fn();
   const wrapper = shallow(
     <LoginComponent

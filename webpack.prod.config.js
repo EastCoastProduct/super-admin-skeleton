@@ -1,8 +1,9 @@
 'use strict';
 
+const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -33,11 +34,22 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
+        loader: 'babel',
+        exclude: [/node_modules/, /\.base.style.js$/],
+      }, {
+        test: /\.base.style.js$/,
+        loaders: [
+          'style?singleton',
+          'css?modules&importLoaders=1&minimize',
+          'postcss?parser=postcss-js',
+          'babel',
+        ],
+      }, {
+        test: /\.json$/,
+        loader: 'json',
       }, {
         test: /\.css$/,
-        loaders: ['style', 'css?minimize'],
+        loaders: ['style?singleton', 'css?minimize'],
       }, {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=application/font-woff',
@@ -55,5 +67,9 @@ module.exports = {
         loader: 'url?limit=10000&mimetype=image/svg+xml',
       },
     ],
+  },
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+  node: {
+    fs: 'empty',
   },
 };

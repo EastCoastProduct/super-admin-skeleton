@@ -13,7 +13,7 @@ describe('auth action creators', () => {
     fetchMock.restore();
   });
 
-  const user = {
+  const superadmin = {
     bio: null,
     createdAt: '2016-10-20T10:02:47.000Z',
     email: 'super.admin@mail.com',
@@ -26,14 +26,14 @@ describe('auth action creators', () => {
   const routerMock = {};
   const expectedLoginAction = {
     type: LOGIN_SUCCESS,
-    user,
+    superadmin,
   };
   const expectedLogoutAction = {
     type: LOGOUT_SUCCESS,
   };
 
   it('should create an action for successful login', () => {
-    expect(auth.loginSuccess(user)).toEqual(expectedLoginAction);
+    expect(auth.loginSuccess(superadmin)).toEqual(expectedLoginAction);
   });
 
   it('should create an action for successful logout', () => {
@@ -49,15 +49,15 @@ describe('auth action creators', () => {
     store.set = jest.fn();
     const resp = {
       token: 'this.is.token',
-      user,
+      superadmin,
     };
     fetchMock.post(`${API_URL}/superAdmin/authenticate`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore(fromJS({ superadmin: {} }));
 
     return reduxStore.dispatch(auth.loginFetch(values, routerMock)).then(() => {
       expect(store.set.mock.calls[0])
         .toEqual(['token', `Bearer ${resp.token}`]);
-      expect(store.set).toHaveBeenLastCalledWith('user', resp.user);
+      expect(store.set).toHaveBeenLastCalledWith('superadmin', resp.superadmin);
       expect(store.set).toHaveBeenCalledTimes(2);
       expect(reduxStore.getActions()[0]).toEqual(expectedLoginAction);
       expect(routerMock.push).toHaveBeenCalledWith('/');
@@ -77,7 +77,7 @@ describe('auth action creators', () => {
       message: 'User not found',
     };
     fetchMock.post(`${API_URL}/superAdmin/authenticate`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore(fromJS({ superadmin: {} }));
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.loginFetch(values, routerMock)).catch(
@@ -91,7 +91,7 @@ describe('auth action creators', () => {
   it('should make call to logout action', () => {
     routerMock.push = jest.fn();
     store.clear = jest.fn();
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore(fromJS({ superadmin: {} }));
     reduxStore.dispatch(auth.logoutAction(routerMock));
 
     expect(store.clear).toHaveBeenCalled();

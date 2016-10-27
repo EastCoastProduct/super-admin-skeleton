@@ -5,7 +5,7 @@ const path = require('path');
 
 const port = 9001;
 const staticDir = path.join(__dirname, 'dist');
-const staticIndex = path.join(staticDir, 'index.html')
+const staticIndex = path.join(staticDir, 'index.html');
 const app = express();
 
 app.use(express.static(staticDir));

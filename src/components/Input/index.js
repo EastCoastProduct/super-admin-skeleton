@@ -1,15 +1,28 @@
 import React, { PropTypes } from 'react';
+import { css } from 'aphrodite/no-important';
+import ErrorMsg from '../ErrorMsg';
+import styles from './index.style';
+
+const isError = ({ meta: { active, touched, error } }) =>
+  !active && touched && error;
 
 const Input = (props) => {
-  const { label, input, meta: { active, touched, error }, ...other } = props;
+  const { label, input, meta: { error }, ...other } = props;
 
   return (
     <div>
-      <label htmlFor={input.name}>
+      <label className={css(styles.label)} htmlFor={input.name}>
         {label}
-        <input id={input.name} {...input} {...other} />
       </label>
-      {!active && touched && error && <p>{error}</p>}
+      <div className={css(styles.holder, isError(props) && styles.holderErr)}>
+        <input
+          className={css(styles.input)}
+          id={input.name}
+          {...input}
+          {...other}
+        />
+        {isError(props) && <ErrorMsg>{error}</ErrorMsg>}
+      </div>
     </div>
   );
 };

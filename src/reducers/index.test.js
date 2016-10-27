@@ -7,7 +7,11 @@ describe('root reducer', () => {
     const store = createStore(rootReducer);
     expect(store.getState()).toEqual(fromJS({
       form: {},
-      user: {},
+      superadmin: {},
+      users: {
+        error: null,
+        list: [],
+      },
     }));
   });
 });
