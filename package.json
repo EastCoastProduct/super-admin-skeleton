@@ -6,7 +6,7 @@
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
     "start": "node prod.js",
     "dev-start": "node server.js",
-    "postinstall": "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "author": "ECP",
   "license": "MIT",
