@@ -21,8 +21,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      __SUPER_ADMIN_URL__: JSON.stringify('http://192.168.50.4:9000'),
-      __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
+      __SUPER_ADMIN_URL__: JSON.stringify(process.env.SUPER_ADMIN_URL),
+      __API_URL__: JSON.stringify(process.env.API_URL),
     }),
     new webpack.optimize.CommonsChunkPlugin('common-[chunkhash].js'),
     new webpack.optimize.DedupePlugin(),
