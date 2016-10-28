@@ -11,12 +11,12 @@ test:
 general:
   branches:
     only:
-      - circle-ci
+      - master
   artifacts:
     - "test/coverage" # relative to the user's home directory
 
 deployment:
   staging:
-    branch: circle-ci
+    branch: master
     heroku:
       appname: skeleton-superadmin
