@@ -1,0 +1,22 @@
+machine:
+  environment:
+    NODE_ENV: test
+  node:
+    version: v6
+
+test:
+  post:
+    - npm test
+
+general:
+  branches:
+    only:
+      - master
+  artifacts:
+    - "test/coverage" # relative to the user's home directory
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: skeleton-superadmin

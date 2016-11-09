@@ -4,10 +4,11 @@
   "description": "ECP skeleton for React/Redux super admin application",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
-    "prod": "node prod.js",
     "snapshots": "jest -u",
-    "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "start": "node prod.js",
+    "dev-start": "node server.js",
+    "heroku-postbuild": "npm run build"
   },
   "author": "ECP",
   "license": "MIT",
@@ -70,6 +71,9 @@
     "store": "^1.3.20",
     "validator": "^6.0.0",
     "whatwg-fetch": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=6.7 <7"
   },
   "jest": {
     "cacheDirectory": "../test/cache",
