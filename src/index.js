@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 import store from './store';
 import Routes from './routes';
-import './styles/defaults.base.style';
+import './styles/defaults.base.styles';
 
 ReactDOM.render(
   <Routes store={store} history={browserHistory} />,

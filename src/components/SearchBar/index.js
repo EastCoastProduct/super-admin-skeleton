@@ -1,15 +1,20 @@
 import React, { PropTypes } from 'react';
 import { css } from 'aphrodite/no-important';
-import styles from './index.style';
+import Button from '../Button';
+import styles from './styles';
 
-const SearchBar = ({ style }) =>
-  <div className={css(styles.bar, style && style)}>
-    <i className={`${css(styles.icon)} fa fa-search`} />
-    <input className={css(styles.input)} />
+const SearchBar = ({ className, input, meta: _, ...rest }) =>
+  <div className={css(styles.bar, className && className)} >
+    <Button type="submit" empty>
+      <i className={`${css(styles.icon)} fa fa-search`} />
+    </Button>
+    <input className={css(styles.input)} {...input} {...rest} />
   </div>;
 
 SearchBar.propTypes = {
-  style: PropTypes.object.isRequired,
+  className: PropTypes.object,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 export default SearchBar;

@@ -1,0 +1,33 @@
+exports[`BoxButtons component snapshot renders basic required data 1`] = `
+<div>
+  <button
+    className="button_w1w7v0-o_O-button_1q6mnjs"
+    disabled={false}
+    type="submit">
+    Create
+  </button>
+  <a
+    className="link_1mjr7jy"
+    onClick={[Function]}
+    style={Object {}}>
+    Cancel
+  </a>
+</div>
+`;
+
+exports[`BoxButtons component snapshot renders when button is disabled 1`] = `
+<div>
+  <button
+    className="button_w1w7v0-o_O-button_1q6mnjs"
+    disabled={true}
+    type="submit">
+    Save
+  </button>
+  <a
+    className="link_1mjr7jy"
+    onClick={[Function]}
+    style={Object {}}>
+    Cancel
+  </a>
+</div>
+`;

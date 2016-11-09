@@ -12,7 +12,7 @@ const superadmin = {
   updatedAt: '2016-10-20T10:02:47.000Z',
 };
 
-describe('user reducer', () => {
+describe('superadmin reducer', () => {
   it('should return empty initial state', () => {
     expect(reducer(undefined, {})).toEqual(fromJS({}));
   });

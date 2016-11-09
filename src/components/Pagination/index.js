@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { css } from 'aphrodite/no-important';
 import Button from '../Button';
-import styles from './index.style';
+import styles from './styles';
 
 export default class Pagination extends Component {
   static propTypes = {
+    className: PropTypes.object,
     currentPage: PropTypes.number.isRequired,
     itemsPerPage: PropTypes.number.isRequired,
     onPaginationChange: PropTypes.func.isRequired,
-    style: PropTypes.object,
     total: PropTypes.number.isRequired,
   };
 
@@ -92,11 +92,11 @@ export default class Pagination extends Component {
   }
 
   render() {
-    const { currentPage, style, total } = this.props;
+    const { currentPage, className, total } = this.props;
 
     return (
       total > 0 &&
-        <div className={css(style && style)}>
+        <div className={css(className && className)}>
           <p>{this.renderPaginationInfo()}</p>
           {this.numOfPages > 1 &&
             <ul className={css(styles.pagination)}>

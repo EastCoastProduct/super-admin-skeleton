@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import { css } from 'aphrodite/no-important';
-import styles from './index.style';
+import styles from './styles';
 
 const Header = ({ handleLogout, superadmin }) =>
   <header className={css(styles.header)}>
-    <p>Hello,&nbsp;
-      <b>{superadmin.get('firstname')} {superadmin.get('lastname')}</b>
-    </p>
+    {(superadmin.get('firstname') || superadmin.get('lastname')) &&
+      <p>Hello,&nbsp;
+        <b>{superadmin.get('firstname')} {superadmin.get('lastname')}</b>
+      </p>
+    }
     <a
       className={css(styles.link)}
       href

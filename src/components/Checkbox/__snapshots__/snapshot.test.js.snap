@@ -1,0 +1,53 @@
+exports[`Checkbox component snapshot renders basic required data 1`] = `
+<label
+  className=""
+  htmlFor="checkbox">
+  <span
+    className="checkbox_1gmevj5" />
+  <input
+    className="base_avg348"
+    id="checkbox"
+    name="checkbox"
+    onChange={[Function]}
+    type="checkbox"
+    value={false} />
+  This is checkbox
+</label>
+`;
+
+exports[`Checkbox component snapshot renders with additional styles 1`] = `
+<label
+  className="checkbox_1433df3"
+  htmlFor="checkbox">
+  <span
+    className="checkbox_1gmevj5" />
+  <input
+    className="base_avg348"
+    id="checkbox"
+    name="checkbox"
+    onChange={[Function]}
+    type="checkbox"
+    value={false} />
+  This is checkbox
+</label>
+`;
+
+exports[`Checkbox component snapshot renders with custom onChange event and checked 1`] = `
+<label
+  className=""
+  htmlFor="checkbox">
+  <span
+    className="checkbox_1gmevj5-o_O-checked_1ehyjl1">
+    <i
+      className="fa fa-check" />
+  </span>
+  <input
+    className="base_avg348"
+    id="checkbox"
+    name="checkbox"
+    onChange={[Function]}
+    type="checkbox"
+    value={true} />
+  This is checkbox
+</label>
+`;

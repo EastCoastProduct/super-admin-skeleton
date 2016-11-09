@@ -8,7 +8,7 @@ import { isEmail, isPassword, isRequired } from '../../utils/validator';
 import Input from '../../components/Input';
 import ErrorMsg from '../../components/ErrorMsg';
 import Button from '../../components/Button';
-import styles from './index.style';
+import styles from './styles';
 
 export const validate = (values) => {
   const errors = {};
@@ -35,7 +35,7 @@ export class LoginComponent extends Component {
 
   handleLogin(values) {
     const { dispatch, router } = this.props;
-    return dispatch(loginFetch(values, router));
+    return dispatch(loginFetch(values, () => router.push('/')));
   }
 
   render() {
@@ -51,17 +51,14 @@ export class LoginComponent extends Component {
             alt="Company Logo"
           />
           <h1 className={css(styles.header)}>Login to your account</h1>
-          <form
-            className={css(styles.form)}
-            onSubmit={handleSubmit(this.handleLogin)}
-            noValidate
-          >
+          <form onSubmit={handleSubmit(this.handleLogin)} noValidate>
             <Field
               name="email"
               component={Input}
               label="Email"
               type="email"
               placeholder="Email"
+              validated
             />
             <Field
               name="password"
@@ -69,13 +66,14 @@ export class LoginComponent extends Component {
               label="Password"
               type="password"
               placeholder="Password"
+              validated
             />
             <Button
-              style={styles.button}
+              className={styles.button}
               type="submit"
               disabled={submitting}
             >Login</Button>
-            {error && <ErrorMsg style={styles.error}>{error}</ErrorMsg>}
+            {error && <ErrorMsg className={styles.error}>{error}</ErrorMsg>}
           </form>
         </section>
       </main>

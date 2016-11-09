@@ -5,7 +5,7 @@ import { css } from 'aphrodite/no-important';
 import { logoutAction } from '../../actions/auth';
 import Header from '../../components/Header';
 import Navigation from '../../components/Navigation';
-import styles from './index.style';
+import styles from './styles';
 
 export class AppComponent extends Component {
   static propTypes = {
@@ -23,7 +23,7 @@ export class AppComponent extends Component {
   handleLogout(e) {
     e.preventDefault();
     const { dispatch, router } = this.props;
-    dispatch(logoutAction(router));
+    dispatch(logoutAction(() => router.push('/login')));
   }
 
   render() {

@@ -22,7 +22,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      __APP_URL__: JSON.stringify('http://192.168.50.4:9000'),
       __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
     }),
     new webpack.optimize.CommonsChunkPlugin('common-[chunkhash].js'),
@@ -35,9 +34,9 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: [/node_modules/, /\.base.style.js$/],
+        exclude: [/node_modules/, /\.base.styles.js$/],
       }, {
-        test: /\.base.style.js$/,
+        test: /\.base.styles.js$/,
         loaders: [
           'style?singleton',
           'css?modules&importLoaders=1&minimize',

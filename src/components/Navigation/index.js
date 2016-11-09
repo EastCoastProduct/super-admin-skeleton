@@ -1,7 +1,7 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
 import { css } from 'aphrodite/no-important';
-import styles from './index.style';
+import styles from './styles';
 
 const Navigation = () =>
   <aside className={css(styles.aside)}>

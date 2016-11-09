@@ -1,21 +1,22 @@
 import React, { PropTypes } from 'react';
 import { css } from 'aphrodite/no-important';
-import styles from './index.style';
+import styles from './styles';
 
-const Button = ({ children, empty, style, ...other }) =>
+const Button = ({ className, children, empty, ...rest }) =>
   <button
-    className={css(empty ? styles.empty : styles.button, style && style)}
-    {...other}
+    className={css(empty ? styles.empty : styles.button,
+      className && className)}
+    {...rest}
   >{children}</button>;
 
 Button.propTypes = {
+  className: PropTypes.object,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.element,
   ]).isRequired,
   empty: PropTypes.bool,
-  style: PropTypes.object,
 };
 
 export default Button;

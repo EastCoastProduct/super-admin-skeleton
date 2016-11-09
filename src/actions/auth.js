@@ -13,23 +13,23 @@ export const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,
 });
 
-export const loginFetch = (values, router) =>
+export const loginFetch = (values, cb) =>
   dispatch =>
     fetch(`${API_URL}/superAdmin/authenticate`, {
       method: 'POST',
       body: JSON.stringify(values),
     }).then((resp) => {
       store.set('token', `Bearer ${resp.token}`);
-      store.set('superadmin', resp.superadmin);
-      dispatch(loginSuccess(resp.superadmin));
-      return router.push('/');
+      store.set('superadmin', resp.user);
+      dispatch(loginSuccess(resp.user));
+      return typeof cb === 'function' && cb();
     }).catch(err =>
       Promise.reject(parseErrors(err))
     );
 
-export const logoutAction = router =>
+export const logoutAction = cb =>
   (dispatch) => {
     store.clear();
     dispatch(logoutSuccess());
-    return router.push('/login');
+    return typeof cb === 'function' && cb();
   };

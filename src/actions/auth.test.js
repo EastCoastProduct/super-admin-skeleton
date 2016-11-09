@@ -23,7 +23,6 @@ describe('auth action creators', () => {
     updatedAt: '2016-10-20T10:02:47.000Z',
   };
   const mockStore = configureMockStore([ thunk ]);
-  const routerMock = {};
   const expectedLoginAction = {
     type: LOGIN_SUCCESS,
     superadmin,
@@ -45,22 +44,22 @@ describe('auth action creators', () => {
       email: 'super.admin@mail.com',
       password: 'Password123',
     });
-    routerMock.push = jest.fn();
     store.set = jest.fn();
+    const cb = jest.fn();
     const resp = {
       token: 'this.is.token',
-      superadmin,
+      user: superadmin,
     };
     fetchMock.post(`${API_URL}/superAdmin/authenticate`, resp);
     const reduxStore = mockStore(fromJS({ superadmin: {} }));
 
-    return reduxStore.dispatch(auth.loginFetch(values, routerMock)).then(() => {
+    return reduxStore.dispatch(auth.loginFetch(values, cb)).then(() => {
       expect(store.set.mock.calls[0])
         .toEqual(['token', `Bearer ${resp.token}`]);
-      expect(store.set).toHaveBeenLastCalledWith('superadmin', resp.superadmin);
+      expect(store.set).toHaveBeenLastCalledWith('superadmin', resp.user);
       expect(store.set).toHaveBeenCalledTimes(2);
       expect(reduxStore.getActions()[0]).toEqual(expectedLoginAction);
-      expect(routerMock.push).toHaveBeenCalledWith('/');
+      expect(cb).toHaveBeenCalled();
     });
   });
 
@@ -80,7 +79,7 @@ describe('auth action creators', () => {
     const reduxStore = mockStore(fromJS({ superadmin: {} }));
     spyOn(parseErrors, 'default');
 
-    return reduxStore.dispatch(auth.loginFetch(values, routerMock)).catch(
+    return reduxStore.dispatch(auth.loginFetch(values)).catch(
       () => {
         expect(parseErrors.default)
           .toHaveBeenCalledWith(new Error('User not found'));
@@ -89,13 +88,13 @@ describe('auth action creators', () => {
   });
 
   it('should make call to logout action', () => {
-    routerMock.push = jest.fn();
     store.clear = jest.fn();
+    const cb = jest.fn();
     const reduxStore = mockStore(fromJS({ superadmin: {} }));
-    reduxStore.dispatch(auth.logoutAction(routerMock));
+    reduxStore.dispatch(auth.logoutAction(cb));
 
     expect(store.clear).toHaveBeenCalled();
     expect(reduxStore.getActions()[0]).toEqual(expectedLogoutAction);
-    expect(routerMock.push).toHaveBeenCalledWith('/login');
+    expect(cb).toHaveBeenCalled();
   });
 });

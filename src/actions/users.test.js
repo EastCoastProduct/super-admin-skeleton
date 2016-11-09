@@ -4,7 +4,8 @@ import thunk from 'redux-thunk';
 import { fromJS } from 'immutable';
 import * as users from './users';
 import * as parseErrors from '../utils/parseErrors';
-import { USERS_GET_SUCCESS, USERS_GET_FAILED } from '../constants/actions';
+import { USERS_GET_SUCCESS, USERS_GET_FAILED, USERS_PAGINATION_CHANGE }
+  from '../constants/actions';
 import { API_URL } from '../constants/application';
 
 describe('users action creators', () => {
@@ -33,31 +34,49 @@ describe('users action creators', () => {
     email: 'john.doe.ii@mail.com',
     confirmed: true,
   }];
+  const listTotal = 4;
+  const error = 'Something went wrong';
   const mockStore = configureMockStore([ thunk ]);
   const expectedSuccessAction = {
     type: USERS_GET_SUCCESS,
     list,
+    listTotal,
   };
   const expectedFailedAction = {
     type: USERS_GET_FAILED,
+    error,
   };
 
   it('should create an action for successful users get action', () => {
-    expect(users.usersGetSuccess(list)).toEqual(expectedSuccessAction);
+    expect(users.usersGetSuccess(list, listTotal))
+      .toEqual(expectedSuccessAction);
   });
 
   it('should create an action for failed users get action', () => {
-    expect(users.usersGetFailed()).toEqual(expectedFailedAction);
+    expect(users.usersGetFailed(error)).toEqual(expectedFailedAction);
+  });
+
+  it('should create an action for pagination change', () => {
+    expect(users.paginationChange(5)).toEqual({
+      type: USERS_PAGINATION_CHANGE,
+      page: 5,
+    });
   });
 
   it('should make successful users get fetch', () => {
     const resp = {
-      users: list,
+      count: listTotal,
+      rows: list,
     };
-    fetchMock.get(`${API_URL}/superAdmin/users`, resp);
-    const reduxStore = mockStore(fromJS({ users: { error: null, list: [] } }));
+    fetchMock.get(`${API_URL}/superAdmin/users?limit=10`, resp);
+    const reduxStore = mockStore(fromJS({
+      users: { error: null, list: [], listTotal: 0, page: 1 },
+    }));
+    const cb = jest.fn();
+    const qs = { limit: 10 };
 
-    return reduxStore.dispatch(users.usersGetFetch()).then(() => {
+    return reduxStore.dispatch(users.usersGetFetch(qs, cb)).then(() => {
+      expect(cb).toHaveBeenCalled();
       expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
     });
   });
@@ -70,8 +89,10 @@ describe('users action creators', () => {
       },
       message: 'Something went wrong',
     };
-    fetchMock.get(`${API_URL}/superAdmin/users`, resp);
-    const reduxStore = mockStore(fromJS({ users: { error: null, list: [] } }));
+    fetchMock.get(`${API_URL}/superAdmin/users?`, resp);
+    const reduxStore = mockStore(fromJS({
+      users: { error: null, list: [], listTotal: 0, page: 1 },
+    }));
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(users.usersGetFetch()).catch(

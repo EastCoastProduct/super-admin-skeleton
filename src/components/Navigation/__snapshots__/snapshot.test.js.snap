@@ -1,0 +1,39 @@
+exports[`Navigation component snapshot renders component 1`] = `
+<aside
+  className="aside_r524fi">
+  <nav>
+    <ul>
+      <li>
+        <a
+          className="navLink_1dyv036"
+          onClick={[Function]}
+          style={Object {}}>
+          <i
+            className="navIcon_11u5mqt fa fa-user" />
+          Users
+        </a>
+      </li>
+      <li>
+        <a
+          className="navLink_1dyv036"
+          onClick={[Function]}
+          style={Object {}}>
+          <i
+            className="navIcon_11u5mqt fa fa-address-book" />
+          Placeholder
+        </a>
+      </li>
+      <li>
+        <a
+          className="navLink_1dyv036"
+          onClick={[Function]}
+          style={Object {}}>
+          <i
+            className="navIcon_11u5mqt fa fa-lock" />
+          Placeholder
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+`;

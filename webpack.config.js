@@ -26,8 +26,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
-      __APP_URL__: JSON.stringify('http://192.168.50.4:9000'),
-      __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
+      __API_URL__: JSON.stringify('http://localhost:3000'),
     }),
   ],
   module: {
@@ -35,9 +34,9 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel', 'eslint'],
-        exclude: [/node_modules/, /\.base.style.js$/],
+        exclude: [/node_modules/, /\.base.styles.js$/],
       }, {
-        test: /\.base.style.js$/,
+        test: /\.base.styles.js$/,
         loaders: [
           'style',
           'css?modules&importLoaders=1',

@@ -3,11 +3,13 @@ import { combineReducers } from 'redux-immutablejs';
 import { fromJS } from 'immutable';
 import { LOGOUT_SUCCESS } from '../constants/actions';
 import superadmin from './superadmin';
+import user from './user';
 import users from './users';
 
 const appReducer = combineReducers(fromJS({
   form,
   superadmin,
+  user,
   users,
 }));
 
