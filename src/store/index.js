@@ -8,7 +8,7 @@ export function configureStore(env) {
   if (env === 'development') {
     createStoreWithMiddleware = compose(
       applyMiddleware(thunk),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
+      window.devToolsExtension ? window.devToolsExtension() : f => f,
     )(createStore);
 
     if (module.hot) {
@@ -19,7 +19,7 @@ export function configureStore(env) {
     }
   } else {
     createStoreWithMiddleware = compose(
-      applyMiddleware(thunk)
+      applyMiddleware(thunk),
     )(createStore);
   }
 

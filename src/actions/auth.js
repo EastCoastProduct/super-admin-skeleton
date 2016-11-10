@@ -24,7 +24,7 @@ export const loginFetch = (values, cb) =>
       dispatch(loginSuccess(resp.user));
       return typeof cb === 'function' && cb();
     }).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );
 
 export const logoutAction = cb =>

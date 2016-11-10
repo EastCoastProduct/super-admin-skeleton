@@ -10,5 +10,5 @@ import './styles/defaults.base.styles';
 
 ReactDOM.render(
   <Routes store={store} history={browserHistory} />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

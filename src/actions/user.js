@@ -17,9 +17,9 @@ export const userGetFailed = error => ({
 export const userGetFetch = userId =>
   dispatch =>
     fetch(`${API_URL}/users/${userId}`).then(resp =>
-      dispatch(userFetchSuccess(resp))
+      dispatch(userFetchSuccess(resp)),
     ).catch(err =>
-      dispatch(userGetFailed(err.message))
+      dispatch(userGetFailed(err.message)),
     );
 
 export const userUpdateFetch = (values, userId, cb) =>
@@ -31,7 +31,7 @@ export const userUpdateFetch = (values, userId, cb) =>
       dispatch(userFetchSuccess(resp));
       return typeof cb === 'function' && cb();
     }).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );
 
 export const userCreateFetch = (values, cb) =>
@@ -43,5 +43,5 @@ export const userCreateFetch = (values, cb) =>
       dispatch(userFetchSuccess(resp));
       return typeof cb === 'function' && cb(resp.id);
     }).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );

@@ -4,37 +4,39 @@ The repository contains simple superadmin startup application. The technology ch
 
 1. [INSTALLATION](#installation)
 2. [CONFIGURATION](#configuration)
-  - [server.js](#serverjs)
-  - [prod.js](#prodjs)
-  - [webpack.config.js](#webpackconfigjs)
-  - [webpack.prod.config.js](#webpackprodconfigjs)
-  - [.babelrc](#babelrc)
-  - [.eslintrc](#eslintrc)
+    - [server.js](#serverjs)
+    - [prod.js](#prodjs)
+    - [webpack.config.js](#webpackconfigjs)
+    - [webpack.prod.config.js](#webpackprodconfigjs)
+    - [.babelrc](#babelrc)
+    - [.eslintrc](#eslintrc)
 3. [DEVELOPMENT](#development)
-  - [package.json](#packagejson)
-  - [webpack.config.js | webpack.prod.config.js](#webpackconfigjs--webpackprodconfigjs)
-  - [src/index.tpl.html](#srcindextplhtml)
-  - [src/store/index.js](#srcstoreindexjs)
+    - [package.json](#packagejson)
+    - [webpack.config.js | webpack.prod.config.js](#webpackconfigjs--webpackprodconfigjs)
+    - [src/index.tpl.html](#srcindextplhtml)
+    - [src/store/index.js](#srcstoreindexjs)
 4. [PRODUCTION](#production)
 5. [STRUCTURE](#structure)
 6. [MODULES](#modules)
-  - [DevDependencies](#devdependencies)
-  - [Dependencies](#dependencies)
+    - [DevDependencies](#devdependencies)
+    - [Dependencies](#dependencies)
 7. [ROUTES](#routes)
 8. [REACT / REDUX SETUP](#react--redux-setup)
 9. [UTILS](#utils)
-  - [fetch.js](#fetchjs)
-  - [parseErrors.js](#parseerrorsjs)
-  - [validator.js](#validatorjs)
+    - [createFormData.js](#createformdatajs)
+    - [fetch.js](#fetchjs)
+    - [parseErrors.js](#parseerrorsjs)
+    - [validator.js](#validatorjs)
 10. [LOCAL STORAGE](#local-storage)
 11. [GENERIC FORM FUNCTIONALITY](#generic-form-functionality)
-12. [TESTS](#tests)
-13. [ISSUES](#issues)
+12. [STYLES](#styles)
+13. [TESTS](#tests)
+14. [ISSUES](#issues)
 
 
 ## INSTALLATION
 
-Recommended way to run this project would be to pull [Skeleton](https://github.com/EastCoastProduct/skeleton) repository and follow instructions to setup local environment. Following those steps wouldn't require a user to make any manual steps to run this project.
+Recommended way to run this project would be to pull [Skeleton](https://github.com/EastCoastProduct/skeleton) repository and follow instructions to setup local environment through Docker. Following those steps wouldn't require a user to make any manual steps to run this project.
 
 This project can also be run as standalone but it depends on existing [API](https://github.com/EastCoastProduct/api-skeleton) to make requests. API should be pulled, installed and configured along with this repository or all requests should be replaced. API requests are held inside */src/actions* folder.
 
@@ -45,7 +47,7 @@ In case of standalone setup, machine needs to have installed:
 Pull or download repo to local machine and run these commands from project's root directory:
 
     npm install
-    npm start
+    npm run dev-start
 
 Open browser on link [http://localhost:9000/login](http://localhost:9000/login).
 
@@ -63,14 +65,20 @@ Webpack automates development process for us by bundling project files into sing
 
 Output folder in our case is *dist* folder. In this case, we won't have that folder locally created, it will be held inside memory and hot reloaded on every change.
 
-Plugins section contains optimization plugin along with hot module replacement plugin needed for hot reloading feature. We also define HTML Webpack plugin which creates *index.html* file automatically based out of template file held in *src/index.tpl.html*. This is helpful for us to automatically add bundled script at the end of the body tag and allows us to hash those files like we do in production mode. The last plugin we use defines 3 global variables, 2 of which we use in our app as constants and one that notifies React and other modules that we are running this bundle in development mode. This enables PropTypes validation, hot reloading and some other features that are not needed in production mode.
+Plugins section contains optimization plugin along with hot module replacement plugin needed for hot reloading feature. We also define HTML Webpack plugin which creates *index.html* file automatically based out of template file held in *src/index.tpl.html*. This is helpful for us to automatically add bundled script at the end of the body tag and allows us to hash those files like we do in production mode. The last plugin we use defines 2 global variables, one of which we use in our app as constants and one that notifies React and other modules that we are running this bundle in development mode. This enables PropTypes validation, hot reloading and some other features that are not needed in production mode.
 
-List of loaders manipulates certain file types and does specific alterations on them. Most important ones are Babel and Eslint loader run on top of all our JS files that are included in a project. Babel transpiles our ES6 code into ES5 and enables it to work for older browsers that don't fully support ES6 features. Eslint checks out syntax and errors out defined by *.eslintrc* configuration file. All other loaders are currently used just to load our Font Awesome library and embed it in a project through JS. This way we save one HTTP request prefetching fonts from the server.
+List of loaders manipulates certain file types and does specific alterations on them. Most important ones are Babel and Eslint loader run on top of all our JS files that are included in a project. Babel transpiles our ES6 code into ES5 and enables it to work for older browsers that don't fully support ES6 features. Eslint checks out syntax and errors out defined by the *.eslintrc* configuration file. All other loaders are currently used to load our Font Awesome library and embed it in a project through JS and to add our base styles and normalize.css into head tag dynamically. This way we save HTTP requests prefetching fonts and styles from the server.
+
+PostCss and node rules at the end are just there to allow prefixing of our default styles and fix PostCss issues with fs.
 
 ### webpack.prod.config.js
 Production configuration is similar to development one. The difference is that our output file is going to be hashed so we can prevent file caching in production mode. Source maps are also different from development mode which is defined by *devtool* property.
 
 There're few more plugins in production mode as we want to enable chunking of common files from other project files, lose the duplicate code, minimize our code and allow aggressive merging policy to get more optimized and minified file that we wouldn't in the case of development mode. In this case, one of our global variables we send is notifying React and other modules that we're running code in production mode so we can get rid of hot reloading and any other unnecessary checking and validation that we use in development mode.
+
+Loaders are doing a similar job as in development mode. Some of the differences are that we don't use linting loader and we are minimizing default styles and adding them to the same style tag.
+
+PostCss and node rules at the end are just there to allow prefixing of our default styles and fix PostCss issues with fs.
 
 ### .babelrc
 This file holds configuration for Babel loader. We have presets defined to allow us to use modern ES6 syntax along with basic React best practices. As a last configuration point, we are defining React hot module replacement preset in case of development mode.
@@ -89,11 +97,10 @@ Some data should be changed corresponding to your project. Generic information l
 ### webpack.config.js | webpack.prod.config.js
 
     new webpack.DefinePlugin({
-      __APP_URL__: JSON.stringify('http://192.168.50.4:9000'),
       __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
     }),
 
-These lines define global variables that get passed to bundled project. We are passing *__APP_URL__* and *__API_URL__* as global variables which we use inside the application as Web and API constants. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
+These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as the global variable which we use inside the application as API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
 
 ### src/index.tpl.html
 Title inside template should be updated to the corresponding one instead of generic one. Favicon link doesn't exist with skeleton example which should probably be added manually.
@@ -117,7 +124,7 @@ To build your code in production mode run:
 
 This would bundle JS code in production mode following configuration defined in *webpack.prod.config.js* and create the *dist* folder. *Dist* folder contains production-ready files which can be deployed and served using the technology of choice. To test production ready code locally run:
 
-    npm run prod
+    npm start
 
 This serves production ready code from *dist* folder and allows it to be tested locally in the browser. Port is changed from 9000 to 9001 to allow development and production mode at the same time.
 
@@ -133,13 +140,18 @@ This serves production ready code from *dist* folder and allows it to be tested 
     │   ├── reducers             # root reducer setup importing individual reducers
     │   ├── routes               # React Router setup
     │   ├── store                # store setup for development and production
+    │   ├── styles               # default styles, mixins and style variables
     │   ├── utils                # reusable modules like validator, error parser...
     │   ├── index.js             # entry point for our React/Redux application
-    │   └── index.tpl.html       # template html from which html-webpack-plugin creates output html file including hashed JS files
+    │   ├── index.tpl.html       # template html from which html-webpack-plugin creates output html file including hashed JS files
+    │   └── setupTests.js        # setup testing environment prior to executing tests
+    ├── test                     # folder which contains Jest testing cache and coverage reports
     ├── .babelrc                 # babel configuration including ES6 syntax
     ├── .eslintrc                # eslint configuration based on airbnb setup
+    ├── .git                     # git configuration file
     ├── .gitignore               # ignore setup for git
-    ├── .docker-start.sh         # automated script that runs after Docker configuration
+    ├── circle.yml               # Circle CI configuration file
+    ├── docker-start.sh          # automated script that runs after Docker configuration
     ├── Dockerfile               # Docker configuration file
     ├── package.json             # module dependancy
     ├── prod.js                  # express server to test production-ready bundle
@@ -154,6 +166,7 @@ This serves production ready code from *dist* folder and allows it to be tested 
 Modules list is defined in *package.json*. Purpose of each module in project is listed:
 
 ### DevDependencies
+* autoprefixer - parses CSS and adds vendor prefixes
 * babel-core - Babel compiler core module
 * babel-eslint - module allows linting of all valid Babel code
 * babel-jest - Babel plugin for Jest
@@ -172,11 +185,16 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * eslint-plugin-jsx-a11y - Airbnb's config dependency, static analysis linter of JSX and accessibility with screen readers
 * eslint-plugin-react - Airbnb's config dependency, provides React specific linting rules
 * express - minimalistic Node framework used to serve files in development and allow hot reloading feature
+* fetch-mock - library to mock fetch calls in testing environment
+* file-api - library that mocks browser's File API for tests that run in node environment
 * file-loader - Webpack file loader, constructs MD5 hash filename and emits files
 * html-webpack-plugin - simplifies creation of *index.html* file through Webpack
 * jest - JS testing framework, best tool to rest React/Redux applications
+* postcss-js - PostCss library for CSS-in-JS default styles
+* postcss-loader - Webpack PostCss loader
 * react-addons-test-utils - package provides React TestUtils add-on, it is also dependency of Enzyme
 * react-test-renderer - React package used for snapshot testing
+* redux-mock-store - library to mock Redux store for test environment
 * style-loader - Webpack style loader, adds CSS to DOM by injecting style tags
 * url-loader - Webpack URL loader, returns Data URL if file is smaller than limit
 * webpack - JS bundler for tasks automation
@@ -184,15 +202,17 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * webpack-hot-middleware - Webpack hot reloading attached to express server
 
 ### Dependencies
+* aphrodite - library to write inline styles
 * babel-polyfill - provides polyfills for full ES6 environment
 * es6-promise - provides Promise polyfill
 * font-awesome - Font Awesome library, imported in project entry file and served by Webpack
 * immutable - library which allows immutable persistent data collections
+* normalize.css - library which collects cross-browser alternative to resets
+* query-string - library that constructs query-string for GET requests
 * react - JS framework for building user interfaces
 * react-dom - React package, allows working with DOM, used to hook up React application to template DOM served by *index.html*
 * react-redux - React bindings for Redux
 * react-router - React routing library
-* recompose - HOC wrapper to allow passing data from connected components to components wrapped by Redux Form decorator
 * redux - persistent state management library
 * redux-form - HOC wrapper for form components, allows basic form functionality and reduces boilerplate
 * redux-immutablejs - provides integration between Immutable and Redux
@@ -208,7 +228,10 @@ All routes are configured inside *src/routes* folder. Routing inside the applica
 
 Routes | Container | Description | State data | Requests
 ------|-----------|-------------|------------|---------
-/ | App -> Home | Home page placeholder | none | none
+/ | App -> Users | Paginated and filterable list of all users | users | **GET** /superAdmin/users?page&limit&confirmed&search
+/user/:userId | App -> ViewUser | View user's profile data | user | **GET** /users/:userId
+/user/:userId/edit | App -> EditUser | Edit user profile data | user | **GET** /users/:userId <br/> **POST** /users/:userId
+/user | App -> CreateUser | Create user through email | none | **POST** /superAdmin/users
 /login | Login | Login form | none | **POST** /authenticate
 * | Page404 | Renders in case no other route was matched, shows information to user and offers links to go back to Home or Login | none | none
  | App | Parent component for the application that holds menu and allows user to logout | none | none
@@ -237,6 +260,9 @@ All actions have to be unique so we keep them in the same file as constants, *sr
 
 Folder contains shareable files that provide functionality on top of current React and Redux logic which is spread across all other folders:
 
+### createFormData.js
+A module that creates FormData object used in multipart API POST request and returns it. The function takes iterable as a parameter. Data in our app is immutable and it can be iterated to construct FormData object out of all values that our iterable contains.
+
 ### fetch.js
 A module which exports Fetch API. We don't call Fetch API immediately from our actions because with every request there is a bunch of repeatable processes through which our request needs to go. That is why this module contains all reusable functionality and configuration. Prior to every request, we have *Authorization* header and usually *Content-Type* header to set. We merge those default headers with other options passed to the module. Upon every successful response we need to parse JSON data into readable objects and we need to check the status of our request. By specification, Fetch API Promises reject only in case of exceptions so we need to manually check the status of response and manually reject in case our API responded with the error. The last thing to check is when our Fetch API Promise gets rejected. In that case, we want to make sure that we redirect all 401 statuses back to Login page because the user doesn't have permissions to access our application.
 
@@ -256,7 +282,14 @@ We hold some data permanently inside local storage. When a user successfully log
 
 All forms should follow predefined functionalities and flow described here. All forms fields should be called the same name as the name under which API expects POST parameters. This way we enable an easier flow of field values from components through asynchronous actions and making it easier to parse data before and after making the request. Each field can be validated and it's validation errors are displayed beneath given input. Those errors are shown only in a case that certain input is not active and it has been touched at some point. Form submission button is never disabled and allows users to click at any point enabling validation to take place and show errors without doing any request.
 
-If forms are valid and the request has been made we should show appropriate spinners and disable submit button in the process. When we get the response from the API, spinners should disappear and the button should be enabled again. In a case of a successful request, we could optionally show success message which gets removed in case of form resubmission. In a case of failed request, we need to create Redux Form's SubmissionError object out of error object returned by a response. That object will construct generic error message that gets shown beneath form and is directly connected to the form as whole and it also constructs error for each field in case API has created one. These errors get removed in the same way as validation errors do and generic form error disappears if form gets touched.
+If forms are valid and the request has been made we should show appropriate spinners and disable submit button in the process. When we get the response from the API, spinners should disappear and the button should be enabled again. In a case of a successful request, we could optionally show success message which gets removed in case of form resubmission. In a case of failed request, we need to create Redux Form's SubmissionError object out of error object returned by a response. That object will construct generic error message that gets shown beneath form and is directly connected to the form as a whole and it also constructs error for each field in case API has created one. These errors get removed in the same way as validation errors do and generic form error disappears if form gets touched.
+
+
+## STYLES
+
+Styling is done using Aphrodite module. This is a library that allows writing styles with JS and style each component separately. Each style for each component is held in the same directory. Some reusable styles are held inside *src/styles* folder in mixins file. Also, we are holding all colors, fonts, sizes, etc. in variables file. From here we can import any of these variables and mixins to any of our component styling files and reuse same rules and definitions. Aphrodite inserts style tag in the head of HTML page asynchronously after HTML gets generated. This makes all CSS pseudo-elements workable and no bad JS fixes are needed.
+
+To insert default styles like *normalize.css* and resets we need to use something other than Aphrodite. In this case, we have PostCss loader and some other modules (postcss-js, autoprefixer...) wrapped together to parse default styles that are held inside *src/styles* folder. We have configured to parse *default.base.styles.js* file to CSS and insert it along with *normalize.css* into style tag held inside head tag. All of this is configured through Webpack.
 
 
 ## TESTS

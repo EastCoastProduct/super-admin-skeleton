@@ -65,14 +65,14 @@ export default class Pagination extends Component {
           className={css(styles.item, i === currentPage && styles.selected)}
           key={i}
         >
-          {i === currentPage ? i :
+          {i !== currentPage ?
             <Button
               empty
               type="button"
               onClick={this.clickHandler(i)}
-            >{i}</Button>
+            >{i}</Button> : i
           }
-        </li>
+        </li>,
       );
     }
 

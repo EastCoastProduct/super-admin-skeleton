@@ -20,7 +20,7 @@ describe('Users component', () => {
   const wrapper = shallow(
     <UsersComponent
       dispatch={mockDispatch}
-      filters={{ confirmed: false, search: '' }}
+      filters={fromJS({ confirmed: false, search: '' })}
       router={mockRouter}
       users={fromJS({ error: null, list: [], listTotal: 0, page: 1 })}
     />
@@ -28,6 +28,30 @@ describe('Users component', () => {
   const instance = wrapper.instance();
   Actions.usersGetFetch = jest.fn();
   Actions.paginationChange = jest.fn();
+
+  it('composeParams static method with acceptable params', () => {
+    const params = {
+      confirmed: true,
+      search: 'name',
+    };
+    const newParams = instance.constructor.composeParams(1, fromJS(params));
+    expect(newParams).toEqual({
+      page: 1,
+      confirmed: true,
+      search: 'name',
+    });
+  });
+
+  it('composeParams static method without acceptable params', () => {
+    const params = {
+      confirmed: false,
+      search: '',
+    };
+    const newParams = instance.constructor.composeParams(5, fromJS(params));
+    expect(newParams).toEqual({
+      page: 5,
+    });
+  });
 
   it('handleGetUsers method', () => {
     const cb = jest.fn();
@@ -59,7 +83,7 @@ describe('Users component', () => {
     instance.handlePaginationChange(5);
 
     expect(instance.handleGetUsers).toHaveBeenCalledWith(
-      { confirmed: false, page: 5, search: '' }, jasmine.any(Function)
+      { page: 5 }, jasmine.any(Function)
     );
     expect(Actions.paginationChange).toHaveBeenCalledWith(5);
     expect(mockDispatch).toHaveBeenCalled();

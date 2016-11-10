@@ -27,8 +27,8 @@ export const UsersFiltersFormComponent = (props) => {
         component={SearchBar}
         type="text"
         placeholder="Search by email, first and last name"
-        normalize={value => `${value}%`}
-        format={value => value.slice(0, -1)}
+        normalize={value => `%${value}%`}
+        format={value => value.slice(1, -1)}
       />
     </form>
   );

@@ -27,5 +27,5 @@ export const usersGetFetch = (qs, cb) =>
         dispatch(usersGetSuccess(resp.rows, resp.count));
         return typeof cb === 'function' && cb();
       }).catch(err =>
-        dispatch(usersGetFailed(err.message))
+        dispatch(usersGetFailed(err.message)),
       );

@@ -85,5 +85,5 @@ export default connect()(withRouter(
   reduxForm({
     form: 'Login',
     validate,
-  })(LoginComponent)
+  })(LoginComponent),
 ));

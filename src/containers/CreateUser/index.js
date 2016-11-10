@@ -34,7 +34,7 @@ export class CreateUserComponent extends Component {
   handleUserCreate(values) {
     const { dispatch, router } = this.props;
     return dispatch(userCreateFetch(values, id =>
-      router.push(`/user/${id}`)
+      router.push(`/user/${id}`),
     ));
   }
 

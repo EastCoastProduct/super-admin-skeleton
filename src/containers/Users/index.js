@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router';
 import { formValueSelector } from 'redux-form/immutable';
+import { fromJS } from 'immutable';
 import { css } from 'aphrodite/no-important';
 import { paginationChange, usersGetFetch } from '../../actions/users';
 import { PAGINATION } from '../../constants/application';
@@ -17,32 +18,43 @@ export class UsersComponent extends Component {
     users: PropTypes.object.isRequired,
   };
 
+  static composeParams(page, params) {
+    let newParams = params.set('page', page);
+    if (!params.get('confirmed')) newParams = newParams.delete('confirmed');
+    if (params.has('search') && !params.get('search').slice(1, -1)) {
+      newParams = newParams.delete('search');
+    }
+    return newParams.toJS();
+  }
+
   constructor(props) {
     super(props);
     this.handleGetUsers = this.handleGetUsers.bind(this);
     this.handleFiltersSubmit = this.handleFiltersSubmit.bind(this);
     this.handlePaginationChange = this.handlePaginationChange.bind(this);
 
-    this.handleGetUsers(props.users.get('page'));
+    this.handleGetUsers({ page: props.users.get('page') });
   }
 
-  handleGetUsers(filters, cb) {
+  handleGetUsers(params, cb) {
     const { dispatch } = this.props;
-    dispatch(usersGetFetch({ limit: PAGINATION, ...filters }, cb));
+
+    dispatch(usersGetFetch({ limit: PAGINATION, ...params }, cb));
   }
 
   handleFiltersSubmit(values) {
     const { dispatch } = this.props;
-    this.handleGetUsers({ page: 1, ...values.toJS() }, () =>
-      dispatch(paginationChange(1))
+
+    this.handleGetUsers(this.constructor.composeParams(1, values), () =>
+      dispatch(paginationChange(1)),
     );
   }
 
   handlePaginationChange(page) {
     const { dispatch, filters } = this.props;
 
-    this.handleGetUsers({ page, ...filters }, () =>
-      dispatch(paginationChange(page))
+    this.handleGetUsers(this.constructor.composeParams(page, filters), () =>
+      dispatch(paginationChange(page)),
     );
   }
 
@@ -70,7 +82,7 @@ export class UsersComponent extends Component {
         <td className={css(styles.cell)}>{item.get('email')}</td>
         <td className={css(styles.cell)}>{item.get('bio') || 'N/A'}</td>
         <td className={css(styles.cell)}>{item.get('confirmed').toString()}</td>
-      </tr>
+      </tr>,
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
   }
@@ -123,7 +135,9 @@ export class UsersComponent extends Component {
 }
 
 export default connect(state => ({
-  filters: formValueSelector('UsersFilters')(state, 'confirmed', 'search'),
+  filters: fromJS(
+    formValueSelector('UsersFilters')(state, 'confirmed', 'search'),
+  ),
   users: state.get('users'),
 }))(withRouter(UsersComponent));
 
