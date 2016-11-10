@@ -10,7 +10,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
 const compiler = webpack(config);
-const port = 9000;
+const port = process.env.PORT || 9000;
 const staticDir = path.join(__dirname, 'dist');
 const staticIndex = path.join(staticDir, 'index.html');
 
