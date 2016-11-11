@@ -1,8 +1,7 @@
 export default function createFormData(iterable) {
   const formData = new FormData();
-  const entries = Object.entries(iterable);
-  entries.forEach(elm =>
-    formData.append(elm[0], elm[1] instanceof FileList ? elm[1][0] : elm[1]),
+  iterable.forEach((val, key) =>
+    formData.append(key, val instanceof FileList ? val[0] : val),
   );
   return formData;
 }
