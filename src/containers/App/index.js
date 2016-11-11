@@ -21,8 +21,9 @@ export class AppComponent extends Component {
   }
 
   handleLogout(e) {
-    e.preventDefault();
     const { dispatch, router } = this.props;
+
+    e.preventDefault();
     dispatch(logoutAction(() => router.push('/login')));
   }
 

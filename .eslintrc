@@ -7,7 +7,6 @@
     "es6": true
   },
   "globals": {
-    "__APP_URL__": true,
     "__API_URL__": true
   },
   "plugins": [

@@ -1,5 +1,5 @@
 exports[`Page404 component snapshot renders page 1`] = `
-<section>
+<main>
   <p>
     This is page 404. Nothing here to see.
   </p>
@@ -18,5 +18,5 @@ exports[`Page404 component snapshot renders page 1`] = `
     </a>
      page.
   </p>
-</section>
+</main>
 `;
