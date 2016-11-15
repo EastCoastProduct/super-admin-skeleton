@@ -21,6 +21,7 @@ export class CreateUserComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
+    form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
     submitting: PropTypes.bool.isRequired,
@@ -39,7 +40,7 @@ export class CreateUserComponent extends Component {
   }
 
   render() {
-    const { error, handleSubmit, submitting } = this.props;
+    const { error, form, handleSubmit, submitting } = this.props;
 
     return (
       <UserBox header="Create New User">
@@ -47,6 +48,7 @@ export class CreateUserComponent extends Component {
           <Field
             name="email"
             component={Input}
+            id={form}
             label="Email"
             type="email"
             placeholder="Email"

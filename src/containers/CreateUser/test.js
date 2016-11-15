@@ -20,6 +20,7 @@ describe('CreateUser component', () => {
   const wrapper = shallow(
     <CreateUserComponent
       dispatch={mockDispatch}
+      form="Form"
       handleSubmit={() => {}}
       router={mockRouter}
       submitting={false}

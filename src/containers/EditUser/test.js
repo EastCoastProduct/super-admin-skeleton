@@ -24,6 +24,7 @@ describe('EditUser component', () => {
   const wrapper = shallow(
     <EditUserComponent
       dispatch={mockDispatch}
+      form="Form"
       handleSubmit={() => {}}
       params={mockParams}
       profile={fromJS({ image: 'link-to-image' })}

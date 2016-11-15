@@ -1,12 +1,12 @@
 exports[`Checkbox component snapshot renders basic required data 1`] = `
 <label
   className=""
-  htmlFor="checkbox">
+  htmlFor="Form-checkbox">
   <span
     className="checkbox_1gmevj5" />
   <input
     className="base_avg348"
-    id="checkbox"
+    id="Form-checkbox"
     name="checkbox"
     onChange={[Function]}
     type="checkbox"
@@ -18,12 +18,12 @@ exports[`Checkbox component snapshot renders basic required data 1`] = `
 exports[`Checkbox component snapshot renders with additional styles 1`] = `
 <label
   className="checkbox_1433df3"
-  htmlFor="checkbox">
+  htmlFor="Form-checkbox">
   <span
     className="checkbox_1gmevj5" />
   <input
     className="base_avg348"
-    id="checkbox"
+    id="Form-checkbox"
     name="checkbox"
     onChange={[Function]}
     type="checkbox"
@@ -35,7 +35,7 @@ exports[`Checkbox component snapshot renders with additional styles 1`] = `
 exports[`Checkbox component snapshot renders with custom onChange event and checked 1`] = `
 <label
   className=""
-  htmlFor="checkbox">
+  htmlFor="Form-checkbox">
   <span
     className="checkbox_1gmevj5-o_O-checked_1ehyjl1">
     <i
@@ -43,7 +43,7 @@ exports[`Checkbox component snapshot renders with custom onChange event and chec
   </span>
   <input
     className="base_avg348"
-    id="checkbox"
+    id="Form-checkbox"
     name="checkbox"
     onChange={[Function]}
     type="checkbox"

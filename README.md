@@ -100,7 +100,7 @@ Some data should be changed corresponding to your project. Generic information l
       __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
     }),
 
-These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as the global variable which we use inside the application as API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
+These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as global variable which we use inside the application as Web and API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
 
 ### src/index.tpl.html
 Title inside template should be updated to the corresponding one instead of generic one. Favicon link doesn't exist with skeleton example which should probably be added manually.
@@ -124,7 +124,7 @@ To build your code in production mode run:
 
 This would bundle JS code in production mode following configuration defined in *webpack.prod.config.js* and create the *dist* folder. *Dist* folder contains production-ready files which can be deployed and served using the technology of choice. To test production ready code locally run:
 
-    npm start
+    npm run prod
 
 This serves production ready code from *dist* folder and allows it to be tested locally in the browser. Port is changed from 9000 to 9001 to allow development and production mode at the same time.
 

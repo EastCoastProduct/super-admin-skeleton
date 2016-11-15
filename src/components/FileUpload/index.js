@@ -12,7 +12,7 @@ const backgroundStyle = (value) => {
 };
 
 const FileUpload = (props) => {
-  const { image, input: { value, ...input }, meta: { error }, preview,
+  const { id, image, input: { value, ...input }, meta: { error }, preview,
     validated } = props;
 
   return (
@@ -26,11 +26,11 @@ const FileUpload = (props) => {
           <i className={`${css(styles.icon)} fa fa-picture-o`} />
         }
         {!preview &&
-          <label className={css(styles.button)} htmlFor={input.name}>
+          <label className={css(styles.button)} htmlFor={`${id}-${input.name}`}>
             Upload Photo
             <input
               className={css(styles.file)}
-              id={input.name}
+              id={`${id}-${input.name}`}
               type="file"
               {...input}
             />
@@ -48,6 +48,7 @@ FileUpload.defaultProps = {
 };
 
 FileUpload.propTypes = {
+  id: PropTypes.string,
   image: PropTypes.string,
   input: PropTypes.object,
   meta: PropTypes.object,

@@ -23,6 +23,7 @@ export class LoginComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
+    form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
     submitting: PropTypes.bool.isRequired,
@@ -39,7 +40,7 @@ export class LoginComponent extends Component {
   }
 
   render() {
-    const { error, handleSubmit, submitting } = this.props;
+    const { error, form, handleSubmit, submitting } = this.props;
 
     return (
       <main className={css(styles.page)}>
@@ -55,6 +56,7 @@ export class LoginComponent extends Component {
             <Field
               name="email"
               component={Input}
+              id={form}
               label="Email"
               type="email"
               placeholder="Email"
@@ -63,6 +65,7 @@ export class LoginComponent extends Component {
             <Field
               name="password"
               component={Input}
+              id={form}
               label="Password"
               type="password"
               placeholder="Password"

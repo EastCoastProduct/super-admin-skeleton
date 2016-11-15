@@ -71,10 +71,10 @@ export class UsersComponent extends Component {
     const { users } = this.props;
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
-    return users.get('list').map((item, index) =>
+    return users.get('list').map(item =>
       <tr
         className={css(styles.row)}
-        key={index}
+        key={item.get('id')}
         onClick={this.clickHandler(item.get('id'))}
       >
         <td className={css(styles.cell)}>{item.get('firstname') || 'N/A'}</td>

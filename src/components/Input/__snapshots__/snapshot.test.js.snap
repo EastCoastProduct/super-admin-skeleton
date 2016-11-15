@@ -2,12 +2,12 @@ exports[`Input component snapshot renders as textarea with max length 1`] = `
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="bio">
+    htmlFor="Form-bio">
     Bio
   </label>
   <textarea
     className="textarea_1huv73q"
-    id="bio"
+    id="Form-bio"
     maxLength="1000"
     name="bio"
     placeholder="Bio"
@@ -19,10 +19,10 @@ exports[`Input component snapshot renders basic required data 1`] = `
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="email" />
+    htmlFor="Form-email" />
   <input
     className="input_10e10cq"
-    id="email"
+    id="Form-email"
     name="email" />
 </div>
 `;
@@ -31,12 +31,12 @@ exports[`Input component snapshot renders extra info and it is active and invali
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83"
-    id="email"
+    id="Form-email"
     name="email"
     placeholder="Email"
     type="email"
@@ -48,12 +48,12 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83-o_O-inputErr_229bd5"
-    id="email"
+    id="Form-email"
     name="email"
     value="notAnEmail" />
   <p
@@ -69,12 +69,12 @@ exports[`Input component snapshot renders label and input is required 1`] = `
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83-o_O-inputErr_229bd5"
-    id="email"
+    id="Form-email"
     name="email" />
   <p
     className="error_8cisgn">
@@ -89,12 +89,12 @@ exports[`Input component snapshot renders label and is focused 1`] = `
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
     className="input_10e10cq"
-    id="email"
+    id="Form-email"
     name="email"
     value="test@email.com" />
 </div>

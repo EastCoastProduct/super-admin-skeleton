@@ -13,6 +13,7 @@ describe('UsersFiltersForm component', () => {
 
   it('renders and submits on click', () => {
     const reduxFormProps = {
+      form: 'Form',
       handleFiltersSubmit: jest.fn(),
       handleSubmit: jest.fn(cb => cb()),
     };

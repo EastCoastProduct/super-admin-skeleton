@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar';
 import styles from './styles';
 
 export const UsersFiltersFormComponent = (props) => {
-  const { className, handleFiltersSubmit, handleSubmit } = props;
+  const { className, form, handleFiltersSubmit, handleSubmit } = props;
 
   return (
     <form
@@ -18,6 +18,7 @@ export const UsersFiltersFormComponent = (props) => {
         className={styles.checkbox}
         name="confirmed"
         component={Checkbox}
+        id={form}
         onChange={handleSubmit(handleFiltersSubmit)}
         label="Show only confirmed users"
       />
@@ -36,6 +37,7 @@ export const UsersFiltersFormComponent = (props) => {
 
 UsersFiltersFormComponent.propTypes = {
   className: PropTypes.object,
+  form: PropTypes.string.isRequired,
   handleFiltersSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };

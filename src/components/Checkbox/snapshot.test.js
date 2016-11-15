@@ -14,6 +14,7 @@ describe('Checkbox component snapshot', () => {
   it('renders basic required data', () => {
     const tree = renderer.create(
       <Checkbox
+        id="Form"
         label="This is checkbox"
         input={{ name: 'checkbox', value: false }}
         meta={{}}
@@ -26,6 +27,7 @@ describe('Checkbox component snapshot', () => {
   it('renders with custom onChange event and checked', () => {
     const tree = renderer.create(
       <Checkbox
+        id="Form"
         label="This is checkbox"
         input={{ name: 'checkbox', value: true }}
         meta={{}}
@@ -46,6 +48,7 @@ describe('Checkbox component snapshot', () => {
     const tree = renderer.create(
       <Checkbox
         className={styles.checkbox}
+        id="Form"
         label="This is checkbox"
         input={{ name: 'checkbox', value: false }}
         meta={{}}

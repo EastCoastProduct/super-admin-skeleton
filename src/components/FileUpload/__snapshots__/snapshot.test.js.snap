@@ -7,11 +7,11 @@ exports[`FileUpload component snapshot renders empty validated file upload 1`] =
       className="icon_17id2n2 fa fa-picture-o" />
     <label
       className="button_h1ys7z"
-      htmlFor="image">
+      htmlFor="Form-image">
       Upload Photo
       <input
         className="file_avg348"
-        id="image"
+        id="Form-image"
         name="image"
         type="file" />
     </label>
@@ -30,11 +30,11 @@ exports[`FileUpload component snapshot renders file upload with selected image w
     }>
     <label
       className="button_h1ys7z"
-      htmlFor="image">
+      htmlFor="Form-image">
       Upload Photo
       <input
         className="file_avg348"
-        id="image"
+        id="Form-image"
         name="image"
         type="file" />
     </label>
@@ -71,11 +71,11 @@ exports[`FileUpload component snapshot renders validate file upload with image p
     }>
     <label
       className="button_h1ys7z"
-      htmlFor="image">
+      htmlFor="Form-image">
       Upload Photo
       <input
         className="file_avg348"
-        id="image"
+        id="Form-image"
         name="image"
         type="file" />
     </label>
@@ -94,11 +94,11 @@ exports[`FileUpload component snapshot renders validate file upload with selecte
     }>
     <label
       className="button_h1ys7z"
-      htmlFor="image">
+      htmlFor="Form-image">
       Upload Photo
       <input
         className="file_avg348"
-        id="image"
+        id="Form-image"
         name="image"
         type="file" />
     </label>

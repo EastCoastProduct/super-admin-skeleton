@@ -24,6 +24,7 @@ describe('FileUpload component snapshot', () => {
   it('renders empty validated file upload', () => {
     const tree = renderer.create(
       <FileUpload
+        id="Form"
         input={{ name: 'image' }}
         validated={true}
       />
@@ -37,6 +38,7 @@ describe('FileUpload component snapshot', () => {
     const file = new FileList(new File('./ecp-logo.png'));
     const tree = renderer.create(
       <FileUpload
+        id="Form"
         input={{ name: 'image', value: file }}
         validated={true}
       />
@@ -51,6 +53,7 @@ describe('FileUpload component snapshot', () => {
     const file = new FileList(new File('./ecp-logo.png'));
     const tree = renderer.create(
       <FileUpload
+        id="Form"
         input={{ name: 'image', value: file }}
         meta={{ error: 'Max. file size exceeded.' }}
       />
@@ -64,6 +67,7 @@ describe('FileUpload component snapshot', () => {
     const tree = renderer.create(
       <FileUpload
         image="link-to-image"
+        id="Form"
         input={{ name: 'image' }}
         validated={true}
       />

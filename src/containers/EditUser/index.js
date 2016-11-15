@@ -22,6 +22,7 @@ export class EditUserComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
+    form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
     profile: PropTypes.object,
@@ -50,7 +51,8 @@ export class EditUserComponent extends Component {
   }
 
   render() {
-    const { error, handleSubmit, params, profile, submitting } = this.props;
+    const { error, form, handleSubmit, params, profile, submitting } =
+      this.props;
 
     return (
       profile &&
@@ -59,12 +61,14 @@ export class EditUserComponent extends Component {
             <Field
               name="image"
               component={FileUpload}
+              id={form}
               image={profile.get('image')}
               validated
             />
             <Field
               name="firstname"
               component={Input}
+              id={form}
               label="First Name"
               type="text"
               placeholder="First Name"
@@ -73,6 +77,7 @@ export class EditUserComponent extends Component {
             <Field
               name="lastname"
               component={Input}
+              id={form}
               label="Last Name"
               type="text"
               placeholder="Last Name"
@@ -81,6 +86,7 @@ export class EditUserComponent extends Component {
             <Field
               name="bio"
               component={Input}
+              id={form}
               label="Bio"
               placeholder="Bio"
               maxLength="1000"
