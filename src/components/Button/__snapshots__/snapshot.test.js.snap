@@ -1,0 +1,20 @@
+exports[`Button component snapshot renders basic required data 1`] = `
+<button
+  className="button_w1w7v0">
+  Login
+</button>
+`;
+
+exports[`Button component snapshot renders empty button 1`] = `
+<button
+  className="empty_1b6lvt9">
+  Login
+</button>
+`;
+
+exports[`Button component snapshot renders with additional styles 1`] = `
+<button
+  className="button_w1w7v0-o_O-button_1433df3">
+  Login
+</button>
+`;

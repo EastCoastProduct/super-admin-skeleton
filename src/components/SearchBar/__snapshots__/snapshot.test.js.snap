@@ -1,0 +1,37 @@
+exports[`SearchBar component snapshot renders basic required data 1`] = `
+<div
+  className="bar_t04vgp">
+  <button
+    className="empty_1b6lvt9"
+    type="submit">
+    <i
+      className="icon_48j6am fa fa-search" />
+  </button>
+  <input
+    className="input_bvvtu9" />
+</div>
+`;
+
+exports[`SearchBar component snapshot renders with additional style and value 1`] = `
+<div
+  className="bar_t04vgp">
+  <button
+    className="empty_1b6lvt9"
+    type="submit">
+    <i
+      className="icon_48j6am fa fa-search" />
+  </button>
+  <input
+    className="input_bvvtu9"
+    style={
+      Object {
+        "_definition": Object {
+          "margin": 10,
+          "padding": 10,
+        },
+        "_name": "searchBar_70d19d",
+      }
+    }
+    value="name" />
+</div>
+`;

@@ -7,7 +7,6 @@
     "es6": true
   },
   "globals": {
-    "__SUPER_ADMIN_URL__": true,
     "__API_URL__": true
   },
   "plugins": [
@@ -22,6 +21,12 @@
   },
   "rules": {
     "max-len": ["error", 80, 2],
+    "no-unused-vars": [2, {
+      "vars": "local",
+      "varsIgnorePattern": "^_",
+      "args": "after-used",
+      "argsIgnorePattern": "^_"
+    }],
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": 0,
     "strict": 0

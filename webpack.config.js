@@ -1,8 +1,9 @@
 'use strict';
 
+const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -25,16 +26,27 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
-      __APP_URL__: JSON.stringify('http://192.168.50.4:9000'),
-      __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
+      __API_URL__: JSON.stringify('http://localhost:3000'),
     }),
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader', 'eslint-loader'],
-        exclude: /node_modules/,
+        loaders: ['babel', 'eslint'],
+        exclude: [/node_modules/, /\.base.styles.js$/],
+      }, {
+        test: /\.base.styles.js$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1',
+          'postcss?parser=postcss-js',
+          'babel',
+          'eslint',
+        ],
+      }, {
+        test: /\.json$/,
+        loader: 'json',
       }, {
         test: /\.css$/,
         loaders: ['style', 'css'],
@@ -55,5 +67,9 @@ module.exports = {
         loader: 'url?limit=10000&mimetype=image/svg+xml',
       },
     ],
+  },
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+  node: {
+    fs: 'empty',
   },
 };

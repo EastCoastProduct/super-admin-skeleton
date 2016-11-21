@@ -1,0 +1,17 @@
+exports[`ErrorMsg component snapshot renders basic required data 1`] = `
+<p
+  className="error_8cisgn">
+  <i
+    className="icon_1w16ibx fa fa-exclamation-triangle" />
+  Something went wrong.
+</p>
+`;
+
+exports[`ErrorMsg component snapshot renders with additional styles 1`] = `
+<p
+  className="error_8cisgn-o_O-error_1433df3">
+  <i
+    className="icon_1w16ibx fa fa-exclamation-triangle" />
+  Something went wrong.
+</p>
+`;

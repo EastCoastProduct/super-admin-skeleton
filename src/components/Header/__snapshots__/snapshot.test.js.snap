@@ -1,0 +1,31 @@
+exports[`Header component snapshot renders basic required data 1`] = `
+<header
+  className="header_uusume">
+  <p>
+    Hello, 
+    <b>
+      John
+       
+      Doe
+    </b>
+  </p>
+  <a
+    className="link_1lrrya9"
+    href={true}
+    onClick={[Function]}>
+    Logout
+  </a>
+</header>
+`;
+
+exports[`Header component snapshot renders with empty superadmin object 1`] = `
+<header
+  className="header_uusume">
+  <a
+    className="link_1lrrya9"
+    href={true}
+    onClick={[Function]}>
+    Logout
+  </a>
+</header>
+`;

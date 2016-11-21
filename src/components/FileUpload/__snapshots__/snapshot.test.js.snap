@@ -1,0 +1,107 @@
+exports[`FileUpload component snapshot renders empty validated file upload 1`] = `
+<div>
+  <div
+    className="emptyImage_avz902-o_O-validatedImage_4hnf83"
+    style={Object {}}>
+    <i
+      className="icon_17id2n2 fa fa-picture-o" />
+    <label
+      className="button_h1ys7z"
+      htmlFor="Form-image">
+      Upload Photo
+      <input
+        className="file_avg348"
+        id="Form-image"
+        name="image"
+        type="file" />
+    </label>
+  </div>
+</div>
+`;
+
+exports[`FileUpload component snapshot renders file upload with selected image with validation error 1`] = `
+<div>
+  <div
+    className="emptyImage_avz902-o_O-errImage_229bd5"
+    style={
+      Object {
+        "background": "url(ecp-logo-local-url) center/cover no-repeat",
+      }
+    }>
+    <label
+      className="button_h1ys7z"
+      htmlFor="Form-image">
+      Upload Photo
+      <input
+        className="file_avg348"
+        id="Form-image"
+        name="image"
+        type="file" />
+    </label>
+  </div>
+  <p
+    className="error_8cisgn">
+    <i
+      className="icon_1w16ibx fa fa-exclamation-triangle" />
+    Max. file size exceeded.
+  </p>
+</div>
+`;
+
+exports[`FileUpload component snapshot renders preview only 1`] = `
+<div>
+  <div
+    className="emptyImage_avz902"
+    style={
+      Object {
+        "background": "url(link-to-image) center/cover no-repeat",
+      }
+    } />
+</div>
+`;
+
+exports[`FileUpload component snapshot renders validate file upload with image prepopulated from S3 1`] = `
+<div>
+  <div
+    className="emptyImage_avz902-o_O-validatedImage_4hnf83"
+    style={
+      Object {
+        "background": "url(link-to-image) center/cover no-repeat",
+      }
+    }>
+    <label
+      className="button_h1ys7z"
+      htmlFor="Form-image">
+      Upload Photo
+      <input
+        className="file_avg348"
+        id="Form-image"
+        name="image"
+        type="file" />
+    </label>
+  </div>
+</div>
+`;
+
+exports[`FileUpload component snapshot renders validate file upload with selected image 1`] = `
+<div>
+  <div
+    className="emptyImage_avz902-o_O-validatedImage_4hnf83"
+    style={
+      Object {
+        "background": "url(ecp-logo-local-url) center/cover no-repeat",
+      }
+    }>
+    <label
+      className="button_h1ys7z"
+      htmlFor="Form-image">
+      Upload Photo
+      <input
+        className="file_avg348"
+        id="Form-image"
+        name="image"
+        type="file" />
+    </label>
+  </div>
+</div>
+`;

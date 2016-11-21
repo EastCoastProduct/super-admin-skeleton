@@ -2,7 +2,11 @@ import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 import App from '../containers/App';
-import Home from '../containers/Home';
+import Users from '../containers/Users';
+import ViewUser from '../containers/ViewUser';
+import EditUser from '../containers/EditUser';
+import CreateUser from '../containers/CreateUser';
+import Login from '../containers/Login';
 import Page404 from '../containers/Page404';
 
 const Routes = ({ store, history }) =>
@@ -10,8 +14,12 @@ const Routes = ({ store, history }) =>
     <Router history={history}>
       <Route path="/">
         <Route component={App}>
-          <IndexRoute component={Home} />
+          <IndexRoute component={Users} />
+          <Route path="user/:userId" component={ViewUser} />
+          <Route path="user/:userId/edit" component={EditUser} />
+          <Route path="user" component={CreateUser} />
         </Route>
+        <Route path="login" component={Login} />
         <Route path="*" component={Page404} />
       </Route>
     </Router>
