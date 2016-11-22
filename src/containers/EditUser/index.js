@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
 import { userGetFetch, userUpdateFetch } from '../../actions/user';
-import { isFileSizeExceeded } from '../../utils/validator';
+import { isEmail, isFileSizeExceeded, isRequired } from '../../utils/validator';
+import getChangedValues from '../../utils/getChangedValues';
 import UserBox from '../../components/UserBox';
 import FileUpload from '../../components/FileUpload';
 import Input from '../../components/Input';
+import Checkbox from '../../components/Checkbox';
 import ErrorMsg from '../../components/ErrorMsg';
 import BoxButtons from '../../components/BoxButtons';
 
 export const validate = (values) => {
   const errors = {};
-  const { image } = values.toJS();
+  const { newEmail, image } = values.toJS();
 
+  errors.newEmail = isRequired(newEmail) || isEmail(newEmail);
   errors.image = isFileSizeExceeded(image);
   return errors;
 };
@@ -24,6 +27,7 @@ export class EditUserComponent extends Component {
     error: PropTypes.string,
     form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    initialValues: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
     profile: PropTypes.object,
     router: PropTypes.object.isRequired,
@@ -44,8 +48,15 @@ export class EditUserComponent extends Component {
   }
 
   handleUserUpdate(values) {
-    const { dispatch, params: { userId }, router } = this.props;
-    return dispatch(userUpdateFetch(values, userId, () =>
+    const { dispatch, initialValues, params: { userId }, router } = this.props;
+
+    const changedValues = getChangedValues(values, initialValues);
+    const newValues = {
+      newEmail: changedValues.get('newEmail'),
+      confirmed: changedValues.get('confirmed'),
+      data: changedValues.delete('newEmail').delete('confirmed'),
+    };
+    return dispatch(userUpdateFetch(newValues, userId, () =>
       router.push(`/user/${userId}`),
     ));
   }
@@ -63,6 +74,21 @@ export class EditUserComponent extends Component {
               component={FileUpload}
               id={form}
               image={profile.get('image')}
+              validated
+            />
+            <Field
+              name="confirmed"
+              component={Checkbox}
+              id={form}
+              label="Confirm user"
+            />
+            <Field
+              name="newEmail"
+              component={Input}
+              id={form}
+              label="Email"
+              type="email"
+              placeholder="Email"
               validated
             />
             <Field
@@ -106,8 +132,10 @@ export class EditUserComponent extends Component {
 export default connect(state => ({
   initialValues: {
     bio: state.getIn(['user', 'profile', 'bio']),
+    confirmed: state.getIn(['user', 'profile', 'confirmed']),
     firstname: state.getIn(['user', 'profile', 'firstname']),
     lastname: state.getIn(['user', 'profile', 'lastname']),
+    newEmail: state.getIn(['user', 'profile', 'email']),
   },
   profile: state.getIn(['user', 'profile']),
 }))(withRouter(reduxForm({

@@ -3,6 +3,9 @@ import { colors } from '../../styles/variables';
 import { button } from '../../styles/mixins';
 
 export default StyleSheet.create({
+  holder: {
+    marginBottom: 35,
+  },
   file: {
     display: 'none',
   },
@@ -10,16 +13,15 @@ export default StyleSheet.create({
     backgroundColor: colors.background,
     borderRadius: '50%',
     height: 200,
-    marginBottom: 35,
     padding: '75px 72px',
     position: 'relative',
     width: 200,
   },
-  validatedImage: {
+  validatedHolder: {
     marginBottom: 50,
   },
-  errImage: {
-    marginBottom: 0,
+  errHolder: {
+    marginBottom: 15,
   },
   icon: {
     color: colors.header,
@@ -32,5 +34,8 @@ export default StyleSheet.create({
     position: 'absolute',
     textAlign: 'center',
     width: 150,
+  },
+  error: {
+    margin: '5px 0 0',
   },
 });

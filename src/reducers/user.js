@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
-import { USER_FETCH_SUCCESS, USER_GET_FAILED } from '../constants/actions';
+import { USER_FETCH_SUCCESS, USER_GET_FAILED, USER_CHANGE_SUCCESS }
+  from '../constants/actions';
 
 const initialState = fromJS({
   error: null,
@@ -12,6 +13,11 @@ export default (state = initialState, action) => {
       return state.merge(fromJS({
         error: null,
         profile: action.profile,
+      }));
+    case USER_CHANGE_SUCCESS:
+      return state.merge(fromJS({
+        error: null,
+        profile: state.get('profile').merge(...action.responses),
       }));
     case USER_GET_FAILED:
       return state.merge(fromJS({

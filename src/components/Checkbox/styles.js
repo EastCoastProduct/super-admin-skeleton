@@ -2,6 +2,10 @@ import { StyleSheet } from 'aphrodite/no-important';
 import { colors, sizes } from '../../styles/variables';
 
 export default StyleSheet.create({
+  holder: {
+    display: 'block',
+    marginBottom: 20,
+  },
   base: {
     display: 'none',
   },

@@ -7,7 +7,7 @@ const Checkbox = (props) => {
 
   return (
     <label
-      className={css(className && className)}
+      className={css(styles.holder, className && className)}
       htmlFor={`${id}-${input.name}`}
     >
       <span className={css(styles.checkbox, input.value && styles.checked)}>
@@ -19,6 +19,7 @@ const Checkbox = (props) => {
         {...rest}
         id={`${id}-${input.name}`}
         type="checkbox"
+        checked={input.value}
         onChange={(e) => {
           input.onChange(e);
           if (onChange) setTimeout(() => onChange());

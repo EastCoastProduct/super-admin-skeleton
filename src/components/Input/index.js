@@ -12,18 +12,20 @@ const Input = (props) => {
   const attributes = {
     ...input,
     ...rest,
-    className: css(textarea ? styles.textarea : styles.input,
-      validated && styles.validatedInput, isError(props) && styles.inputErr),
+    className: css(textarea ? styles.textarea : styles.input),
     id: `${id}-${input.name}`,
   };
 
   return (
-    <div>
+    <div
+      className={css(styles.holder, validated && styles.validatedHolder,
+        isError(props) && styles.errHolder)}
+    >
       <label className={css(styles.label)} htmlFor={`${id}-${input.name}`}>
         {label}
       </label>
       {textarea ? <textarea {...attributes} /> : <input {...attributes} />}
-      {isError(props) && <ErrorMsg>{error}</ErrorMsg>}
+      {isError(props) && <ErrorMsg className={styles.error}>{error}</ErrorMsg>}
     </div>
   );
 };

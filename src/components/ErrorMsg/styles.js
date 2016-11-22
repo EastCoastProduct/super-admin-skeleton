@@ -5,7 +5,7 @@ export default StyleSheet.create({
   error: {
     backgroundColor: colors.errorBcg,
     color: colors.error,
-    margin: '5px 0 15px',
+    margin: '10px 0',
     padding: '6.5px 10px',
     textAlign: 'center',
   },

@@ -8,13 +8,15 @@ const shared = {
     borderRadius: sizes.radius,
     boxShadow: `inset 1px 1px ${colors.shadow}`,
     color: colors.font,
-    marginBottom: 20,
     padding: '9px 10px',
     width: '100%',
   },
 };
 
 export default StyleSheet.create({
+  holder: {
+    marginBottom: 20,
+  },
   input: {
     ...shared.input,
     height: sizes.inputHeight,
@@ -24,11 +26,11 @@ export default StyleSheet.create({
     minHeight: sizes.textareaHeight,
     resize: 'vertical',
   },
-  validatedInput: {
+  validatedHolder: {
     marginBottom: 50,
   },
-  inputErr: {
-    marginBottom: 0,
+  errHolder: {
+    marginBottom: 15,
   },
   label: {
     color: colors.header,
@@ -37,5 +39,8 @@ export default StyleSheet.create({
     marginBottom: 5,
     textAlign: 'left',
     textTransform: 'uppercase',
+  },
+  error: {
+    margin: '5px 0 0',
   },
 });

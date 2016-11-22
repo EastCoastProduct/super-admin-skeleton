@@ -10,6 +10,7 @@ const shared = {
 export default StyleSheet.create({
   checkbox: {
     ...shared.inputs,
+    marginBottom: 0,
     marginRight: 40,
   },
   searchBar: {

@@ -16,10 +16,12 @@ const FileUpload = (props) => {
     validated } = props;
 
   return (
-    <div>
+    <div
+      className={css(styles.holder, validated && styles.validatedHolder,
+        error && styles.errHolder)}
+    >
       <div
-        className={css(styles.emptyImage, validated && styles.validatedImage,
-          error && styles.errImage)}
+        className={css(styles.emptyImage)}
         style={backgroundStyle(value || image)}
       >
         {!value && !image &&
@@ -37,7 +39,7 @@ const FileUpload = (props) => {
           </label>
         }
       </div>
-      {error && <ErrorMsg>{error}</ErrorMsg>}
+      {error && <ErrorMsg className={styles.error}>{error}</ErrorMsg>}
     </div>
   );
 };
