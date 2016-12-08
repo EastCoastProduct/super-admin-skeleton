@@ -17,7 +17,7 @@ describe('SearchBar component snapshot', () => {
     expect(tree.toJSON()).toMatchSnapshot();
   });
 
-  it('renders with additional style and value', () => {
+  it('renders with additional style, value and extra attributes', () => {
     const style = StyleSheet.create({
       searchBar: {
         margin: 10,
@@ -25,7 +25,12 @@ describe('SearchBar component snapshot', () => {
       },
     });
     const tree = renderer.create(
-      <SearchBar style={style.searchBar} input={{ value: 'name' }} meta={{}} />
+      <SearchBar
+        className={style.searchBar}
+        input={{ value: 'name' }}
+        meta={{}}
+        placeholder="This is Search Box"
+      />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();

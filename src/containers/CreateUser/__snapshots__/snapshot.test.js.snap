@@ -1,0 +1,91 @@
+exports[`CreateUser component snapshot renders required data 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    Create New User
+  </h1>
+  <div
+    className="box_5m47zw">
+    <form
+      noValidate={true}
+      onSubmit={[Function]}>
+      <Field
+        component={[Function]}
+        id="CreateUser"
+        label="Email"
+        name="email"
+        placeholder="Email"
+        type="email"
+        validated={true} />
+      <div>
+        <button
+          className="button_w1w7v0-o_O-button_1q6mnjs"
+          disabled={true}
+          type="submit">
+          Create
+        </button>
+        <a
+          className="link_1mjr7jy"
+          onClick={[Function]}
+          style={Object {}}>
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</main>
+`;
+
+exports[`CreateUser component snapshot renders required data with error 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    Create New User
+  </h1>
+  <div
+    className="box_5m47zw">
+    <form
+      noValidate={true}
+      onSubmit={[Function]}>
+      <Field
+        component={[Function]}
+        id="CreateUser"
+        label="Email"
+        name="email"
+        placeholder="Email"
+        type="email"
+        validated={true} />
+      <div>
+        <button
+          className="button_w1w7v0-o_O-button_1q6mnjs"
+          disabled={false}
+          type="submit">
+          Create
+        </button>
+        <a
+          className="link_1mjr7jy"
+          onClick={[Function]}
+          style={Object {}}>
+          Cancel
+        </a>
+      </div>
+      <p
+        className="error_8cisgn">
+        <i
+          className="icon_1w16ibx fa fa-exclamation-triangle" />
+        User already exists.
+      </p>
+    </form>
+  </div>
+</main>
+`;

@@ -2,32 +2,36 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
+import { list, listTotal, page } from '../../fixtures/users';
 import { UsersComponent } from './';
 import * as Actions from '../../actions/users';
 
 describe('Users component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
+    jest.resetAllMocks();
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
 
-  const mockDispatch = jest.fn();
-  const mockRouter = {
-    push: jest.fn(),
-  };
+  Actions.usersGetFetch = jest.fn();
+  Actions.paginationChange = jest.fn();
+  const cb = jest.fn();
   const wrapper = shallow(
     <UsersComponent
-      dispatch={mockDispatch}
+      dispatch={jest.fn()}
       filters={fromJS({ confirmed: false, search: '' })}
-      router={mockRouter}
-      users={fromJS({ error: null, list: [], listTotal: 0, page: 1 })}
+      router={{ push: jest.fn() }}
+      users={fromJS({
+        error: null,
+        list,
+        listTotal,
+        page,
+      })}
     />
   );
   const instance = wrapper.instance();
-  Actions.usersGetFetch = jest.fn();
-  Actions.paginationChange = jest.fn();
 
   it('composeParams static method with acceptable params', () => {
     const params = {
@@ -54,13 +58,15 @@ describe('Users component', () => {
   });
 
   it('handleGetUsers method', () => {
-    const cb = jest.fn();
     instance.handleGetUsers({ page: 1, confirmed: true, search: 'name' }, cb);
 
-    expect(Actions.usersGetFetch).toHaveBeenCalledWith(
-      { limit: 10, page: 1, confirmed: true, search: 'name' }, cb
-    );
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(Actions.usersGetFetch).toHaveBeenCalledWith({
+      limit: 10,
+      page: 1,
+      confirmed: true,
+      search: 'name'
+    }, cb);
+    expect(instance.props.dispatch).toHaveBeenCalled();
   });
 
   it('handleFiltersSubmit method', () => {
@@ -68,35 +74,36 @@ describe('Users component', () => {
       confirmed: true,
       search: 'name',
     });
-    instance.handleGetUsers = jest.fn((filters, cb) => cb());
+    spyOn(instance, 'handleGetUsers').and.callFake((params, cb) => cb());
     instance.handleFiltersSubmit(values);
 
-    expect(instance.handleGetUsers).toHaveBeenCalledWith(
-      { page: 1, confirmed: true, search: 'name' }, jasmine.any(Function)
-    );
+    expect(instance.handleGetUsers).toHaveBeenCalledWith({
+      page: 1,
+      confirmed: true,
+      search: 'name'
+    }, jasmine.any(Function));
     expect(Actions.paginationChange).toHaveBeenCalledWith(1);
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(instance.props.dispatch).toHaveBeenCalled();
   });
 
   it('handlePaginationChange method', () => {
-    instance.handleGetUsers = jest.fn((filters, cb) => cb());
+    spyOn(instance, 'handleGetUsers').and.callFake((params, cb) => cb());
     instance.handlePaginationChange(5);
 
-    expect(instance.handleGetUsers).toHaveBeenCalledWith(
-      { page: 5 }, jasmine.any(Function)
-    );
+    expect(instance.handleGetUsers)
+      .toHaveBeenCalledWith({ page: 5 }, jasmine.any(Function));
     expect(Actions.paginationChange).toHaveBeenCalledWith(5);
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(instance.props.dispatch).toHaveBeenCalled();
   });
 
   it('handleUserClick method', () => {
     instance.handleUserClick(1);
 
-    expect(mockRouter.push).toHaveBeenCalledWith('/user/1');
+    expect(instance.props.router.push).toHaveBeenCalledWith('/user/1');
   });
 
   it('clickHandler method', () => {
-    instance.handleUserClick = jest.fn();
+    spyOn(instance, 'handleUserClick');
     const handlerFunction = instance.clickHandler(5);
     handlerFunction();
 
@@ -104,28 +111,11 @@ describe('Users component', () => {
   });
 
   it('renderTableBody method', () => {
-    wrapper.setProps({
-      users: fromJS({
-        list: [{
-          firstname: 'John',
-          lastname: 'Doe',
-          email: 'john.doe@mail.com',
-          confirmed: true,
-        }, {
-          firstname: 'John',
-          lastname: 'Doe',
-          email: 'john.doe@mail.com',
-          confirmed: true,
-        }, {
-          firstname: 'John',
-          lastname: 'Doe',
-          email: 'john.doe@mail.com',
-          confirmed: true,
-        }],
-      }),
-    });
-    const list = instance.renderTableBody();
+    spyOn(instance, 'handleUserClick');
+    const table = instance.renderTableBody();
+    wrapper.find('tr[onClick]').first().simulate('click');
 
-    expect(list.size).toBe(3);
+    expect(table.size).toBe(10);
+    expect(instance.handleUserClick).toHaveBeenCalledWith(list[0].id);
   });
 });

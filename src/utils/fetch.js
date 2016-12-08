@@ -25,12 +25,11 @@ export const checkStatus = (resp) => {
   return Promise.reject(error);
 };
 
-export default function (url, options) {
-  return fetch(url, mergeDefaults(options))
+export default (url, options) =>
+  fetch(url, mergeDefaults(options))
     .then(parseJSON)
     .then(checkStatus)
     .catch((err) => {
       if (err.error.status === 401) browserHistory.push('/login');
       return Promise.reject(err);
     });
-}

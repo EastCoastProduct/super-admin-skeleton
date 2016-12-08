@@ -12,7 +12,7 @@ import BoxButtons from '../../components/BoxButtons';
 
 export const validate = (values) => {
   const errors = {};
-  const { image } = values.toJS();
+  const image = values.get('image');
 
   errors.image = isFileSizeExceeded(image);
   return errors;
@@ -105,9 +105,9 @@ export class EditUserComponent extends Component {
 
 export default connect(state => ({
   initialValues: {
-    bio: state.getIn(['user', 'profile', 'bio']),
-    firstname: state.getIn(['user', 'profile', 'firstname']),
-    lastname: state.getIn(['user', 'profile', 'lastname']),
+    bio: state.getIn(['user', 'profile', 'bio']) || '',
+    firstname: state.getIn(['user', 'profile', 'firstname']) || '',
+    lastname: state.getIn(['user', 'profile', 'lastname']) || '',
   },
   profile: state.getIn(['user', 'profile']),
 }))(withRouter(reduxForm({

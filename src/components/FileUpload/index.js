@@ -3,7 +3,7 @@ import { css } from 'aphrodite/no-important';
 import ErrorMsg from '../ErrorMsg';
 import styles from './styles';
 
-const backgroundStyle = (value) => {
+export const backgroundStyle = (value) => {
   if (!value) return {};
   const url = value instanceof FileList ? URL.createObjectURL(value[0]) : value;
   return {

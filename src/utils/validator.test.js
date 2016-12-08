@@ -1,3 +1,5 @@
+import { EMAIL_MSG, FILE_SIZE_MSG, PASSWORD_MSG, REQUIRED_MSG }
+  from '../constants/errors';
 import { isRequired, isEmail, isPassword, isFileSizeExceeded }
   from './validator';
 
@@ -7,7 +9,7 @@ describe('validator util', () => {
   });
 
   it('isRequired method returns error', () => {
-    expect(isRequired(undefined)).toBe('Required field.');
+    expect(isRequired(undefined)).toBe(REQUIRED_MSG);
   });
 
   it('isEmail method returns no error', () => {
@@ -15,7 +17,7 @@ describe('validator util', () => {
   });
 
   it('isEmail method returns error', () => {
-    expect(isEmail('notemail.com')).toBe('Invalid e-mail address.');
+    expect(isEmail('notemail.com')).toBe(EMAIL_MSG);
   });
 
   it('isPassword method returns no error', () => {
@@ -23,13 +25,10 @@ describe('validator util', () => {
   });
 
   it('isPassword method returns error', () => {
-    const error = 'Password has to be at least 8 characters long and contain ' +
-      'at least one uppercase, lowercase and numeric character.';
-
-    expect(isPassword('Aa12345')).toBe(error);
-    expect(isPassword('aa123456')).toBe(error);
-    expect(isPassword('AA12345')).toBe(error);
-    expect(isPassword('AaAaAaAa')).toBe(error);
+    expect(isPassword('Aa12345')).toBe(PASSWORD_MSG);
+    expect(isPassword('aa123456')).toBe(PASSWORD_MSG);
+    expect(isPassword('AA12345')).toBe(PASSWORD_MSG);
+    expect(isPassword('AaAaAaAa')).toBe(PASSWORD_MSG);
   });
 
   it('isFileSizeExceeded method returns no error', () => {
@@ -39,7 +38,6 @@ describe('validator util', () => {
   });
 
   it('isFileSizeExceeded method returns error', () => {
-    expect(isFileSizeExceeded([{ size: 2 * 1024 * 1024 }]))
-      .toBe('Max file size allowed is 1MB.');
+    expect(isFileSizeExceeded([{ size: 2 * 1024 * 1024 }])).toBe(FILE_SIZE_MSG);
   });
 });

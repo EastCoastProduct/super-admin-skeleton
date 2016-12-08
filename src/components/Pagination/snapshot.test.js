@@ -16,7 +16,7 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={1}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
+        onPaginationChange={() => {}}
         total={127}
       />
     );
@@ -29,7 +29,7 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={5}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
+        onPaginationChange={() => {}}
         total={93}
       />
     );
@@ -42,7 +42,7 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={8}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
+        onPaginationChange={() => {}}
         total={78}
       />
     );
@@ -55,7 +55,7 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={2}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
+        onPaginationChange={() => {}}
         total={30}
       />
     );
@@ -74,8 +74,8 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={1}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
-        style={style.pagination}
+        onPaginationChange={() => {}}
+        className={style.pagination}
         total={5}
       />
     );
@@ -88,7 +88,7 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={1}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
+        onPaginationChange={() => {}}
         total={1}
       />
     );
@@ -101,7 +101,7 @@ describe('Pagination component snapshot', () => {
       <Pagination
         currentPage={1}
         itemsPerPage={10}
-        onPaginationChange={jest.fn()}
+        onPaginationChange={() => {}}
         total={0}
       />
     );

@@ -4,30 +4,46 @@ import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
 import { LoginComponent, validate } from './';
 import * as Actions from '../../actions/auth';
+import { EMAIL_MSG, REQUIRED_MSG } from '../../constants/errors';
 
 describe('Login component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
+    wrapper.setProps(props);
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    jest.resetAllMocks(); // move to before when clearAllMocks gets out
   });
 
-  const mockDispatch = jest.fn();
-  const mockRouter = {
-    push: jest.fn(),
+  Actions.loginFetch = jest.fn((values, cb) => cb());
+  const props = {
+    dispatch: jest.fn(),
+    form: 'Login',
+    handleSubmit: () => {},
+    router: { push: jest.fn() },
+    submitting: false,
   };
   const wrapper = shallow(
-    <LoginComponent
-      dispatch={mockDispatch}
-      form="Form"
-      handleSubmit={() => {}}
-      router={mockRouter}
-      submitting={false}
-    />
+    <LoginComponent {...props} />
   );
   const instance = wrapper.instance();
-  Actions.loginFetch = jest.fn((values, cb) => cb());
+
+  it('handleLogin method', () => {
+    const values = fromJS({
+      email: 'test@email.com',
+      password: 'Aa123456',
+    });
+    wrapper.setProps({
+      handleSubmit: cb => cb(values),
+    });
+    wrapper.find('form').simulate('submit');
+
+    expect(Actions.loginFetch)
+      .toHaveBeenCalledWith(values, jasmine.any(Function));
+    expect(instance.props.router.push).toHaveBeenCalledWith('/');
+    expect(instance.props.dispatch).toHaveBeenCalled();
+  });
 
   it('validate function success', () => {
     const values = fromJS({
@@ -46,22 +62,6 @@ describe('Login component', () => {
     });
     const errors = validate(values);
 
-    expect(errors).toEqual({
-      email: 'Invalid e-mail address.',
-      password: 'Required field.',
-    });
-  });
-
-  it('handleLogin method', () => {
-    const values = fromJS({
-      email: 'test@email.com',
-      password: 'Aa123456',
-    });
-    instance.handleLogin(values);
-
-    expect(Actions.loginFetch)
-      .toHaveBeenCalledWith(values, jasmine.any(Function));
-    expect(mockRouter.push).toHaveBeenCalledWith('/');
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(errors).toEqual({ email: EMAIL_MSG, password: REQUIRED_MSG });
   });
 });

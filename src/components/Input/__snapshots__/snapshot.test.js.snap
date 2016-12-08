@@ -23,7 +23,8 @@ exports[`Input component snapshot renders basic required data 1`] = `
   <input
     className="input_10e10cq"
     id="Form-email"
-    name="email" />
+    name="email"
+    type="email" />
 </div>
 `;
 
@@ -55,6 +56,7 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
     className="input_10e10cq-o_O-validatedInput_4hnf83-o_O-inputErr_229bd5"
     id="Form-email"
     name="email"
+    type="email"
     value="notAnEmail" />
   <p
     className="error_8cisgn">
@@ -75,7 +77,8 @@ exports[`Input component snapshot renders label and input is required 1`] = `
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83-o_O-inputErr_229bd5"
     id="Form-email"
-    name="email" />
+    name="email"
+    type="email" />
   <p
     className="error_8cisgn">
     <i
@@ -89,13 +92,14 @@ exports[`Input component snapshot renders label and is focused 1`] = `
 <div>
   <label
     className="label_7wpiph"
-    htmlFor="Form-email">
+    htmlFor="Form-firstname">
     Email
   </label>
   <input
     className="input_10e10cq"
-    id="Form-email"
-    name="email"
-    value="test@email.com" />
+    id="Form-firstname"
+    name="firstname"
+    type="text"
+    value="John" />
 </div>
 `;

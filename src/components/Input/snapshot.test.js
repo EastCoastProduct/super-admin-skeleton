@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
-import Input from './';
+import Input, { isError } from './';
 
 describe('Input component snapshot', () => {
   beforeEach(() => {
@@ -20,9 +20,12 @@ describe('Input component snapshot', () => {
     const input = {
       name: 'email',
     };
-    const tree = renderer.create(<Input id="Form" meta={meta} input={input} />);
+    const tree = renderer.create(
+      <Input id="Form" meta={meta} input={input} type="email" />
+    );
 
     expect(tree.toJSON()).toMatchSnapshot();
+    expect(isError(meta)).toBeFalsy();
   });
 
   it('renders label and is focused', () => {
@@ -32,14 +35,15 @@ describe('Input component snapshot', () => {
       touched: true,
     };
     const input = {
-      name: 'email',
-      value: 'test@email.com',
+      name: 'firstname',
+      value: 'John',
     };
     const tree = renderer.create(
-      <Input id="Form" meta={meta} input={input} label="Email" />
+      <Input id="Form" meta={meta} input={input} label="Email" type="text" />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
+    expect(isError(meta)).toBeFalsy();
   });
 
   it('renders label and input is required', () => {
@@ -58,10 +62,12 @@ describe('Input component snapshot', () => {
         input={input}
         validated={true}
         label="Email"
+        type="email"
       />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
+    expect(isError(meta)).toBeTruthy();
   });
 
   it('renders label and input is invalid', () => {
@@ -81,10 +87,12 @@ describe('Input component snapshot', () => {
         input={input}
         validated={true}
         label="Email"
+        type="email"
       />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
+    expect(isError(meta)).toBeTruthy();
   });
 
   it('renders extra info and it is active and invalid', () => {
@@ -110,6 +118,7 @@ describe('Input component snapshot', () => {
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
+    expect(isError(meta)).toBeFalsy();
   });
 
   it('renders as textarea with max length', () => {
@@ -135,5 +144,6 @@ describe('Input component snapshot', () => {
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
+    expect(isError(meta)).toBeFalsy();
   });
 });

@@ -1,0 +1,81 @@
+exports[`Pagination component snapshot renders required data 1`] = `
+<form
+  className=""
+  noValidate={true}
+  onSubmit={[Function]}>
+  <Field
+    className={
+      Object {
+        "_definition": Object {
+          "display": "inline-block",
+          "marginRight": 40,
+          "verticalAlign": "middle",
+        },
+        "_name": "checkbox_6v2je1",
+      }
+    }
+    component={[Function]}
+    id="UsersFilters"
+    label="Show only confirmed users"
+    name="confirmed"
+    onChange={[Function]} />
+  <Field
+    className={
+      Object {
+        "_definition": Object {
+          "display": "inline-block",
+          "verticalAlign": "middle",
+          "width": 350,
+        },
+        "_name": "searchBar_ws3tt2",
+      }
+    }
+    component={[Function]}
+    format={[Function]}
+    name="search"
+    normalize={[Function]}
+    placeholder="Search by email, first and last name"
+    type="text" />
+</form>
+`;
+
+exports[`Pagination component snapshot renders required data with style 1`] = `
+<form
+  className="filters_1433df3"
+  noValidate={true}
+  onSubmit={[Function]}>
+  <Field
+    className={
+      Object {
+        "_definition": Object {
+          "display": "inline-block",
+          "marginRight": 40,
+          "verticalAlign": "middle",
+        },
+        "_name": "checkbox_6v2je1",
+      }
+    }
+    component={[Function]}
+    id="UsersFilters"
+    label="Show only confirmed users"
+    name="confirmed"
+    onChange={[Function]} />
+  <Field
+    className={
+      Object {
+        "_definition": Object {
+          "display": "inline-block",
+          "verticalAlign": "middle",
+          "width": 350,
+        },
+        "_name": "searchBar_ws3tt2",
+      }
+    }
+    component={[Function]}
+    format={[Function]}
+    name="search"
+    normalize={[Function]}
+    placeholder="Search by email, first and last name"
+    type="text" />
+</form>
+`;

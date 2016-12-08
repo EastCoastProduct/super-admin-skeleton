@@ -4,30 +4,45 @@ import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
 import { CreateUserComponent, validate } from './';
 import * as Actions from '../../actions/user';
+import { EMAIL_MSG } from '../../constants/errors';
 
 describe('CreateUser component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
+    wrapper.setProps(props);
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    jest.resetAllMocks(); // move to before when clearAllMocks gets out
   });
 
-  const mockDispatch = jest.fn();
-  const mockRouter = {
-    push: jest.fn(),
+  Actions.userCreateFetch = jest.fn((values, cb) => cb(1));
+  const props = {
+    dispatch: jest.fn(),
+    form: 'CreateUser',
+    handleSubmit: () => {},
+    router: { push: jest.fn() },
+    submitting: false,
   };
   const wrapper = shallow(
-    <CreateUserComponent
-      dispatch={mockDispatch}
-      form="Form"
-      handleSubmit={() => {}}
-      router={mockRouter}
-      submitting={false}
-    />
+    <CreateUserComponent {...props} />
   );
   const instance = wrapper.instance();
-  Actions.userCreateFetch = jest.fn((values, cb) => cb(1));
+
+  it('handleUserCreate method', () => {
+    const values = fromJS({
+      email: 'test@email.com',
+    });
+    wrapper.setProps({
+      handleSubmit: cb => cb(values),
+    });
+    wrapper.find('form').simulate('submit');
+
+    expect(Actions.userCreateFetch)
+      .toHaveBeenCalledWith(values, jasmine.any(Function));
+    expect(instance.props.router.push).toHaveBeenCalledWith('/user/1');
+    expect(instance.props.dispatch).toHaveBeenCalled();
+  });
 
   it('validate function success', () => {
     const values = fromJS({
@@ -44,18 +59,6 @@ describe('CreateUser component', () => {
     });
     const errors = validate(values);
 
-    expect(errors).toEqual({ email: 'Invalid e-mail address.' });
-  });
-
-  it('handleUserCreate method', () => {
-    const values = fromJS({
-      email: 'test@email.com',
-    });
-    instance.handleUserCreate(values);
-
-    expect(Actions.userCreateFetch)
-      .toHaveBeenCalledWith(values, jasmine.any(Function));
-    expect(mockRouter.push).toHaveBeenCalledWith('/user/1');
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(errors).toEqual({ email: EMAIL_MSG });
   });
 });

@@ -4,9 +4,9 @@ exports[`Header component snapshot renders basic required data 1`] = `
   <p>
     Hello, 
     <b>
-      John
+      superadmin
        
-      Doe
+      superadmin
     </b>
   </p>
   <a

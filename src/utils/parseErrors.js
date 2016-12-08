@@ -1,6 +1,6 @@
 import { SubmissionError } from 'redux-form';
 
-export default function parseErrors(error) {
+export default (error) => {
   const errors = { _error: error.message };
   if (error.debugInfo) {
     error.debugInfo.forEach((info) => {
@@ -8,4 +8,4 @@ export default function parseErrors(error) {
     });
   }
   return new SubmissionError(errors);
-}
+};

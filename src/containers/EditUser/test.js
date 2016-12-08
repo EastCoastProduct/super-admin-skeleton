@@ -1,82 +1,78 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FileList, File } from 'file-api';
 import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
+import { fullProfile } from '../../fixtures/user';
+import { createFile, createFileList } from '../../fixtures/fileAPI';
 import { EditUserComponent, validate } from './';
 import * as Actions from '../../actions/user';
+import { FILE_SIZE_MSG } from '../../constants/errors';
 
 describe('EditUser component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
+    wrapper.setProps(props);
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    jest.resetAllMocks(); // move to before when clearAllMocks gets out
   });
 
-  const mockDispatch = jest.fn();
-  const mockRouter = {
-    push: jest.fn(),
-  };
-  const mockParams = {
-    userId: 1,
+  Actions.userGetFetch = jest.fn();
+  Actions.userUpdateFetch = jest.fn((values, userId, cb) => cb());
+  const props = {
+    dispatch: jest.fn(),
+    form: 'EditUser',
+    handleSubmit: () => {},
+    params: { userId: 1 },
+    profile: fromJS(fullProfile),
+    router: { push: jest.fn() },
+    submitting: false,
   };
   const wrapper = shallow(
-    <EditUserComponent
-      dispatch={mockDispatch}
-      form="Form"
-      handleSubmit={() => {}}
-      params={mockParams}
-      profile={fromJS({ image: 'link-to-image' })}
-      router={mockRouter}
-      submitting={false}
-    />
+    <EditUserComponent {...props} />
   );
   const instance = wrapper.instance();
-  Actions.userGetFetch = jest.fn(() => ({}));
-  Actions.userUpdateFetch = jest.fn((values, userId, cb) => cb());
+
+  it('handleUserUpdate method', () => {
+    const values = fromJS({
+      image: createFileList(),
+      firstname: 'John',
+      lastname: 'Doe',
+      bio: 'This is my bio.',
+    });
+    wrapper.setProps({
+      handleSubmit: cb => cb(values),
+    });
+    wrapper.find('form').simulate('submit');
+
+    expect(Actions.userUpdateFetch).toHaveBeenCalledWith(values,
+      instance.props.params.userId, jasmine.any(Function));
+    expect(instance.props.router.push).toHaveBeenCalledWith('/user/1');
+    expect(instance.props.dispatch).toHaveBeenCalled();
+  });
 
   it('validate function success', () => {
-    const files = new FileList(new File('./ecp-logo.png'));
-    files[0].size = 0.5 * 1024 * 1024;
-    const values = fromJS({
-      image: files,
-    });
+    const fileList = createFileList([createFile(0.5 * 1024 * 1024)]);
+    const values = fromJS({ image: fileList });
     const errors = validate(values);
 
     expect(errors).toEqual({ image: null });
   });
 
   it('validate function fail', () => {
-    const files = new FileList(new File('./2mb-image.jpg'));
-    files[0].size = 2 * 1024 * 1024;
-    const values = fromJS({
-      image: files,
-    });
+    const fileList = createFileList([createFile(2 * 1024 * 1024)]);
+    const values = fromJS({ image: fileList });
     const errors = validate(values);
 
-    expect(errors).toEqual({ image: 'Max file size allowed is 1MB.' });
+    expect(errors).toEqual({ image: FILE_SIZE_MSG });
   });
 
   it('handleGetUser method', () => {
     instance.handleGetUser();
 
-    expect(Actions.userGetFetch).toHaveBeenCalledWith(mockParams.userId);
-    expect(mockDispatch).toHaveBeenCalled();
-  });
-
-  it('handleUserUpdate method', () => {
-    const values = fromJS({
-      image: new FileList(new File('./ecp-logo.png')),
-      firstname: 'John',
-      lastname: 'Doe',
-      bio: 'This is my bio.',
-    });
-    instance.handleUserUpdate(values);
-
-    expect(Actions.userUpdateFetch)
-      .toHaveBeenCalledWith(values, mockParams.userId, jasmine.any(Function));
-    expect(mockRouter.push).toHaveBeenCalledWith('/user/1');
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(Actions.userGetFetch)
+      .toHaveBeenCalledWith(instance.props.params.userId);
+    expect(instance.props.dispatch).toHaveBeenCalled();
   });
 });

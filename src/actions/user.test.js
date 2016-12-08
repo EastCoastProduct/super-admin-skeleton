@@ -2,6 +2,8 @@ import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { fromJS } from 'immutable';
+import { error, profile } from '../fixtures/user';
+import errResp from '../fixtures/errResp';
 import * as user from './user';
 import * as parseErrors from '../utils/parseErrors';
 import * as createFormData from '../utils/createFormData';
@@ -9,31 +11,19 @@ import { USER_FETCH_SUCCESS, USER_GET_FAILED } from '../constants/actions';
 import { API_URL } from '../constants/application';
 
 describe('user action creators', () => {
-  beforeEach(() => {
+  afterEach(() => {
     fetchMock.restore();
+    jest.resetAllMocks();
+    reduxStore.clearActions();
   });
 
-  const values = fromJS({
-    lastname: 'John',
-    firstname: 'Doe',
-  });
-  const profile = {
-    lastname: 'Doe',
-    bio: null,
-    resourceId: null,
-    updatedAt: '2016-11-08T18:08:24.000Z',
-    id: 3,
-    createdAt: '2016-11-08T18:08:24.000Z',
-    firstname: 'John',
-    email: 'john@doe.com',
-    confirmed: true,
-  };
-  const error = 'User not found';
-  const userId = 3;
-  const mockStore = configureMockStore([ thunk ]);
+  const cb = jest.fn();
+  createFormData.default = jest.fn();
+  parseErrors.default = jest.fn();
+  const reduxStore = configureMockStore([ thunk ])();
   const expectedSuccessAction = {
     type: USER_FETCH_SUCCESS,
-    profile,
+    profile: profile,
   };
   const expectedFailedAction = {
     type: USER_GET_FAILED,
@@ -49,117 +39,71 @@ describe('user action creators', () => {
   });
 
   it('should make successful user get fetch', () => {
-    const resp = { ...profile };
-    fetchMock.get(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({
-      user: { error: null, profile: {} },
-    }));
+    fetchMock.get(`${API_URL}/users/${profile.id}`, profile);
 
-    return reduxStore.dispatch(user.userGetFetch(userId)).then(() => {
+    return reduxStore.dispatch(user.userGetFetch(profile.id)).then(() => {
       expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
     });
   });
 
   it('should fail to make user get fetch', () => {
-    const resp = {
-      error: {
-        message: 'Something went wrong',
-        status: 404,
-      },
-      message: 'Something went wrong',
-    };
-    fetchMock.get(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({
-      user: { error: null, profile: {} },
-    }));
+    fetchMock.get(`${API_URL}/users/999`, errResp(404, error));
 
-    return reduxStore.dispatch(user.userGetFetch(userId)).catch(
-      () => {
-        expect(reduxStore.getActions()[0]).toEqual(expectedFailedAction);
-      }
-    );
+    return reduxStore.dispatch(user.userGetFetch(999)).then(() => {
+      expect(reduxStore.getActions()[0]).toEqual(expectedFailedAction);
+    });
   });
 
   it('should make successful user update fetch', () => {
-    const resp = { ...profile };
-    fetchMock.post(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({
-      user: { error: null, profile: {} },
-    }));
-    const cb = jest.fn();
-    spyOn(createFormData, 'default');
+    const values = fromJS({
+      firstname: 'John',
+      lastname: 'Doe',
+    });
+    fetchMock.post(`${API_URL}/users/${profile.id}`, profile);
 
-    return reduxStore.dispatch(user.userUpdateFetch(values, userId, cb))
+    return reduxStore.dispatch(user.userUpdateFetch(values, profile.id, cb))
       .then(() => {
         expect(createFormData.default).toHaveBeenCalledWith(values);
-        expect(cb).toHaveBeenCalled();
         expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
+        expect(cb).toHaveBeenCalled();
       }
     );
   });
 
-  it('should fail to make user get fetch', () => {
-    const resp = {
-      error: {
-        message: 'Something went wrong',
-        status: 404,
-      },
-      message: 'Something went wrong',
-    };
-    fetchMock.post(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({
-      user: { error: null, profile: {} },
-    }));
-    spyOn(createFormData, 'default');
-    spyOn(parseErrors, 'default');
+  it('should fail to make user update fetch', () => {
+    const values = fromJS({
+      bio: 'This is my bio.',
+    });
+    const errMsg = 'User not found.';
+    fetchMock.post(`${API_URL}/users/999`, errResp(404, errMsg));
 
-    return reduxStore.dispatch(user.userUpdateFetch(values, userId))
-      .catch(() => {
-        expect(createFormData.default).toHaveBeenCalledWith(values);
-        expect(parseErrors.default)
-          .toHaveBeenCalledWith(new Error('Something went wrong'));
-      }
-    );
+    return reduxStore.dispatch(user.userUpdateFetch(values, 999)).catch(() => {
+      expect(createFormData.default).toHaveBeenCalledWith(values);
+      expect(parseErrors.default).toHaveBeenCalledWith(new Error(errMsg));
+    });
   });
 
   it('should make successful user create fetch', () => {
-    const resp = { id: profile.id };
-    fetchMock.post(`${API_URL}/superAdmin/users`, resp);
-    const reduxStore = mockStore(fromJS({
-      user: { error: null, profile: {} },
-    }));
-    const cb = jest.fn();
+    const values = fromJS({
+      email: 'test@email.com',
+    });
+    fetchMock.post(`${API_URL}/superAdmin/users`, profile);
 
-    return reduxStore.dispatch(user.userCreateFetch(values, cb))
-      .then(() => {
-        expect(cb).toHaveBeenCalledWith(resp.id);
-        expect(reduxStore.getActions()[0]).toEqual({
-          type: USER_FETCH_SUCCESS,
-          profile: { id: 3 },
-        });
-      }
-    );
+    return reduxStore.dispatch(user.userCreateFetch(values, cb)).then(() => {
+      expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
+      expect(cb).toHaveBeenCalledWith(profile.id);
+    });
   });
 
   it('should fail to make user create fetch', () => {
-    const resp = {
-      error: {
-        message: 'Something went wrong',
-        status: 404,
-      },
-      message: 'Something went wrong',
-    };
-    fetchMock.post(`${API_URL}/superAdmin/users`, resp);
-    const reduxStore = mockStore(fromJS({
-      user: { error: null, profile: {} },
-    }));
-    spyOn(parseErrors, 'default');
+    const values = fromJS({
+      email: 'test@email.com',
+    });
+    const errMsg = 'User already exists.';
+    fetchMock.post(`${API_URL}/superAdmin/users`, errResp(400, errMsg));
 
-    return reduxStore.dispatch(user.userCreateFetch(values))
-      .catch(() => {
-        expect(parseErrors.default)
-          .toHaveBeenCalledWith(new Error('Something went wrong'));
-      }
-    );
+    return reduxStore.dispatch(user.userCreateFetch(values)).catch(() => {
+      expect(parseErrors.default).toHaveBeenCalledWith(new Error(errMsg));
+    });
   });
 });

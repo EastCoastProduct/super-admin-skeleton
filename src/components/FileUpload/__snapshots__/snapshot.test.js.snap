@@ -22,10 +22,10 @@ exports[`FileUpload component snapshot renders empty validated file upload 1`] =
 exports[`FileUpload component snapshot renders file upload with selected image with validation error 1`] = `
 <div>
   <div
-    className="emptyImage_avz902-o_O-errImage_229bd5"
+    className="emptyImage_avz902-o_O-validatedImage_4hnf83-o_O-errImage_229bd5"
     style={
       Object {
-        "background": "url(ecp-logo-local-url) center/cover no-repeat",
+        "background": "url(undefined) center/cover no-repeat",
       }
     }>
     <label
@@ -89,7 +89,7 @@ exports[`FileUpload component snapshot renders validate file upload with selecte
     className="emptyImage_avz902-o_O-validatedImage_4hnf83"
     style={
       Object {
-        "background": "url(ecp-logo-local-url) center/cover no-repeat",
+        "background": "url(undefined) center/cover no-repeat",
       }
     }>
     <label

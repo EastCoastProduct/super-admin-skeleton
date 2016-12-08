@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
-export function configureStore(env) {
+export const configureStore = (env) => {
   let createStoreWithMiddleware;
 
   if (env === 'development') {
@@ -24,6 +24,6 @@ export function configureStore(env) {
   }
 
   return createStoreWithMiddleware(rootReducer);
-}
+};
 
 export default configureStore(process.env.NODE_ENV);

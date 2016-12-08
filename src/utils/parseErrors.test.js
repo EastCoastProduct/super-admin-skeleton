@@ -1,31 +1,29 @@
-import { SubmissionError } from 'redux-form';
+import errResp from '../fixtures/errResp';
 import parseErrors from './parseErrors';
 
 describe('parseErrors util', () => {
   it('returns error without debugInfo', () => {
-    const error = {
-      message: 'Something went wrong',
-    };
+    const error = errResp(400, 'Something went wrong.');
     const submissionError = parseErrors(error);
 
-    expect(submissionError)
-      .toEqual(new SubmissionError({ _error: 'Something went wrong' }));
+    expect(submissionError.errors).toEqual({ _error: 'Something went wrong.' });
   });
 
   it('returns error with debugInfo', () => {
     const error = {
       message: 'Something went wrong',
       debugInfo: [
-        { path: 'email', error: 'has to be valid email' },
-        { path: 'password', error: 'has to be at least 8 characters long' },
+        { path: 'email', message: 'Has to be valid email.' },
+        { path: 'password', message: 'Has to be at least 8 characters long.' },
       ],
     };
     const submissionError = parseErrors(error);
-    const expected = new SubmissionError({
-      email: 'has to be valid email',
-      password: 'has to be at least 8 characters long',
-    });
+    const expected = {
+      _error: 'Something went wrong',
+      email: 'Has to be valid email.',
+      password: 'Has to be at least 8 characters long.',
+    };
 
-    expect(submissionError).toEqual(expected);
+    expect(submissionError.errors).toEqual(expected);
   });
 });
