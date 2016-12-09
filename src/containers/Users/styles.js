@@ -47,9 +47,6 @@ export default StyleSheet.create({
     ':hover': {
       backgroundColor: colors.selected,
     },
-    ':last-child': {
-      borderBottom: 0,
-    },
   },
   headerRow: {
     backgroundColor: colors.tableHeader,

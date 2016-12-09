@@ -29,7 +29,7 @@ const UsersFiltersForm = (props) => {
         type="text"
         placeholder="Search by email, first and last name"
         normalize={value => `%${value}%`}
-        format={value => value.slice(1, -1)}
+        format={value => (value ? value.slice(1, -1) : '')}
       />
     </form>
   );
