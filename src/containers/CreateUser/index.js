@@ -9,14 +9,6 @@ import Input from '../../components/Input';
 import ErrorMsg from '../../components/ErrorMsg';
 import BoxButtons from '../../components/BoxButtons';
 
-export const validate = (values) => {
-  const errors = {};
-  const email = values.get('email');
-
-  errors.email = isRequired(email) || isEmail(email);
-  return errors;
-};
-
 export class CreateUserComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -48,6 +40,7 @@ export class CreateUserComponent extends Component {
           <Field
             name="email"
             component={Input}
+            validate={[isRequired, isEmail]}
             id={form}
             label="Email"
             type="email"
@@ -64,5 +57,4 @@ export class CreateUserComponent extends Component {
 
 export default connect()(withRouter(reduxForm({
   form: 'CreateUser',
-  validate,
 })(CreateUserComponent)));

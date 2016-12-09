@@ -7,8 +7,8 @@ export const isError = ({ active, touched, error }) =>
   !active && touched && error;
 
 const Input = (props) => {
-  const { id, input, label, meta, meta: { error }, textarea, validated,
-    ...rest } = props;
+  const { id, input, label, meta, meta: { error }, textarea, validate: _,
+    validated, ...rest } = props;
   const attributes = {
     ...input,
     ...rest,
@@ -34,6 +34,10 @@ Input.propTypes = {
   label: PropTypes.string,
   meta: PropTypes.object.isRequired,
   textarea: PropTypes.bool,
+  validate: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.array,
+  ]),
   validated: PropTypes.bool,
 };
 

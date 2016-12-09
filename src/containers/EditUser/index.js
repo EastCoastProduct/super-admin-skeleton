@@ -10,14 +10,6 @@ import Input from '../../components/Input';
 import ErrorMsg from '../../components/ErrorMsg';
 import BoxButtons from '../../components/BoxButtons';
 
-export const validate = (values) => {
-  const errors = {};
-  const image = values.get('image');
-
-  errors.image = isFileSizeExceeded(image);
-  return errors;
-};
-
 export class EditUserComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -63,6 +55,7 @@ export class EditUserComponent extends Component {
               component={FileUpload}
               id={form}
               image={profile.get('image')}
+              validate={isFileSizeExceeded}
               validated
             />
             <Field
@@ -113,5 +106,4 @@ export default connect(state => ({
 }))(withRouter(reduxForm({
   enableReinitialize: true,
   form: 'EditUser',
-  validate,
 })(EditUserComponent)));

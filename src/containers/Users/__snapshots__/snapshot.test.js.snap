@@ -84,7 +84,7 @@ exports[`Users component snapshot renders full required data 1`] = `
     </thead>
     <tbody>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -108,7 +108,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -132,7 +132,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -156,7 +156,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -180,7 +180,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -204,7 +204,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -228,7 +228,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -252,7 +252,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -276,7 +276,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">
@@ -300,7 +300,7 @@ exports[`Users component snapshot renders full required data 1`] = `
         </td>
       </tr>
       <tr
-        className="row_peo41w"
+        className="row_yaxyij"
         onClick={[Function]}>
         <td
           className="cell_jlnq8r">

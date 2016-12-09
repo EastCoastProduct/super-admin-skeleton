@@ -19,6 +19,7 @@ exports[`EditUser component snapshot renders required data 1`] = `
         id="EditUser"
         image={undefined}
         name="image"
+        validate={[Function]}
         validated={true} />
       <Field
         component={[Function]}
@@ -84,6 +85,7 @@ exports[`EditUser component snapshot renders required data with error 1`] = `
         id="EditUser"
         image="https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg"
         name="image"
+        validate={[Function]}
         validated={true} />
       <Field
         component={[Function]}

@@ -10,15 +10,6 @@ import ErrorMsg from '../../components/ErrorMsg';
 import Button from '../../components/Button';
 import styles from './styles';
 
-export const validate = (values) => {
-  const errors = {};
-  const { email, password } = values.toJS();
-
-  errors.email = isRequired(email) || isEmail(email);
-  errors.password = isRequired(password) || isPassword(password);
-  return errors;
-};
-
 export class LoginComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -60,6 +51,7 @@ export class LoginComponent extends Component {
               label="Email"
               type="email"
               placeholder="Email"
+              validate={[isRequired, isEmail]}
               validated
             />
             <Field
@@ -69,6 +61,7 @@ export class LoginComponent extends Component {
               label="Password"
               type="password"
               placeholder="Password"
+              validate={[isRequired, isPassword]}
               validated
             />
             <Button
@@ -87,6 +80,5 @@ export class LoginComponent extends Component {
 export default connect()(withRouter(
   reduxForm({
     form: 'Login',
-    validate,
   })(LoginComponent),
 ));

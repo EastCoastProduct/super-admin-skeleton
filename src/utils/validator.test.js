@@ -5,7 +5,7 @@ import { isRequired, isEmail, isPassword, isFileSizeExceeded }
 
 describe('validator util', () => {
   it('isRequired method returns no error', () => {
-    expect(isRequired('test@email.com')).toBeNull();
+    expect(isRequired('test@email.com')).toBeUndefined();
   });
 
   it('isRequired method returns error', () => {
@@ -13,7 +13,7 @@ describe('validator util', () => {
   });
 
   it('isEmail method returns no error', () => {
-    expect(isEmail('test@email.com')).toBeNull();
+    expect(isEmail('test@email.com')).toBeUndefined();
   });
 
   it('isEmail method returns error', () => {
@@ -21,7 +21,7 @@ describe('validator util', () => {
   });
 
   it('isPassword method returns no error', () => {
-    expect(isPassword('Aa123456')).toBeNull();
+    expect(isPassword('Aa123456')).toBeUndefined();
   });
 
   it('isPassword method returns error', () => {
@@ -32,9 +32,9 @@ describe('validator util', () => {
   });
 
   it('isFileSizeExceeded method returns no error', () => {
-    expect(isFileSizeExceeded()).toBeNull();
-    expect(isFileSizeExceeded(['file'])).toBeNull();
-    expect(isFileSizeExceeded([{ size: 0.5 * 1024 * 1024 }])).toBeNull();
+    expect(isFileSizeExceeded()).toBeUndefined();
+    expect(isFileSizeExceeded(['file'])).toBeUndefined();
+    expect(isFileSizeExceeded([{ size: 0.5 * 1024 * 1024 }])).toBeUndefined();
   });
 
   it('isFileSizeExceeded method returns error', () => {

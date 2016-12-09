@@ -4,7 +4,7 @@ import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
 import { fullProfile } from '../../fixtures/user';
 import { createFile, createFileList } from '../../fixtures/fileAPI';
-import { EditUserComponent, validate } from './';
+import { EditUserComponent } from './';
 import * as Actions from '../../actions/user';
 import { FILE_SIZE_MSG } from '../../constants/errors';
 
@@ -50,22 +50,6 @@ describe('EditUser component', () => {
       instance.props.params.userId, jasmine.any(Function));
     expect(instance.props.router.push).toHaveBeenCalledWith('/user/1');
     expect(instance.props.dispatch).toHaveBeenCalled();
-  });
-
-  it('validate function success', () => {
-    const fileList = createFileList([createFile(0.5 * 1024 * 1024)]);
-    const values = fromJS({ image: fileList });
-    const errors = validate(values);
-
-    expect(errors).toEqual({ image: null });
-  });
-
-  it('validate function fail', () => {
-    const fileList = createFileList([createFile(2 * 1024 * 1024)]);
-    const values = fromJS({ image: fileList });
-    const errors = validate(values);
-
-    expect(errors).toEqual({ image: FILE_SIZE_MSG });
   });
 
   it('handleGetUser method', () => {

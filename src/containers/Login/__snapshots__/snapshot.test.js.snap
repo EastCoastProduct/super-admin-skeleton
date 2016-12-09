@@ -21,6 +21,12 @@ exports[`Login component snapshot renders required data 1`] = `
         name="email"
         placeholder="Email"
         type="email"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
         validated={true} />
       <Field
         component={[Function]}
@@ -29,6 +35,12 @@ exports[`Login component snapshot renders required data 1`] = `
         name="password"
         placeholder="Password"
         type="password"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
         validated={true} />
       <button
         className="button_w1w7v0-o_O-button_ltlwnu"
@@ -64,6 +76,12 @@ exports[`Login component snapshot renders required data with error 1`] = `
         name="email"
         placeholder="Email"
         type="email"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
         validated={true} />
       <Field
         component={[Function]}
@@ -72,6 +90,12 @@ exports[`Login component snapshot renders required data with error 1`] = `
         name="password"
         placeholder="Password"
         type="password"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
         validated={true} />
       <button
         className="button_w1w7v0-o_O-button_ltlwnu"
