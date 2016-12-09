@@ -11,7 +11,6 @@ import { FILE_SIZE_MSG } from '../../constants/errors';
 describe('EditUser component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
-    wrapper.setProps(props);
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
@@ -19,9 +18,9 @@ describe('EditUser component', () => {
   });
 
   Actions.userGetFetch = jest.fn();
-  Actions.userUpdateFetch = jest.fn((values, userId, cb) => cb());
+  Actions.userUpdateFetch = jest.fn();
   const props = {
-    dispatch: jest.fn(),
+    dispatch: jest.fn(() => Promise.resolve()),
     form: 'EditUser',
     handleSubmit: () => {},
     params: { userId: 1 },
@@ -41,15 +40,15 @@ describe('EditUser component', () => {
       lastname: 'Doe',
       bio: 'This is my bio.',
     });
-    wrapper.setProps({
-      handleSubmit: cb => cb(values),
-    });
-    wrapper.find('form').simulate('submit');
+    const p = instance.handleUserUpdate(values);
 
-    expect(Actions.userUpdateFetch).toHaveBeenCalledWith(values,
-      instance.props.params.userId, jasmine.any(Function));
-    expect(instance.props.router.push).toHaveBeenCalledWith('/user/1');
+    expect(Actions.userUpdateFetch)
+      .toHaveBeenCalledWith(values, instance.props.params.userId);
     expect(instance.props.dispatch).toHaveBeenCalled();
+    return p.then(() => {
+      expect(instance.props.router.push).toHaveBeenCalledWith(
+        `/user/${instance.props.params.userId}`);
+    });
   });
 
   it('handleGetUser method', () => {

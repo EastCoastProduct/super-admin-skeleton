@@ -19,29 +19,28 @@ export const userGetFetch = userId =>
     fetch(`${API_URL}/users/${userId}`).then(resp =>
       dispatch(userFetchSuccess(resp)),
     ).catch(err =>
-      dispatch(userGetFailed(err.message)),
+      Promise.reject(dispatch(userGetFailed(err.message))),
     );
 
-export const userUpdateFetch = (values, userId, cb) =>
+export const userUpdateFetch = (values, userId) =>
   dispatch =>
     fetch(`${API_URL}/users/${userId}`, {
       method: 'POST',
       body: createFormData(values),
-    }).then((resp) => {
-      dispatch(userFetchSuccess(resp));
-      return typeof cb === 'function' && cb();
-    }).catch(err =>
+    }).then(resp =>
+      dispatch(userFetchSuccess(resp)),
+    ).catch(err =>
       Promise.reject(parseErrors(err)),
     );
 
-export const userCreateFetch = (values, cb) =>
+export const userCreateFetch = values =>
   dispatch =>
     fetch(`${API_URL}/superAdmin/users`, {
       method: 'POST',
       body: JSON.stringify(values),
     }).then((resp) => {
       dispatch(userFetchSuccess(resp));
-      return typeof cb === 'function' && cb(resp.id);
+      return resp.id;
     }).catch(err =>
       Promise.reject(parseErrors(err)),
     );

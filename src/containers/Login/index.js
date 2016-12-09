@@ -27,7 +27,7 @@ export class LoginComponent extends Component {
 
   handleLogin(values) {
     const { dispatch, router } = this.props;
-    return dispatch(loginFetch(values, () => router.push('/')));
+    return dispatch(loginFetch(values)).then(() => router.push('/'));
   }
 
   render() {

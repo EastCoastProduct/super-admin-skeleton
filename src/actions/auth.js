@@ -13,7 +13,7 @@ export const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,
 });
 
-export const loginFetch = (values, cb) =>
+export const loginFetch = values =>
   dispatch =>
     fetch(`${API_URL}/superAdmin/authenticate`, {
       method: 'POST',
@@ -21,15 +21,13 @@ export const loginFetch = (values, cb) =>
     }).then((resp) => {
       store.set('token', `Bearer ${resp.token}`);
       store.set('superadmin', resp.user);
-      dispatch(loginSuccess(resp.user));
-      return typeof cb === 'function' && cb();
+      return dispatch(loginSuccess(resp.user));
     }).catch(err =>
       Promise.reject(parseErrors(err)),
     );
 
-export const logoutAction = cb =>
+export const logoutAction = () =>
   (dispatch) => {
     store.clear();
     dispatch(logoutSuccess());
-    return typeof cb === 'function' && cb();
   };

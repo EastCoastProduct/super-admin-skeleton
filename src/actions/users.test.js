@@ -16,7 +16,6 @@ describe('users action creators', () => {
     reduxStore.clearActions();
   });
 
-  const cb = jest.fn();
   const reduxStore = configureMockStore([ thunk ])();
   const expectedSuccessAction = {
     type: USERS_GET_SUCCESS,
@@ -52,9 +51,8 @@ describe('users action creators', () => {
     fetchMock.get(`${API_URL}/superAdmin/users?limit=10&page=1`, resp);
     const qs = { limit: 10, page: 1 };
 
-    return reduxStore.dispatch(users.usersGetFetch(qs, cb)).then(() => {
+    return reduxStore.dispatch(users.usersGetFetch(qs)).then(() => {
       expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
-      expect(cb).toHaveBeenCalled();
     });
   });
 

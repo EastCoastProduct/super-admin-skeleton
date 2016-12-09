@@ -17,7 +17,6 @@ describe('user action creators', () => {
     reduxStore.clearActions();
   });
 
-  const cb = jest.fn();
   createFormData.default = jest.fn();
   parseErrors.default = jest.fn();
   const reduxStore = configureMockStore([ thunk ])();
@@ -49,7 +48,7 @@ describe('user action creators', () => {
   it('should fail to make user get fetch', () => {
     fetchMock.get(`${API_URL}/users/999`, errResp(404, error));
 
-    return reduxStore.dispatch(user.userGetFetch(999)).then(() => {
+    return reduxStore.dispatch(user.userGetFetch(999)).catch(() => {
       expect(reduxStore.getActions()[0]).toEqual(expectedFailedAction);
     });
   });
@@ -61,11 +60,10 @@ describe('user action creators', () => {
     });
     fetchMock.post(`${API_URL}/users/${profile.id}`, profile);
 
-    return reduxStore.dispatch(user.userUpdateFetch(values, profile.id, cb))
+    return reduxStore.dispatch(user.userUpdateFetch(values, profile.id))
       .then(() => {
         expect(createFormData.default).toHaveBeenCalledWith(values);
         expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
-        expect(cb).toHaveBeenCalled();
       }
     );
   });
@@ -89,9 +87,9 @@ describe('user action creators', () => {
     });
     fetchMock.post(`${API_URL}/superAdmin/users`, profile);
 
-    return reduxStore.dispatch(user.userCreateFetch(values, cb)).then(() => {
+    return reduxStore.dispatch(user.userCreateFetch(values)).then((resp) => {
       expect(reduxStore.getActions()[0]).toEqual(expectedSuccessAction);
-      expect(cb).toHaveBeenCalledWith(profile.id);
+      expect(resp).toEqual(profile.id);
     });
   });
 

@@ -19,7 +19,6 @@ describe('auth action creators', () => {
 
   store.set = jest.fn();
   store.clear = jest.fn();
-  const cb = jest.fn();
   parseErrors.default = jest.fn();
   const reduxStore = configureMockStore([ thunk ])();
   const expectedLoginAction = {
@@ -49,14 +48,13 @@ describe('auth action creators', () => {
     };
     fetchMock.post(`${API_URL}/superAdmin/authenticate`, resp);
 
-    return reduxStore.dispatch(auth.loginFetch(values, cb)).then(() => {
+    return reduxStore.dispatch(auth.loginFetch(values)).then(() => {
       expect(store.set.mock.calls[0])
         .toEqual(['token', `Bearer ${token}`]);
       expect(store.set)
         .toHaveBeenLastCalledWith('superadmin', superadmin);
       expect(store.set).toHaveBeenCalledTimes(2);
       expect(reduxStore.getActions()[0]).toEqual(expectedLoginAction);
-      expect(cb).toHaveBeenCalled();
     });
   });
 
@@ -74,10 +72,9 @@ describe('auth action creators', () => {
   });
 
   it('should make call to logout action', () => {
-    reduxStore.dispatch(auth.logoutAction(cb));
+    reduxStore.dispatch(auth.logoutAction());
 
     expect(store.clear).toHaveBeenCalled();
     expect(reduxStore.getActions()[0]).toEqual(expectedLogoutAction);
-    expect(cb).toHaveBeenCalled();
   });
 });

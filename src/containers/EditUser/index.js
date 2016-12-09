@@ -37,9 +37,9 @@ export class EditUserComponent extends Component {
 
   handleUserUpdate(values) {
     const { dispatch, params: { userId }, router } = this.props;
-    return dispatch(userUpdateFetch(values, userId, () =>
+    return dispatch(userUpdateFetch(values, userId)).then(() =>
       router.push(`/user/${userId}`),
-    ));
+    );
   }
 
   render() {

@@ -9,16 +9,16 @@ import { EMAIL_MSG } from '../../constants/errors';
 describe('CreateUser component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
-    wrapper.setProps(props);
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
     jest.resetAllMocks(); // move to before when clearAllMocks gets out
   });
 
-  Actions.userCreateFetch = jest.fn((values, cb) => cb(1));
+  Actions.userCreateFetch = jest.fn();
+  const id = 1;
   const props = {
-    dispatch: jest.fn(),
+    dispatch: jest.fn(() => Promise.resolve(id)),
     form: 'CreateUser',
     handleSubmit: () => {},
     router: { push: jest.fn() },
@@ -33,14 +33,12 @@ describe('CreateUser component', () => {
     const values = fromJS({
       email: 'test@email.com',
     });
-    wrapper.setProps({
-      handleSubmit: cb => cb(values),
-    });
-    wrapper.find('form').simulate('submit');
+    const p = instance.handleUserCreate(values);
 
-    expect(Actions.userCreateFetch)
-      .toHaveBeenCalledWith(values, jasmine.any(Function));
-    expect(instance.props.router.push).toHaveBeenCalledWith('/user/1');
+    expect(Actions.userCreateFetch).toHaveBeenCalledWith(values);
     expect(instance.props.dispatch).toHaveBeenCalled();
+    return p.then(() => {
+      expect(instance.props.router.push).toHaveBeenCalledWith(`/user/${id}`);
+    });
   });
 });

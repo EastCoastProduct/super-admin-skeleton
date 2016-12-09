@@ -36,26 +36,28 @@ export class UsersComponent extends Component {
     this.handleGetUsers({ page: props.users.get('page') });
   }
 
-  handleGetUsers(params, cb) {
+  handleGetUsers(params) {
     const { dispatch } = this.props;
 
-    dispatch(usersGetFetch({ limit: PAGINATION, ...params }, cb));
+    return dispatch(usersGetFetch({ limit: PAGINATION, ...params }));
   }
 
   handleFiltersSubmit(values) {
     const { dispatch } = this.props;
 
-    this.handleGetUsers(this.constructor.composeParams(1, values), () =>
-      dispatch(paginationChange(1)),
-    );
+    return this.handleGetUsers(this.constructor.composeParams(1, values))
+      .then(() =>
+        dispatch(paginationChange(1)),
+      );
   }
 
   handlePaginationChange(page) {
     const { dispatch, filters } = this.props;
 
-    this.handleGetUsers(this.constructor.composeParams(page, filters), () =>
-      dispatch(paginationChange(page)),
-    );
+    return this.handleGetUsers(this.constructor.composeParams(page, filters))
+      .then(() =>
+        dispatch(paginationChange(page)),
+      );
   }
 
   handleUserClick(id) {

@@ -15,7 +15,7 @@ describe('App component', () => {
     jest.resetAllMocks(); // move to before when clearAllMocks gets out
   });
 
-  Actions.logoutAction = jest.fn(cb => cb());
+  Actions.logoutAction = jest.fn();
   const wrapper = shallow(
     <AppComponent
       dispatch={jest.fn()}
@@ -34,8 +34,8 @@ describe('App component', () => {
     instance.handleLogout(event);
 
     expect(event.preventDefault).toHaveBeenCalledTimes(1);
-    expect(Actions.logoutAction).toHaveBeenCalledWith(jasmine.any(Function));
-    expect(instance.props.router.push).toHaveBeenCalledWith('/login');
+    expect(Actions.logoutAction).toHaveBeenCalled();
     expect(instance.props.dispatch).toHaveBeenCalled();
+    expect(instance.props.router.push).toHaveBeenCalledWith('/login');
   });
 });

@@ -9,16 +9,15 @@ import { EMAIL_MSG, REQUIRED_MSG } from '../../constants/errors';
 describe('Login component', () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
-    wrapper.setProps(props);
   });
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
     jest.resetAllMocks(); // move to before when clearAllMocks gets out
   });
 
-  Actions.loginFetch = jest.fn((values, cb) => cb());
+  Actions.loginFetch = jest.fn();
   const props = {
-    dispatch: jest.fn(),
+    dispatch: jest.fn(() => Promise.resolve()),
     form: 'Login',
     handleSubmit: () => {},
     router: { push: jest.fn() },
@@ -34,14 +33,12 @@ describe('Login component', () => {
       email: 'test@email.com',
       password: 'Aa123456',
     });
-    wrapper.setProps({
-      handleSubmit: cb => cb(values),
-    });
-    wrapper.find('form').simulate('submit');
+    const p = instance.handleLogin(values);
 
-    expect(Actions.loginFetch)
-      .toHaveBeenCalledWith(values, jasmine.any(Function));
-    expect(instance.props.router.push).toHaveBeenCalledWith('/');
+    expect(Actions.loginFetch).toHaveBeenCalledWith(values);
     expect(instance.props.dispatch).toHaveBeenCalled();
+    return p.then(() => {
+      expect(instance.props.router.push).toHaveBeenCalledWith('/');
+    });
   });
 });

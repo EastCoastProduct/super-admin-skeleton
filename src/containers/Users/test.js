@@ -17,10 +17,9 @@ describe('Users component', () => {
 
   Actions.usersGetFetch = jest.fn();
   Actions.paginationChange = jest.fn();
-  const cb = jest.fn();
   const wrapper = shallow(
     <UsersComponent
-      dispatch={jest.fn()}
+      dispatch={jest.fn(() => Promise.resolve())}
       filters={fromJS({ confirmed: false, search: '' })}
       router={{ push: jest.fn() }}
       users={fromJS({
@@ -58,14 +57,14 @@ describe('Users component', () => {
   });
 
   it('handleGetUsers method', () => {
-    instance.handleGetUsers({ page: 1, confirmed: true, search: 'name' }, cb);
+    instance.handleGetUsers({ page: 1, confirmed: true, search: 'name' });
 
     expect(Actions.usersGetFetch).toHaveBeenCalledWith({
       limit: 10,
       page: 1,
       confirmed: true,
       search: 'name'
-    }, cb);
+    });
     expect(instance.props.dispatch).toHaveBeenCalled();
   });
 
@@ -74,26 +73,29 @@ describe('Users component', () => {
       confirmed: true,
       search: 'name',
     });
-    spyOn(instance, 'handleGetUsers').and.callFake((params, cb) => cb());
-    instance.handleFiltersSubmit(values);
+    spyOn(instance, 'handleGetUsers').and.callFake(() => Promise.resolve());
+    const p = instance.handleFiltersSubmit(values);
 
     expect(instance.handleGetUsers).toHaveBeenCalledWith({
       page: 1,
       confirmed: true,
       search: 'name'
-    }, jasmine.any(Function));
-    expect(Actions.paginationChange).toHaveBeenCalledWith(1);
-    expect(instance.props.dispatch).toHaveBeenCalled();
+    });
+    return p.then(() => {
+      expect(Actions.paginationChange).toHaveBeenCalledWith(1);
+      expect(instance.props.dispatch).toHaveBeenCalled();
+    });
   });
 
   it('handlePaginationChange method', () => {
-    spyOn(instance, 'handleGetUsers').and.callFake((params, cb) => cb());
-    instance.handlePaginationChange(5);
+    spyOn(instance, 'handleGetUsers').and.callFake(() => Promise.resolve());
+    const p = instance.handlePaginationChange(5);
 
-    expect(instance.handleGetUsers)
-      .toHaveBeenCalledWith({ page: 5 }, jasmine.any(Function));
-    expect(Actions.paginationChange).toHaveBeenCalledWith(5);
-    expect(instance.props.dispatch).toHaveBeenCalled();
+    expect(instance.handleGetUsers).toHaveBeenCalledWith({ page: 5 });
+    return p.then(() => {
+      expect(Actions.paginationChange).toHaveBeenCalledWith(5);
+      expect(instance.props.dispatch).toHaveBeenCalled();
+    });
   });
 
   it('handleUserClick method', () => {

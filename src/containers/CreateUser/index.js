@@ -26,9 +26,9 @@ export class CreateUserComponent extends Component {
 
   handleUserCreate(values) {
     const { dispatch, router } = this.props;
-    return dispatch(userCreateFetch(values, id =>
+    return dispatch(userCreateFetch(values)).then(id =>
       router.push(`/user/${id}`),
-    ));
+    );
   }
 
   render() {
