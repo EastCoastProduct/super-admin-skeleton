@@ -15,8 +15,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={1}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         total={127}
       />
     );
@@ -28,8 +28,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={5}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         total={93}
       />
     );
@@ -41,8 +41,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={8}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         total={78}
       />
     );
@@ -54,8 +54,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={2}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         total={30}
       />
     );
@@ -73,8 +73,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={1}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         className={style.pagination}
         total={5}
       />
@@ -87,8 +87,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={1}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         total={1}
       />
     );
@@ -100,8 +100,8 @@ describe('Pagination component snapshot', () => {
     const tree = renderer.create(
       <Pagination
         currentPage={1}
+        handlePaginationChange={() => {}}
         itemsPerPage={10}
-        onPaginationChange={() => {}}
         total={0}
       />
     );

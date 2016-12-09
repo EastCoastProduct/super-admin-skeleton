@@ -1,5 +1,5 @@
 exports[`Input component snapshot renders as textarea with max length 1`] = `
-<div>
+<p>
   <label
     className="label_7wpiph"
     htmlFor="Form-bio">
@@ -12,11 +12,11 @@ exports[`Input component snapshot renders as textarea with max length 1`] = `
     name="bio"
     placeholder="Bio"
     value="This is my bio" />
-</div>
+</p>
 `;
 
 exports[`Input component snapshot renders basic required data 1`] = `
-<div>
+<p>
   <label
     className="label_7wpiph"
     htmlFor="Form-email" />
@@ -25,11 +25,11 @@ exports[`Input component snapshot renders basic required data 1`] = `
     id="Form-email"
     name="email"
     type="email" />
-</div>
+</p>
 `;
 
 exports[`Input component snapshot renders extra info and it is active and invalid 1`] = `
-<div>
+<p>
   <label
     className="label_7wpiph"
     htmlFor="Form-email">
@@ -42,11 +42,11 @@ exports[`Input component snapshot renders extra info and it is active and invali
     placeholder="Email"
     type="email"
     value="notAnEmail" />
-</div>
+</p>
 `;
 
 exports[`Input component snapshot renders label and input is invalid 1`] = `
-<div>
+<p>
   <label
     className="label_7wpiph"
     htmlFor="Form-email">
@@ -58,17 +58,18 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
     name="email"
     type="email"
     value="notAnEmail" />
-  <p
-    className="error_8cisgn">
+  <label
+    className="error_1pg0y0x"
+    htmlFor="Form-email">
     <i
       className="icon_1w16ibx fa fa-exclamation-triangle" />
     Input is invalid
-  </p>
-</div>
+  </label>
+</p>
 `;
 
 exports[`Input component snapshot renders label and input is required 1`] = `
-<div>
+<p>
   <label
     className="label_7wpiph"
     htmlFor="Form-email">
@@ -79,17 +80,18 @@ exports[`Input component snapshot renders label and input is required 1`] = `
     id="Form-email"
     name="email"
     type="email" />
-  <p
-    className="error_8cisgn">
+  <label
+    className="error_1pg0y0x"
+    htmlFor="Form-email">
     <i
       className="icon_1w16ibx fa fa-exclamation-triangle" />
     Input required
-  </p>
-</div>
+  </label>
+</p>
 `;
 
 exports[`Input component snapshot renders label and is focused 1`] = `
-<div>
+<p>
   <label
     className="label_7wpiph"
     htmlFor="Form-firstname">
@@ -101,5 +103,5 @@ exports[`Input component snapshot renders label and is focused 1`] = `
     name="firstname"
     type="text"
     value="John" />
-</div>
+</p>
 `;

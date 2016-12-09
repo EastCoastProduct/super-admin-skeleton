@@ -16,7 +16,7 @@ const FileUpload = (props) => {
     validated } = props;
 
   return (
-    <div>
+    <p>
       <div
         className={css(styles.emptyImage, validated && styles.validatedImage,
           error && styles.errImage)}
@@ -37,8 +37,8 @@ const FileUpload = (props) => {
           </label>
         }
       </div>
-      {error && <ErrorMsg>{error}</ErrorMsg>}
-    </div>
+      {error && <ErrorMsg htmlFor={`${id}-${input.name}`}>{error}</ErrorMsg>}
+    </p>
   );
 };
 

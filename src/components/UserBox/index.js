@@ -17,7 +17,7 @@ const UserBox = ({ children, header, profile }) =>
       {' > '}
       {getHeading(profile, header)}
     </h1>
-    <div className={css(styles.box)}>{children}</div>
+    <section className={css(styles.box)}>{children}</section>
   </main>;
 
 UserBox.propTypes = {

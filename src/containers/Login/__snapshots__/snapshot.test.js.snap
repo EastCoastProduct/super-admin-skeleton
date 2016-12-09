@@ -104,7 +104,7 @@ exports[`Login component snapshot renders required data with error 1`] = `
         Login
       </button>
       <p
-        className="error_8cisgn-o_O-error_1f65vod">
+        className="error_1pg0y0x-o_O-error_1f65vod">
         <i
           className="icon_1w16ibx fa fa-exclamation-triangle" />
         User not found.

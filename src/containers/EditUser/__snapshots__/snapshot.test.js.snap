@@ -9,7 +9,7 @@ exports[`EditUser component snapshot renders required data 1`] = `
      > 
     Edit Profile
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form
       noValidate={true}
@@ -60,7 +60,7 @@ exports[`EditUser component snapshot renders required data 1`] = `
         </a>
       </div>
     </form>
-  </div>
+  </section>
 </main>
 `;
 
@@ -75,7 +75,7 @@ exports[`EditUser component snapshot renders required data with error 1`] = `
      > 
     John Doe
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form
       noValidate={true}
@@ -126,12 +126,12 @@ exports[`EditUser component snapshot renders required data with error 1`] = `
         </a>
       </div>
       <p
-        className="error_8cisgn">
+        className="error_1pg0y0x">
         <i
           className="icon_1w16ibx fa fa-exclamation-triangle" />
         User not found.
       </p>
     </form>
-  </div>
+  </section>
 </main>
 `;

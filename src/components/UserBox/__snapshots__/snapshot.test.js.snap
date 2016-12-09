@@ -9,14 +9,14 @@ exports[`UserBox component snapshot renders basic required data with single chil
      > 
     Edit Profile
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
         Form
       </label>
     </form>
-  </div>
+  </section>
 </main>
 `;
 
@@ -31,7 +31,7 @@ exports[`UserBox component snapshot renders empty profile data with array childr
      > 
     Edit Profile
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
@@ -41,7 +41,7 @@ exports[`UserBox component snapshot renders empty profile data with array childr
     <p>
       Some text
     </p>
-  </div>
+  </section>
 </main>
 `;
 
@@ -56,14 +56,14 @@ exports[`UserBox component snapshot renders profile data with just firstname and
      > 
     John
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
         Form
       </label>
     </form>
-  </div>
+  </section>
 </main>
 `;
 
@@ -78,14 +78,14 @@ exports[`UserBox component snapshot renders profile data with just lastname and 
      > 
     Doe
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
         Form
       </label>
     </form>
-  </div>
+  </section>
 </main>
 `;
 
@@ -100,13 +100,13 @@ exports[`UserBox component snapshot renders profile data with single child 1`] =
      > 
     John Doe
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
         Form
       </label>
     </form>
-  </div>
+  </section>
 </main>
 `;

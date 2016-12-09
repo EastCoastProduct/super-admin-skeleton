@@ -122,8 +122,8 @@ export class UsersComponent extends Component {
                   <Pagination
                     className={styles.pagination}
                     currentPage={users.get('page')}
+                    handlePaginationChange={this.handlePaginationChange}
                     itemsPerPage={PAGINATION}
-                    onPaginationChange={this.handlePaginationChange}
                     total={users.get('listTotal')}
                   />
                 </td>

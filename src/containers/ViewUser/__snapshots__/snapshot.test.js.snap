@@ -9,7 +9,7 @@ exports[`Users component snapshot renders empty required data 1`] = `
      > 
     View Profile
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <dl>
       <dt
@@ -27,7 +27,7 @@ exports[`Users component snapshot renders empty required data 1`] = `
       style={Object {}}>
       Edit
     </a>
-  </div>
+  </section>
 </main>
 `;
 
@@ -42,10 +42,10 @@ exports[`Users component snapshot renders full required data 1`] = `
      > 
     John Doe
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <dl>
-      <div>
+      <p>
         <div
           className="emptyImage_avz902"
           style={
@@ -53,7 +53,7 @@ exports[`Users component snapshot renders full required data 1`] = `
               "background": "url(https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg) center/cover no-repeat",
             }
           } />
-      </div>
+      </p>
       <dt
         className="term_1hjxy0q">
         Email
@@ -93,6 +93,6 @@ exports[`Users component snapshot renders full required data 1`] = `
       style={Object {}}>
       Edit
     </a>
-  </div>
+  </section>
 </main>
 `;

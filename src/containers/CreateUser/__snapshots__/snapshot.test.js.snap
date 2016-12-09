@@ -9,7 +9,7 @@ exports[`CreateUser component snapshot renders required data 1`] = `
      > 
     Create New User
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form
       noValidate={true}
@@ -43,7 +43,7 @@ exports[`CreateUser component snapshot renders required data 1`] = `
         </a>
       </div>
     </form>
-  </div>
+  </section>
 </main>
 `;
 
@@ -58,7 +58,7 @@ exports[`CreateUser component snapshot renders required data with error 1`] = `
      > 
     Create New User
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form
       noValidate={true}
@@ -92,12 +92,12 @@ exports[`CreateUser component snapshot renders required data with error 1`] = `
         </a>
       </div>
       <p
-        className="error_8cisgn">
+        className="error_1pg0y0x">
         <i
           className="icon_1w16ibx fa fa-exclamation-triangle" />
         User already exists.
       </p>
     </form>
-  </div>
+  </section>
 </main>
 `;

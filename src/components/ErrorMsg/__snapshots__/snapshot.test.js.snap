@@ -1,6 +1,16 @@
-exports[`ErrorMsg component snapshot renders basic required data 1`] = `
+exports[`ErrorMsg component snapshot renders basic required data with htmlFor 1`] = `
+<label
+  className="error_1pg0y0x"
+  htmlFor="Login-email">
+  <i
+    className="icon_1w16ibx fa fa-exclamation-triangle" />
+  Something went wrong.
+</label>
+`;
+
+exports[`ErrorMsg component snapshot renders basic required data without htmlFor 1`] = `
 <p
-  className="error_8cisgn">
+  className="error_1pg0y0x">
   <i
     className="icon_1w16ibx fa fa-exclamation-triangle" />
   Something went wrong.
@@ -9,7 +19,7 @@ exports[`ErrorMsg component snapshot renders basic required data 1`] = `
 
 exports[`ErrorMsg component snapshot renders with additional styles 1`] = `
 <p
-  className="error_8cisgn-o_O-error_1433df3">
+  className="error_1pg0y0x-o_O-error_1433df3">
   <i
     className="icon_1w16ibx fa fa-exclamation-triangle" />
   Something went wrong.

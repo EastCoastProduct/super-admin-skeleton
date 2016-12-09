@@ -37,7 +37,7 @@ exports[`App component snapshot renders basic required data 1`] = `
             onClick={[Function]}
             style={Object {}}>
             <i
-              className="navIcon_11u5mqt fa fa-address-book" />
+              className="navIcon_11u5mqt fa fa-asterisk" />
             Placeholder
           </a>
         </li>
@@ -47,7 +47,7 @@ exports[`App component snapshot renders basic required data 1`] = `
             onClick={[Function]}
             style={Object {}}>
             <i
-              className="navIcon_11u5mqt fa fa-lock" />
+              className="navIcon_11u5mqt fa fa-asterisk" />
             Placeholder
           </a>
         </li>

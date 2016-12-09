@@ -16,8 +16,8 @@ describe('Pagination component', () => {
 
   const props = {
     currentPage: 1,
+    handlePaginationChange: jest.fn(),
     itemsPerPage: 10,
-    onPaginationChange: jest.fn(),
     total: 127,
   };
   const wrapper = shallow(
@@ -38,7 +38,7 @@ describe('Pagination component', () => {
 
   it('handleChangePage method', () => {
     instance.handleChangePage(5);
-    expect(instance.props.onPaginationChange).toHaveBeenCalledWith(5);
+    expect(instance.props.handlePaginationChange).toHaveBeenCalledWith(5);
   });
 
   it('should call handleChangePage internally through click events', () => {
@@ -48,19 +48,19 @@ describe('Pagination component', () => {
     const btn = wrapper.find(Button);
 
     btn.first().simulate('click');
-    expect(instance.props.onPaginationChange).toHaveBeenCalledWith(1);
+    expect(instance.props.handlePaginationChange).toHaveBeenCalledWith(1);
 
     btn.at(1).simulate('click');
-    expect(instance.props.onPaginationChange).toHaveBeenLastCalledWith(6);
+    expect(instance.props.handlePaginationChange).toHaveBeenLastCalledWith(6);
 
     btn.at(2).simulate('click');
-    expect(instance.props.onPaginationChange).toHaveBeenLastCalledWith(5);
+    expect(instance.props.handlePaginationChange).toHaveBeenLastCalledWith(5);
 
     btn.at(6).simulate('click');
-    expect(instance.props.onPaginationChange).toHaveBeenLastCalledWith(8);
+    expect(instance.props.handlePaginationChange).toHaveBeenLastCalledWith(8);
 
     btn.last().simulate('click');
-    expect(instance.props.onPaginationChange).toHaveBeenLastCalledWith(13);
+    expect(instance.props.handlePaginationChange).toHaveBeenLastCalledWith(13);
   });
 
   it('clickHandler method', () => {

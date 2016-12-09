@@ -18,13 +18,15 @@ const Input = (props) => {
   };
 
   return (
-    <div>
+    <p>
       <label className={css(styles.label)} htmlFor={`${id}-${input.name}`}>
         {label}
       </label>
       {textarea ? <textarea {...attributes} /> : <input {...attributes} />}
-      {isError(meta) && <ErrorMsg>{error}</ErrorMsg>}
-    </div>
+      {isError(meta) &&
+        <ErrorMsg htmlFor={`${id}-${input.name}`}>{error}</ErrorMsg>
+      }
+    </p>
   );
 };
 
