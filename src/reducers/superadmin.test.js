@@ -1,46 +1,31 @@
 import { fromJS } from 'immutable';
 import reducer from './superadmin';
 import { LOGIN_SUCCESS } from '../constants/actions';
-
-const superadmin = {
-  bio: null,
-  createdAt: '2016-10-20T10:02:47.000Z',
-  email: 'super.admin@mail.com',
-  firstname: 'superadmin',
-  id: 1,
-  lastname: 'superadmin',
-  updatedAt: '2016-10-20T10:02:47.000Z',
-};
+import { superadmin, emptySuperadmin } from '../fixtures/superadmin';
 
 describe('superadmin reducer', () => {
+  const superadminMap = fromJS(superadmin);
+  const emptySuperadminMap = fromJS(emptySuperadmin);
+
   it('should return empty initial state', () => {
     expect(reducer(undefined, {})).toEqual(fromJS({}));
   });
 
   it('should return initial state', () => {
-    expect(reducer(fromJS(superadmin), {})).toEqual(fromJS({
-      bio: null,
-      createdAt: '2016-10-20T10:02:47.000Z',
-      email: 'super.admin@mail.com',
-      firstname: 'superadmin',
-      id: 1,
-      lastname: 'superadmin',
-      updatedAt: '2016-10-20T10:02:47.000Z',
-    }));
+    expect(reducer(superadminMap, {})).toEqual(superadminMap);
   });
 
   it('should handle LOGIN_SUCCESS', () => {
     expect(reducer(undefined, {
       type: LOGIN_SUCCESS,
-      superadmin: superadmin,
-    })).toEqual(fromJS({
-      bio: null,
-      createdAt: '2016-10-20T10:02:47.000Z',
-      email: 'super.admin@mail.com',
-      firstname: 'superadmin',
-      id: 1,
-      lastname: 'superadmin',
-      updatedAt: '2016-10-20T10:02:47.000Z',
-    }));
+      superadmin,
+    })).toEqual(superadminMap);
+  });
+
+  it('should handle LOGIN_SUCCESS with previous state', () => {
+    expect(reducer(superadminMap, {
+      type: LOGIN_SUCCESS,
+      superadmin: emptySuperadmin,
+    })).toEqual(emptySuperadminMap);
   });
 });

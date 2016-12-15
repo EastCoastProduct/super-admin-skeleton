@@ -11,7 +11,7 @@ exports[`Pagination component snapshot renders just message for 1 item 1`] = `
 
 exports[`Pagination component snapshot renders just message with extra style for small number of items 1`] = `
 <div
-  className="">
+  className="pagination_70d19d">
   <p>
     Showing all of 5 results
   </p>

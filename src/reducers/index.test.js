@@ -1,6 +1,9 @@
 import { createStore } from 'redux';
 import { fromJS } from 'immutable';
 import { LOGOUT_SUCCESS } from '../constants/actions';
+import { superadmin } from '../fixtures/superadmin';
+import { fullProfile } from '../fixtures/user';
+import { error, list, listTotal, page } from '../fixtures/users';
 import rootReducer from './';
 
 describe('root reducer', () => {
@@ -29,30 +32,16 @@ describe('root reducer', () => {
       form: {
         Login: {},
       },
-      superadmin: {
-        firstname: 'John',
-        lastname: 'Doe',
-      },
+      superadmin,
       user: {
         error: null,
-        profile: {
-          lastname: 'lastname4',
-          bio: null,
-          resourceId: 2,
-          updatedAt: '2016-11-08T18:08:25.000Z',
-          id: 5,
-          createdAt: '2016-11-08T18:08:25.000Z',
-          firstname: 'firstname4',
-          image: 'https://link-to-s3.jpg',
-          email: 'firstname4.lastname4@mail.com',
-          confirmed: true,
-        },
+        profile: fullProfile,
       },
       users: {
-        error: 'Something went wrong',
-        list: [],
-        listTotal: 0,
-        page: 1,
+        error,
+        list,
+        listTotal,
+        page,
       },
     });
     expect(rootReducer(newState, { type: LOGOUT_SUCCESS }))

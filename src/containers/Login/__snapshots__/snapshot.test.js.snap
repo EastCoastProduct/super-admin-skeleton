@@ -1,0 +1,115 @@
+exports[`Login component snapshot renders required data 1`] = `
+<main
+  className="page_ftdrhl">
+  <section
+    className="box_1306j1v">
+    <img
+      alt="Company Logo"
+      className="logo_2al8b9"
+      src="http://wp.streetwise.co/wp-content/uploads//2015/10//fullECPlogo_Black4.png" />
+    <h1
+      className="header_ky8f4n">
+      Login to your account
+    </h1>
+    <form
+      noValidate={true}
+      onSubmit={[Function]}>
+      <Field
+        component={[Function]}
+        id="Login"
+        label="Email"
+        name="email"
+        placeholder="Email"
+        type="email"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
+        validated={true} />
+      <Field
+        component={[Function]}
+        id="Login"
+        label="Password"
+        name="password"
+        placeholder="Password"
+        type="password"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
+        validated={true} />
+      <button
+        className="button_w1w7v0-o_O-button_ltlwnu"
+        disabled={true}
+        type="submit">
+        Login
+      </button>
+    </form>
+  </section>
+</main>
+`;
+
+exports[`Login component snapshot renders required data with error 1`] = `
+<main
+  className="page_ftdrhl">
+  <section
+    className="box_1306j1v-o_O-boxErr_wwds3j">
+    <img
+      alt="Company Logo"
+      className="logo_2al8b9"
+      src="http://wp.streetwise.co/wp-content/uploads//2015/10//fullECPlogo_Black4.png" />
+    <h1
+      className="header_ky8f4n">
+      Login to your account
+    </h1>
+    <form
+      noValidate={true}
+      onSubmit={[Function]}>
+      <Field
+        component={[Function]}
+        id="Login"
+        label="Email"
+        name="email"
+        placeholder="Email"
+        type="email"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
+        validated={true} />
+      <Field
+        component={[Function]}
+        id="Login"
+        label="Password"
+        name="password"
+        placeholder="Password"
+        type="password"
+        validate={
+          Array [
+            [Function],
+            [Function],
+          ]
+        }
+        validated={true} />
+      <button
+        className="button_w1w7v0-o_O-button_ltlwnu"
+        disabled={false}
+        type="submit">
+        Login
+      </button>
+      <p
+        className="error_1pg0y0x-o_O-error_1f65vod">
+        <i
+          className="icon_1w16ibx fa fa-exclamation-triangle" />
+        User not found.
+      </p>
+    </form>
+  </section>
+</main>
+`;

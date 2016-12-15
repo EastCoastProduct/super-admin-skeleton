@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite/no-important';
+import { superadmin } from '../../fixtures/superadmin';
 import Header from './';
 
 describe('Header component snapshot', () => {
@@ -13,12 +14,6 @@ describe('Header component snapshot', () => {
   });
 
   it('renders basic required data', () => {
-    const superadmin = {
-      firstname: 'John',
-      lastname: 'Doe',
-      email: 'john.doe@mail.com',
-      confirmed: true,
-    };
     const tree = renderer.create(
       <Header handleLogout={() => {}} superadmin={fromJS(superadmin)} />
     );

@@ -4,12 +4,12 @@ import Button from '../Button';
 import styles from './styles';
 
 const SearchBar = ({ className, input, meta: _, ...rest }) =>
-  <div className={css(styles.bar, className && className)} >
+  <p className={css(styles.bar, className && className)} >
     <Button type="submit" empty>
       <i className={`${css(styles.icon)} fa fa-search`} />
     </Button>
     <input className={css(styles.input)} {...input} {...rest} />
-  </div>;
+  </p>;
 
 SearchBar.propTypes = {
   className: PropTypes.object,

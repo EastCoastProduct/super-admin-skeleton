@@ -19,7 +19,7 @@ exports[`Navigation component snapshot renders component 1`] = `
           onClick={[Function]}
           style={Object {}}>
           <i
-            className="navIcon_11u5mqt fa fa-address-book" />
+            className="navIcon_11u5mqt fa fa-asterisk" />
           Placeholder
         </a>
       </li>
@@ -29,7 +29,7 @@ exports[`Navigation component snapshot renders component 1`] = `
           onClick={[Function]}
           style={Object {}}>
           <i
-            className="navIcon_11u5mqt fa fa-lock" />
+            className="navIcon_11u5mqt fa fa-asterisk" />
           Placeholder
         </a>
       </li>

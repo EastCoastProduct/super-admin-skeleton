@@ -2,23 +2,8 @@ import { fromJS } from 'immutable';
 import reducer from './users';
 import { USERS_GET_SUCCESS, USERS_GET_FAILED, USERS_PAGINATION_CHANGE }
   from '../constants/actions';
-
-const users = {
-  error: 'Something went wrong.',
-  list: [{
-    firstname: 'John',
-    lastname: 'Doe',
-    email: 'john.doe@mail.com',
-    confirmed: true,
-  }, {
-    firstname: 'Joe',
-    lastname: 'Shmoe',
-    email: 'joe.shmoe@mail.com',
-    confirmed: true,
-  }],
-  listTotal: 2,
-  page: 1,
-};
+import { error, list, list2, listTotal, listTotal2, page, page2 }
+ from '../fixtures/users';
 
 describe('users reducer', () => {
   it('should return initial state', () => {
@@ -33,137 +18,89 @@ describe('users reducer', () => {
   it('should return handle USERS_GET_SUCCESS', () => {
     expect(reducer(undefined, {
       type: USERS_GET_SUCCESS,
-      list: users.list,
-      listTotal: users.listTotal,
+      list,
+      listTotal,
     })).toEqual(fromJS({
       error: null,
-      list: [{
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'john.doe@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Joe',
-        lastname: 'Shmoe',
-        email: 'joe.shmoe@mail.com',
-        confirmed: true,
-      }],
-      listTotal: 2,
+      list,
+      listTotal,
       page: 1,
     }));
   });
 
   it('should return handle USERS_GET_SUCCESS with previous state', () => {
     expect(reducer(fromJS({
-      error: 'No users found.',
-      list: [{
-        firstname: 'Nick',
-        lastname: 'Vick',
-        email: 'nick.vick@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Mike',
-        lastname: 'Dike',
-        email: 'mike.dike@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Louis',
-        lastname: 'Souiss',
-        email: 'louiss.souiss@mail.com',
-        confirmed: true,
-      }],
-      listTotal: 3,
-      page: 2,
+      error,
+      list,
+      listTotal,
+      page,
     }), {
       type: USERS_GET_SUCCESS,
-      list: users.list,
-      listTotal: users.listTotal,
+      list: list2,
+      listTotal: listTotal2,
     })).toEqual(fromJS({
       error: null,
-      list: [{
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'john.doe@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Joe',
-        lastname: 'Shmoe',
-        email: 'joe.shmoe@mail.com',
-        confirmed: true,
-      }],
-      listTotal: 2,
-      page: 2,
+      list: list2,
+      listTotal: listTotal2,
+      page,
     }));
   });
 
   it('should handle USERS_GET_FAILED', () => {
     expect(reducer(undefined, {
       type: USERS_GET_FAILED,
-      error: users.error,
+      error,
     })).toEqual(fromJS({
-      error: 'Something went wrong.',
+      error,
       list: [],
       listTotal: 0,
       page: 1,
     }));
   });
 
-  it('should handle USERS_GET_FAILED with previous state', () => {
+  it('should handle USERS_GET_FAILED with previous state and error', () => {
     expect(reducer(fromJS({
-      error: null,
-      list: [{
-        firstname: 'Nick',
-        lastname: 'Vick',
-        email: 'nick.vick@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Mike',
-        lastname: 'Dike',
-        email: 'mike.dike@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Louis',
-        lastname: 'Souiss',
-        email: 'louiss.souiss@mail.com',
-        confirmed: true,
-      }],
-      listTotal: 3,
-      page: 2,
+      error: 'Something went wrong.',
+      list,
+      listTotal,
+      page,
     }), {
       type: USERS_GET_FAILED,
-      error: users.error,
+      error,
     })).toEqual(fromJS({
-      error: 'Something went wrong.',
-      list: [{
-        firstname: 'Nick',
-        lastname: 'Vick',
-        email: 'nick.vick@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Mike',
-        lastname: 'Dike',
-        email: 'mike.dike@mail.com',
-        confirmed: true,
-      }, {
-        firstname: 'Louis',
-        lastname: 'Souiss',
-        email: 'louiss.souiss@mail.com',
-        confirmed: true,
-      }],
-      listTotal: 3,
-      page: 2,
+      error,
+      list,
+      listTotal,
+      page,
     }));
   });
 
   it('should handle USERS_PAGINATION_CHANGE', () => {
     expect(reducer(undefined, {
       type: USERS_PAGINATION_CHANGE,
-      page: 5,
+      page,
     })).toEqual(fromJS({
       error: null,
       list: [],
       listTotal: 0,
-      page: 5,
+      page,
+    }))
+  });
+
+  it('should handle USERS_PAGINATION_CHANGE with previous state', () => {
+    expect(reducer(fromJS({
+      error,
+      list,
+      listTotal,
+      page,
+    }), {
+      type: USERS_PAGINATION_CHANGE,
+      page: page2,
+    })).toEqual(fromJS({
+      error,
+      list,
+      listTotal,
+      page: page2,
     }))
   });
 });

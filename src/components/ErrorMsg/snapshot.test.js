@@ -11,8 +11,16 @@ describe('ErrorMsg component snapshot', () => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
 
-  it('renders basic required data', () => {
+  it('renders basic required data without htmlFor', () => {
     const tree = renderer.create(<ErrorMsg>Something went wrong.</ErrorMsg>);
+
+    expect(tree.toJSON()).toMatchSnapshot();
+  });
+
+  it('renders basic required data with htmlFor', () => {
+    const tree = renderer.create(
+      <ErrorMsg htmlFor="Login-email">Something went wrong.</ErrorMsg>
+    );
 
     expect(tree.toJSON()).toMatchSnapshot();
   });

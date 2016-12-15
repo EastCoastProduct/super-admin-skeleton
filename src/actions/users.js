@@ -20,12 +20,11 @@ export const paginationChange = page => ({
   page,
 });
 
-export const usersGetFetch = (qs, cb) =>
+export const usersGetFetch = qs =>
   dispatch =>
     fetch(`${API_URL}/superAdmin/users?${queryString.stringify(qs)}`)
-      .then((resp) => {
-        dispatch(usersGetSuccess(resp.rows, resp.count));
-        return typeof cb === 'function' && cb();
-      }).catch(err =>
+      .then(resp =>
+        dispatch(usersGetSuccess(resp.rows, resp.count)),
+      ).catch(err =>
         dispatch(usersGetFailed(err.message)),
       );

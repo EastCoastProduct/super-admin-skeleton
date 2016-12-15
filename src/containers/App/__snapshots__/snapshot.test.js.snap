@@ -1,0 +1,64 @@
+exports[`App component snapshot renders basic required data 1`] = `
+<div>
+  <header
+    className="header_uusume">
+    <p>
+      Hello, 
+      <b>
+        superadmin
+         
+        superadmin
+      </b>
+    </p>
+    <a
+      className="link_1lrrya9"
+      href={true}
+      onClick={[Function]}>
+      Logout
+    </a>
+  </header>
+  <aside
+    className="aside_r524fi">
+    <nav>
+      <ul>
+        <li>
+          <a
+            className="navLink_1dyv036"
+            onClick={[Function]}
+            style={Object {}}>
+            <i
+              className="navIcon_11u5mqt fa fa-user" />
+            Users
+          </a>
+        </li>
+        <li>
+          <a
+            className="navLink_1dyv036"
+            onClick={[Function]}
+            style={Object {}}>
+            <i
+              className="navIcon_11u5mqt fa fa-asterisk" />
+            Placeholder
+          </a>
+        </li>
+        <li>
+          <a
+            className="navLink_1dyv036"
+            onClick={[Function]}
+            style={Object {}}>
+            <i
+              className="navIcon_11u5mqt fa fa-asterisk" />
+            Placeholder
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <div
+    className="content_dqivkm">
+    <main>
+      Test
+    </main>
+  </div>
+</div>
+`;

@@ -100,7 +100,7 @@ Some data should be changed corresponding to your project. Generic information l
       __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
     }),
 
-These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as global variable which we use inside the application as Web and API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
+These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as global variable which we use inside the application as Web and API constant. This constant is valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
 
 ### src/index.tpl.html
 Title inside template should be updated to the corresponding one instead of generic one. Favicon link doesn't exist with skeleton example which should probably be added manually.
@@ -137,14 +137,14 @@ This serves production ready code from *dist* folder and allows it to be tested 
     │   ├── components           # reusable React components
     │   ├── constants            # actions, error messages and global app constants
     │   ├── containers           # connected React components, page components which are connected to React Router
+    │   ├── fixtures             # fixtures and reusable functions used for Jest testing framework
     │   ├── reducers             # root reducer setup importing individual reducers
     │   ├── routes               # React Router setup
     │   ├── store                # store setup for development and production
     │   ├── styles               # default styles, mixins and style variables
     │   ├── utils                # reusable modules like validator, error parser...
     │   ├── index.js             # entry point for our React/Redux application
-    │   ├── index.tpl.html       # template html from which html-webpack-plugin creates output html file including hashed JS files
-    │   └── setupTests.js        # setup testing environment prior to executing tests
+    │   └── index.tpl.html       # template html from which html-webpack-plugin creates output html file including hashed JS files
     ├── test                     # folder which contains Jest testing cache and coverage reports
     ├── .babelrc                 # babel configuration including ES6 syntax
     ├── .eslintrc                # eslint configuration based on airbnb setup
@@ -186,7 +186,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * eslint-plugin-react - Airbnb's config dependency, provides React specific linting rules
 * express - minimalistic Node framework used to serve files in development and allow hot reloading feature
 * fetch-mock - library to mock fetch calls in testing environment
-* file-api - library that mocks browser's File API for tests that run in node environment
 * file-loader - Webpack file loader, constructs MD5 hash filename and emits files
 * html-webpack-plugin - simplifies creation of *index.html* file through Webpack
 * jest - JS testing framework, best tool to rest React/Redux applications
@@ -232,7 +231,7 @@ Routes | Container | Description | State data | Requests
 /user/:userId | App -> ViewUser | View user's profile data | user | **GET** /users/:userId
 /user/:userId/edit | App -> EditUser | Edit user profile data | user | **GET** /users/:userId <br/> **POST** /users/:userId
 /user | App -> CreateUser | Create user through email | none | **POST** /superAdmin/users
-/login | Login | Login form | none | **POST** /authenticate
+/login | Login | Login form | none | **POST** /superAdmin/authenticate
 * | Page404 | Renders in case no other route was matched, shows information to user and offers links to go back to Home or Login | none | none
  | App | Parent component for the application that holds menu and allows user to logout | none | none
 
@@ -294,7 +293,7 @@ To insert default styles like *normalize.css* and resets we need to use somethin
 
 ## TESTS
 
-Testing is done using Jest framework. All tests are held in the same folder with files that are being tested. Tests should be named same as files that are tested with additional *test* keyword in the name. Due to inability to run Enzyme and snapshot tests in the same file we have to keep snapshot tests in a separate file and add additional *snapshot* keyword in the name of the file. A snapshot will be held in the same folder where snapshot test has been called inside the *__snapshot__* folder. If any module needs to be mocked there should be a folder named *__mocks__* created in the same folder. Then, when we call that module in the tests, we can mock it by using that mocked file stored in *__mocks__* folder. To run all tests run:
+Testing is done using Jest framework. All tests are held in the same folder with files that are being tested. Tests should be named same as files that are tested with additional *test* keyword in the name. Due to inability to run Enzyme and snapshot tests in the same file we have to keep snapshot tests in a separate file and add additional *snapshot* keyword in the name of the file. A snapshot will be held in the same folder where snapshot test has been called inside the *__snapshot__* folder. To run all tests run:
 
     npm run test
 
@@ -302,7 +301,9 @@ Coverage should be above 90% if possible. To create or update snapshots at any p
 
     npm run snapshots
 
-Snapshot testing is manual work at first run. It should render components that need to be checked manually until considered valid. After all subsequent runs snapshot will not be created and our tests would be able to fail if something is changed in a component that renders different snapshot. In a case of updating snapshot, the same manual check is needed.
+Snapshot testing is manual work at first run. It should render components that need to be checked manually until considered valid. In all subsequent runs snapshot will not be created and our tests would be able to fail if something is changed in a component that renders different snapshot. In a case of updating snapshot, the same manual check is needed.
+
+Jest configuration is written inside package.json and we keep fixtures and test related files inside fixtures folder.
 
 
 ## ISSUES

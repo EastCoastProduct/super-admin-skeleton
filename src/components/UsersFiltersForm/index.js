@@ -5,7 +5,7 @@ import Checkbox from '../Checkbox';
 import SearchBar from '../SearchBar';
 import styles from './styles';
 
-export const UsersFiltersFormComponent = (props) => {
+const UsersFiltersForm = (props) => {
   const { className, form, handleFiltersSubmit, handleSubmit } = props;
 
   return (
@@ -29,13 +29,13 @@ export const UsersFiltersFormComponent = (props) => {
         type="text"
         placeholder="Search by email, first and last name"
         normalize={value => `%${value}%`}
-        format={value => value.slice(1, -1)}
+        format={value => (value ? value.slice(1, -1) : '')}
       />
     </form>
   );
 };
 
-UsersFiltersFormComponent.propTypes = {
+UsersFiltersForm.propTypes = {
   className: PropTypes.object,
   form: PropTypes.string.isRequired,
   handleFiltersSubmit: PropTypes.func.isRequired,
@@ -44,4 +44,4 @@ UsersFiltersFormComponent.propTypes = {
 
 export default reduxForm({
   form: 'UsersFilters',
-})(UsersFiltersFormComponent);
+})(UsersFiltersForm);

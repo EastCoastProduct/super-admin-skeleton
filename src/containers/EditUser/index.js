@@ -10,14 +10,6 @@ import Input from '../../components/Input';
 import ErrorMsg from '../../components/ErrorMsg';
 import BoxButtons from '../../components/BoxButtons';
 
-export const validate = (values) => {
-  const errors = {};
-  const { image } = values.toJS();
-
-  errors.image = isFileSizeExceeded(image);
-  return errors;
-};
-
 export class EditUserComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -45,9 +37,9 @@ export class EditUserComponent extends Component {
 
   handleUserUpdate(values) {
     const { dispatch, params: { userId }, router } = this.props;
-    return dispatch(userUpdateFetch(values, userId, () =>
+    return dispatch(userUpdateFetch(values, userId)).then(() =>
       router.push(`/user/${userId}`),
-    ));
+    );
   }
 
   render() {
@@ -63,6 +55,7 @@ export class EditUserComponent extends Component {
               component={FileUpload}
               id={form}
               image={profile.get('image')}
+              validate={isFileSizeExceeded}
               validated
             />
             <Field
@@ -105,13 +98,12 @@ export class EditUserComponent extends Component {
 
 export default connect(state => ({
   initialValues: {
-    bio: state.getIn(['user', 'profile', 'bio']),
-    firstname: state.getIn(['user', 'profile', 'firstname']),
-    lastname: state.getIn(['user', 'profile', 'lastname']),
+    bio: state.getIn(['user', 'profile', 'bio']) || '',
+    firstname: state.getIn(['user', 'profile', 'firstname']) || '',
+    lastname: state.getIn(['user', 'profile', 'lastname']) || '',
   },
   profile: state.getIn(['user', 'profile']),
 }))(withRouter(reduxForm({
   enableReinitialize: true,
   form: 'EditUser',
-  validate,
 })(EditUserComponent)));

@@ -1,28 +1,3 @@
-exports[`UserBox component snapshot renders basic required data with array children 1`] = `
-<main>
-  <h1
-    className="header_fffb07">
-    <span
-      className="headerText_104b05c">
-      Users
-    </span>
-     > 
-    View Profile
-  </h1>
-  <div
-    className="box_5m47zw">
-    <form>
-      <label>
-        Form
-      </label>
-    </form>
-    <p>
-      Some text
-    </p>
-  </div>
-</main>
-`;
-
 exports[`UserBox component snapshot renders basic required data with single child 1`] = `
 <main>
   <h1
@@ -32,20 +7,89 @@ exports[`UserBox component snapshot renders basic required data with single chil
       Users
     </span>
      > 
-    View Profile
+    Edit Profile
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
         Form
       </label>
     </form>
-  </div>
+  </section>
 </main>
 `;
 
-exports[`UserBox component snapshot renders profile data with sinlge child 1`] = `
+exports[`UserBox component snapshot renders empty profile data with array children 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    Edit Profile
+  </h1>
+  <section
+    className="box_5m47zw">
+    <form>
+      <label>
+        Form
+      </label>
+    </form>
+    <p>
+      Some text
+    </p>
+  </section>
+</main>
+`;
+
+exports[`UserBox component snapshot renders profile data with just firstname and single child 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    John
+  </h1>
+  <section
+    className="box_5m47zw">
+    <form>
+      <label>
+        Form
+      </label>
+    </form>
+  </section>
+</main>
+`;
+
+exports[`UserBox component snapshot renders profile data with just lastname and single child 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    Doe
+  </h1>
+  <section
+    className="box_5m47zw">
+    <form>
+      <label>
+        Form
+      </label>
+    </form>
+  </section>
+</main>
+`;
+
+exports[`UserBox component snapshot renders profile data with single child 1`] = `
 <main>
   <h1
     className="header_fffb07">
@@ -56,13 +100,13 @@ exports[`UserBox component snapshot renders profile data with sinlge child 1`] =
      > 
     John Doe
   </h1>
-  <div
+  <section
     className="box_5m47zw">
     <form>
       <label>
         Form
       </label>
     </form>
-  </div>
+  </section>
 </main>
 `;

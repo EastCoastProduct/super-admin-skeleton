@@ -31,7 +31,7 @@ describe('Checkbox component snapshot', () => {
         label="This is checkbox"
         input={{ name: 'checkbox', value: true }}
         meta={{}}
-        onChange={() => 'Change'}
+        onChange={() => {}}
       />
     );
 

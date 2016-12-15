@@ -3,7 +3,7 @@ import { css } from 'aphrodite/no-important';
 import ErrorMsg from '../ErrorMsg';
 import styles from './styles';
 
-const backgroundStyle = (value) => {
+export const backgroundStyle = (value) => {
   if (!value) return {};
   const url = value instanceof FileList ? URL.createObjectURL(value[0]) : value;
   return {
@@ -16,7 +16,7 @@ const FileUpload = (props) => {
     validated } = props;
 
   return (
-    <div>
+    <p>
       <div
         className={css(styles.emptyImage, validated && styles.validatedImage,
           error && styles.errImage)}
@@ -37,8 +37,8 @@ const FileUpload = (props) => {
           </label>
         }
       </div>
-      {error && <ErrorMsg>{error}</ErrorMsg>}
-    </div>
+      {error && <ErrorMsg htmlFor={`${id}-${input.name}`}>{error}</ErrorMsg>}
+    </p>
   );
 };
 

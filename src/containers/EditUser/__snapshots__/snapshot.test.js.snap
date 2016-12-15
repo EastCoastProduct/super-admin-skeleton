@@ -1,0 +1,137 @@
+exports[`EditUser component snapshot renders required data 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    Edit Profile
+  </h1>
+  <section
+    className="box_5m47zw">
+    <form
+      noValidate={true}
+      onSubmit={[Function]}>
+      <Field
+        component={[Function]}
+        id="EditUser"
+        image={undefined}
+        name="image"
+        validate={[Function]}
+        validated={true} />
+      <Field
+        component={[Function]}
+        id="EditUser"
+        label="First Name"
+        maxLength="30"
+        name="firstname"
+        placeholder="First Name"
+        type="text" />
+      <Field
+        component={[Function]}
+        id="EditUser"
+        label="Last Name"
+        maxLength="30"
+        name="lastname"
+        placeholder="Last Name"
+        type="text" />
+      <Field
+        component={[Function]}
+        id="EditUser"
+        label="Bio"
+        maxLength="1000"
+        name="bio"
+        placeholder="Bio"
+        textarea={true} />
+      <div>
+        <button
+          className="button_w1w7v0-o_O-button_1q6mnjs"
+          disabled={true}
+          type="submit">
+          Save
+        </button>
+        <a
+          className="link_1mjr7jy"
+          onClick={[Function]}
+          style={Object {}}>
+          Cancel
+        </a>
+      </div>
+    </form>
+  </section>
+</main>
+`;
+
+exports[`EditUser component snapshot renders required data with error 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    John Doe
+  </h1>
+  <section
+    className="box_5m47zw">
+    <form
+      noValidate={true}
+      onSubmit={[Function]}>
+      <Field
+        component={[Function]}
+        id="EditUser"
+        image="https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg"
+        name="image"
+        validate={[Function]}
+        validated={true} />
+      <Field
+        component={[Function]}
+        id="EditUser"
+        label="First Name"
+        maxLength="30"
+        name="firstname"
+        placeholder="First Name"
+        type="text" />
+      <Field
+        component={[Function]}
+        id="EditUser"
+        label="Last Name"
+        maxLength="30"
+        name="lastname"
+        placeholder="Last Name"
+        type="text" />
+      <Field
+        component={[Function]}
+        id="EditUser"
+        label="Bio"
+        maxLength="1000"
+        name="bio"
+        placeholder="Bio"
+        textarea={true} />
+      <div>
+        <button
+          className="button_w1w7v0-o_O-button_1q6mnjs"
+          disabled={false}
+          type="submit">
+          Save
+        </button>
+        <a
+          className="link_1mjr7jy"
+          onClick={[Function]}
+          style={Object {}}>
+          Cancel
+        </a>
+      </div>
+      <p
+        className="error_1pg0y0x">
+        <i
+          className="icon_1w16ibx fa fa-exclamation-triangle" />
+        User not found.
+      </p>
+    </form>
+  </section>
+</main>
+`;

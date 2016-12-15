@@ -3,26 +3,24 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import store from 'store';
 import { fromJS } from 'immutable';
+import { token, superadmin } from '../fixtures/superadmin';
+import errResp from '../fixtures/errResp';
 import * as auth from './auth';
 import * as parseErrors from '../utils/parseErrors';
 import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../constants/actions';
 import { API_URL } from '../constants/application';
 
 describe('auth action creators', () => {
-  beforeEach(() => {
+  afterEach(() => {
     fetchMock.restore();
+    jest.resetAllMocks();
+    reduxStore.clearActions();
   });
 
-  const superadmin = {
-    bio: null,
-    createdAt: '2016-10-20T10:02:47.000Z',
-    email: 'super.admin@mail.com',
-    firstname: 'superadmin',
-    id: 1,
-    lastname: 'superadmin',
-    updatedAt: '2016-10-20T10:02:47.000Z',
-  };
-  const mockStore = configureMockStore([ thunk ]);
+  store.set = jest.fn();
+  store.clear = jest.fn();
+  parseErrors.default = jest.fn();
+  const reduxStore = configureMockStore([ thunk ])();
   const expectedLoginAction = {
     type: LOGIN_SUCCESS,
     superadmin,
@@ -44,57 +42,39 @@ describe('auth action creators', () => {
       email: 'super.admin@mail.com',
       password: 'Password123',
     });
-    store.set = jest.fn();
-    const cb = jest.fn();
     const resp = {
-      token: 'this.is.token',
+      token,
       user: superadmin,
     };
     fetchMock.post(`${API_URL}/superAdmin/authenticate`, resp);
-    const reduxStore = mockStore(fromJS({ superadmin: {} }));
 
-    return reduxStore.dispatch(auth.loginFetch(values, cb)).then(() => {
+    return reduxStore.dispatch(auth.loginFetch(values)).then(() => {
       expect(store.set.mock.calls[0])
-        .toEqual(['token', `Bearer ${resp.token}`]);
-      expect(store.set).toHaveBeenLastCalledWith('superadmin', resp.user);
+        .toEqual(['token', `Bearer ${token}`]);
+      expect(store.set)
+        .toHaveBeenLastCalledWith('superadmin', superadmin);
       expect(store.set).toHaveBeenCalledTimes(2);
       expect(reduxStore.getActions()[0]).toEqual(expectedLoginAction);
-      expect(cb).toHaveBeenCalled();
     });
   });
 
   it('should fail to make login fetch', () => {
     const values = fromJS({
-      email: 'nouser@test.com',
+      email: 'nouser@mail.com',
       password: 'Aa123456',
     });
-    const resp = {
-      error: {
-        message: 'User not found',
-        status: 404,
-      },
-      message: 'User not found',
-    };
-    fetchMock.post(`${API_URL}/superAdmin/authenticate`, resp);
-    const reduxStore = mockStore(fromJS({ superadmin: {} }));
-    spyOn(parseErrors, 'default');
+    const errMsg = 'User not found.';
+    fetchMock.post(`${API_URL}/superAdmin/authenticate`, errResp(404, errMsg));
 
-    return reduxStore.dispatch(auth.loginFetch(values)).catch(
-      () => {
-        expect(parseErrors.default)
-          .toHaveBeenCalledWith(new Error('User not found'));
-      }
-    );
+    return reduxStore.dispatch(auth.loginFetch(values)).catch(() => {
+      expect(parseErrors.default).toHaveBeenCalledWith(new Error(errMsg));
+    });
   });
 
   it('should make call to logout action', () => {
-    store.clear = jest.fn();
-    const cb = jest.fn();
-    const reduxStore = mockStore(fromJS({ superadmin: {} }));
-    reduxStore.dispatch(auth.logoutAction(cb));
+    reduxStore.dispatch(auth.logoutAction());
 
     expect(store.clear).toHaveBeenCalled();
     expect(reduxStore.getActions()[0]).toEqual(expectedLogoutAction);
-    expect(cb).toHaveBeenCalled();
   });
 });

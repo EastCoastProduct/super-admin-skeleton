@@ -1,0 +1,98 @@
+exports[`Users component snapshot renders empty required data 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    View Profile
+  </h1>
+  <section
+    className="box_5m47zw">
+    <dl>
+      <dt
+        className="term_1hjxy0q">
+        Email
+      </dt>
+      <dd
+        className="data_g380iq">
+        test@email.com
+      </dd>
+    </dl>
+    <a
+      className="link_1jhb6p"
+      onClick={[Function]}
+      style={Object {}}>
+      Edit
+    </a>
+  </section>
+</main>
+`;
+
+exports[`Users component snapshot renders full required data 1`] = `
+<main>
+  <h1
+    className="header_fffb07">
+    <span
+      className="headerText_104b05c">
+      Users
+    </span>
+     > 
+    John Doe
+  </h1>
+  <section
+    className="box_5m47zw">
+    <dl>
+      <p>
+        <div
+          className="emptyImage_avz902"
+          style={
+            Object {
+              "background": "url(https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg) center/cover no-repeat",
+            }
+          } />
+      </p>
+      <dt
+        className="term_1hjxy0q">
+        Email
+      </dt>
+      <dd
+        className="data_g380iq">
+        test@email.com
+      </dd>
+      <dt
+        className="term_1hjxy0q">
+        First Name
+      </dt>
+      <dd
+        className="data_g380iq">
+        John
+      </dd>
+      <dt
+        className="term_1hjxy0q">
+        Last Name
+      </dt>
+      <dd
+        className="data_g380iq">
+        Doe
+      </dd>
+      <dt
+        className="term_1hjxy0q">
+        Bio
+      </dt>
+      <dd
+        className="data_g380iq">
+        This is my bio.
+      </dd>
+    </dl>
+    <a
+      className="link_1jhb6p"
+      onClick={[Function]}
+      style={Object {}}>
+      Edit
+    </a>
+  </section>
+</main>
+`;

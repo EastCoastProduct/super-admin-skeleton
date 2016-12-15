@@ -3,13 +3,11 @@ import { configureStore } from './';
 
 describe('store', () => {
   beforeEach(() => {
-    global.window = {
-      devToolsExtension: jest.fn(() => (f => f)),
-    };
     spyOn(redux, 'compose').and.callThrough();
+    window.devToolsExtension = jest.fn(() => (f => f));
   });
-  afterEach(() => {
-    delete global.window;
+  afterAll(() => {
+    window.devToolsExtension = undefined; // delete window.prop doesn't work
   });
 
   it('should test development environment configuration with devTools', () => {
@@ -20,7 +18,7 @@ describe('store', () => {
 
   it('should test development environment configuration without devTools',
     () => {
-      global.window = {};
+      window.devToolsExtension = undefined; // delete window.prop doesn't work
       configureStore('development');
       expect(redux.compose.calls.first().args.length).toBe(2);
       expect(window.devToolsExtension).toBeUndefined();

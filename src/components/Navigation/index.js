@@ -22,7 +22,7 @@ const Navigation = () =>
             className={css(styles.navLink)}
             activeClassName={css(styles.navLinkActive)}
           >
-            <i className={`${css(styles.navIcon)} fa fa-address-book`} />
+            <i className={`${css(styles.navIcon)} fa fa-asterisk`} />
             Placeholder
           </Link>
         </li>
@@ -31,7 +31,7 @@ const Navigation = () =>
             className={css(styles.navLink)}
             activeClassName={css(styles.navLinkActive)}
           >
-            <i className={`${css(styles.navIcon)} fa fa-lock`} />
+            <i className={`${css(styles.navIcon)} fa fa-asterisk`} />
             Placeholder
           </Link>
         </li>

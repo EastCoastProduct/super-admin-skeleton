@@ -24,7 +24,8 @@ export class AppComponent extends Component {
     const { dispatch, router } = this.props;
 
     e.preventDefault();
-    dispatch(logoutAction(() => router.push('/login')));
+    dispatch(logoutAction());
+    router.push('/login');
   }
 
   render() {

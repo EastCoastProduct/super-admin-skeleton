@@ -7,8 +7,8 @@ export default class Pagination extends Component {
   static propTypes = {
     className: PropTypes.object,
     currentPage: PropTypes.number.isRequired,
+    handlePaginationChange: PropTypes.func.isRequired,
     itemsPerPage: PropTypes.number.isRequired,
-    onPaginationChange: PropTypes.func.isRequired,
     total: PropTypes.number.isRequired,
   };
 
@@ -26,8 +26,8 @@ export default class Pagination extends Component {
   }
 
   handleChangePage(page) {
-    const { onPaginationChange } = this.props;
-    onPaginationChange(page);
+    const { handlePaginationChange } = this.props;
+    handlePaginationChange(page);
   }
 
   clickHandler(i) {
