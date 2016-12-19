@@ -1,9 +1,25 @@
-// It can't be exported as es6 default module because default styling wouldn't
-// work correctly so we need to use module.exports
+import { StyleSheet } from 'aphrodite/no-important';
+import { colors, fonts } from './variables';
 
-const { colors, fonts } = require('./variables');
+const globalExtension = {
+  selectorHandler: (selector, _, generateSubtreeStyles) =>
+    (selector[0] === '*' ? generateSubtreeStyles(selector.slice(1)) : null),
+};
 
-module.exports = {
+const cssGlobal = (globalStyles) => {
+  const { css } = StyleSheet.extend([globalExtension]);
+  const styles = {};
+
+  Object.keys(globalStyles).forEach((key) => {
+    styles[`*${key}`] = globalStyles[key];
+  });
+
+  css(StyleSheet.create({
+    global: styles,
+  }).global);
+};
+
+export default cssGlobal({
   body: {
     backgroundColor: colors.background,
     boxSizing: 'border-box',
@@ -46,4 +62,4 @@ module.exports = {
   table: {
     borderCollapse: 'collapse',
   },
-};
+});

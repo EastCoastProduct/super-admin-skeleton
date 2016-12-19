@@ -67,18 +67,14 @@ Output folder in our case is *dist* folder. In this case, we won't have that fol
 
 Plugins section contains optimization plugin along with hot module replacement plugin needed for hot reloading feature. We also define HTML Webpack plugin which creates *index.html* file automatically based out of template file held in *src/index.tpl.html*. This is helpful for us to automatically add bundled script at the end of the body tag and allows us to hash those files like we do in production mode. The last plugin we use defines 2 global variables, one of which we use in our app as constants and one that notifies React and other modules that we are running this bundle in development mode. This enables PropTypes validation, hot reloading and some other features that are not needed in production mode.
 
-List of loaders manipulates certain file types and does specific alterations on them. Most important ones are Babel and Eslint loader run on top of all our JS files that are included in a project. Babel transpiles our ES6 code into ES5 and enables it to work for older browsers that don't fully support ES6 features. Eslint checks out syntax and errors out defined by the *.eslintrc* configuration file. All other loaders are currently used to load our Font Awesome library and embed it in a project through JS and to add our base styles and normalize.css into head tag dynamically. This way we save HTTP requests prefetching fonts and styles from the server.
-
-PostCss and node rules at the end are just there to allow prefixing of our default styles and fix PostCss issues with fs.
+List of loaders manipulates certain file types and does specific alterations on them. Most important ones are Babel and Eslint loader run on top of all our JS files that are included in a project. Babel transpiles our ES6 code into ES5 and enables it to work for older browsers that don't fully support ES6 features. Eslint checks out syntax and errors out defined by the *.eslintrc* configuration file. All other loaders are currently used to load our Font Awesome library and embed it in a project through JS and to add our normalize.css into head tag dynamically. This way we save HTTP requests prefetching fonts and styles from the server.
 
 ### webpack.prod.config.js
 Production configuration is similar to development one. The difference is that our output file is going to be hashed so we can prevent file caching in production mode. Source maps are also different from development mode which is defined by *devtool* property.
 
 There're few more plugins in production mode as we want to enable chunking of common files from other project files, lose the duplicate code, minimize our code and allow aggressive merging policy to get more optimized and minified file that we wouldn't in the case of development mode. In this case, one of our global variables we send is notifying React and other modules that we're running code in production mode so we can get rid of hot reloading and any other unnecessary checking and validation that we use in development mode.
 
-Loaders are doing a similar job as in development mode. Some of the differences are that we don't use linting loader and we are minimizing default styles and adding them to the same style tag.
-
-PostCss and node rules at the end are just there to allow prefixing of our default styles and fix PostCss issues with fs.
+Loaders are doing a similar job as in development mode. Some of the differences are that we don't use linting loader and we are minimizing embedded styles and adding them to the same style tag.
 
 ### .babelrc
 This file holds configuration for Babel loader. We have presets defined to allow us to use modern ES6 syntax along with basic React best practices. As a last configuration point, we are defining React hot module replacement preset in case of development mode.
@@ -166,7 +162,6 @@ This serves production ready code from *dist* folder and allows it to be tested 
 Modules list is defined in *package.json*. Purpose of each module in project is listed:
 
 ### DevDependencies
-* autoprefixer - parses CSS and adds vendor prefixes
 * babel-core - Babel compiler core module
 * babel-eslint - module allows linting of all valid Babel code
 * babel-jest - Babel plugin for Jest
@@ -189,8 +184,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * file-loader - Webpack file loader, constructs MD5 hash filename and emits files
 * html-webpack-plugin - simplifies creation of *index.html* file through Webpack
 * jest - JS testing framework, best tool to rest React/Redux applications
-* postcss-js - PostCss library for CSS-in-JS default styles
-* postcss-loader - Webpack PostCss loader
 * react-addons-test-utils - package provides React TestUtils add-on, it is also dependency of Enzyme
 * react-test-renderer - React package used for snapshot testing
 * redux-mock-store - library to mock Redux store for test environment
@@ -288,7 +281,7 @@ If forms are valid and the request has been made we should show appropriate spin
 
 Styling is done using Aphrodite module. This is a library that allows writing styles with JS and style each component separately. Each style for each component is held in the same directory. Some reusable styles are held inside *src/styles* folder in mixins file. Also, we are holding all colors, fonts, sizes, etc. in variables file. From here we can import any of these variables and mixins to any of our component styling files and reuse same rules and definitions. Aphrodite inserts style tag in the head of HTML page asynchronously after HTML gets generated. This makes all CSS pseudo-elements workable and no bad JS fixes are needed.
 
-To insert default styles like *normalize.css* and resets we need to use something other than Aphrodite. In this case, we have PostCss loader and some other modules (postcss-js, autoprefixer...) wrapped together to parse default styles that are held inside *src/styles* folder. We have configured to parse *default.base.styles.js* file to CSS and insert it along with *normalize.css* into style tag held inside head tag. All of this is configured through Webpack.
+To insert external styles like *normalize.css* we need to use something other than Aphrodite. In this case, we have style and css loader which embed styles into head tag through Webpack. We just need to import them into entry file. This makes it easy for us to add any other external CSS files to the combo. We have configured to parse *global.js* in a different way using Aphrodite's extension which allows us to inject some global styling into head tag to use on top of the whole application.
 
 
 ## TESTS

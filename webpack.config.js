@@ -1,6 +1,5 @@
 'use strict';
 
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -34,19 +33,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel', 'eslint'],
-        exclude: [/node_modules/, /\.base.styles.js$/],
-      }, {
-        test: /\.base.styles.js$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=1',
-          'postcss?parser=postcss-js',
-          'babel',
-          'eslint',
-        ],
-      }, {
-        test: /\.json$/,
-        loader: 'json',
+        exclude: /node_modules/,
       }, {
         test: /\.css$/,
         loaders: ['style', 'css'],
@@ -67,9 +54,5 @@ module.exports = {
         loader: 'url?limit=10000&mimetype=image/svg+xml',
       },
     ],
-  },
-  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-  node: {
-    fs: 'empty',
   },
 };
