@@ -5,7 +5,7 @@ import Checkbox from '../Checkbox';
 import SearchBar from '../SearchBar';
 import styles from './styles';
 
-const UsersFiltersForm = (props) => {
+export function UsersFiltersForm(props) {
   const { className, form, handleFiltersSubmit, handleSubmit } = props;
 
   return (
@@ -26,14 +26,13 @@ const UsersFiltersForm = (props) => {
         className={styles.searchBar}
         name="search"
         component={SearchBar}
-        type="text"
         placeholder="Search by email, first and last name"
         normalize={value => `%${value}%`}
         format={value => (value ? value.slice(1, -1) : '')}
       />
     </form>
   );
-};
+}
 
 UsersFiltersForm.propTypes = {
   className: PropTypes.object,

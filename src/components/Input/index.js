@@ -6,7 +6,7 @@ import styles from './styles';
 export const isError = ({ active, touched, error }) =>
   !active && touched && error;
 
-const Input = (props) => {
+function Input(props) {
   const { id, input, label, meta, meta: { error }, textarea, validate: _,
     validated, ...rest } = props;
   const attributes = {
@@ -22,13 +22,15 @@ const Input = (props) => {
       <label className={css(styles.label)} htmlFor={`${id}-${input.name}`}>
         {label}
       </label>
-      {textarea ? <textarea {...attributes} /> : <input {...attributes} />}
+      {textarea ?
+        <textarea {...attributes} /> : <input type="text" {...attributes} />
+      }
       {isError(meta) &&
         <ErrorMsg htmlFor={`${id}-${input.name}`}>{error}</ErrorMsg>
       }
     </p>
   );
-};
+}
 
 Input.propTypes = {
   id: PropTypes.string.isRequired,

@@ -19,7 +19,7 @@ exports[`ErrorMsg component snapshot renders basic required data without htmlFor
 
 exports[`ErrorMsg component snapshot renders with additional styles 1`] = `
 <p
-  className="error_1pg0y0x-o_O-error_1433df3">
+  className="error_1pg0y0x-o_O-additional_1433df3">
   <i
     className="icon_1w16ibx fa fa-exclamation-triangle" />
   Something went wrong.

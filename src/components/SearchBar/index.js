@@ -3,13 +3,16 @@ import { css } from 'aphrodite/no-important';
 import Button from '../Button';
 import styles from './styles';
 
-const SearchBar = ({ className, input, meta: _, ...rest }) =>
-  <p className={css(styles.bar, className && className)} >
-    <Button type="submit" empty>
-      <i className={`${css(styles.icon)} fa fa-search`} />
-    </Button>
-    <input className={css(styles.input)} {...input} {...rest} />
-  </p>;
+function SearchBar({ className, input, meta: _, ...rest }) {
+  return (
+    <p className={css(styles.bar, className && className)} >
+      <Button empty>
+        <i className={`${css(styles.icon)} fa fa-search`} />
+      </Button>
+      <input {...input} {...rest} className={css(styles.input)} type="search" />
+    </p>
+  );
+}
 
 SearchBar.propTypes = {
   className: PropTypes.object,

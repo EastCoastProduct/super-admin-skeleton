@@ -4,15 +4,17 @@ import { css } from 'aphrodite/no-important';
 import Button from '../Button';
 import styles from './styles';
 
-const BoxButtons = ({ children, disabled, link }) =>
-  <div>
-    <Button
-      className={styles.button}
-      type="submit"
-      disabled={disabled}
-    >{children}</Button>
-    <Link className={css(styles.link)} to={link}>Cancel</Link>
-  </div>;
+function BoxButtons({ children, disabled, link }) {
+  return (
+    <div>
+      <Button
+        className={styles.button}
+        disabled={disabled}
+      >{children}</Button>
+      <Link className={css(styles.link)} to={link}>Cancel</Link>
+    </div>
+  );
+}
 
 BoxButtons.propTypes = {
   children: PropTypes.string.isRequired,

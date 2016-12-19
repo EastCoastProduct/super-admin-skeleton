@@ -10,15 +10,18 @@ export const getHeading = (profile, header) => {
   return `${firstname}${firstname && lastname && ' '}${lastname}`;
 };
 
-const UserBox = ({ children, header, profile }) =>
-  <main>
-    <h1 className={css(styles.header)}>
-      <span className={css(styles.headerText)}>Users</span>
-      {' > '}
-      {getHeading(profile, header)}
-    </h1>
-    <section className={css(styles.box)}>{children}</section>
-  </main>;
+function UserBox({ children, header, profile }) {
+  return (
+    <main>
+      <h1 className={css(styles.header)}>
+        <span className={css(styles.headerText)}>Users</span>
+        {' > '}
+        {getHeading(profile, header)}
+      </h1>
+      <section className={css(styles.box)}>{children}</section>
+    </main>
+  );
+}
 
 UserBox.propTypes = {
   children: PropTypes.oneOfType([

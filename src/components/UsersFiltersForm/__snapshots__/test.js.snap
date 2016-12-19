@@ -1,4 +1,4 @@
-exports[`Pagination component snapshot renders required data 1`] = `
+exports[`UsersFiltersForm component snapshot renders required data 1`] = `
 <form
   className=""
   noValidate={true}
@@ -34,14 +34,13 @@ exports[`Pagination component snapshot renders required data 1`] = `
     format={[Function]}
     name="search"
     normalize={[Function]}
-    placeholder="Search by email, first and last name"
-    type="text" />
+    placeholder="Search by email, first and last name" />
 </form>
 `;
 
-exports[`Pagination component snapshot renders required data with style 1`] = `
+exports[`UsersFiltersForm component snapshot renders required data with style 1`] = `
 <form
-  className="filters_1433df3"
+  className="additional_1433df3"
   noValidate={true}
   onSubmit={[Function]}>
   <Field
@@ -75,7 +74,6 @@ exports[`Pagination component snapshot renders required data with style 1`] = `
     format={[Function]}
     name="search"
     normalize={[Function]}
-    placeholder="Search by email, first and last name"
-    type="text" />
+    placeholder="Search by email, first and last name" />
 </form>
 `;

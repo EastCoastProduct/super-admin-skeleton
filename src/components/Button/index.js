@@ -2,12 +2,16 @@ import React, { PropTypes } from 'react';
 import { css } from 'aphrodite/no-important';
 import styles from './styles';
 
-const Button = ({ className, children, empty, ...rest }) =>
-  <button
-    className={css(empty ? styles.empty : styles.button,
-      className && className)}
-    {...rest}
-  >{children}</button>;
+function Button({ className, children, empty, ...rest }) {
+  return (
+    <button
+      className={css(empty ? styles.empty : styles.button,
+        className && className)}
+      type="submit"
+      {...rest}
+    >{children}</button>
+  );
+}
 
 Button.propTypes = {
   className: PropTypes.object,

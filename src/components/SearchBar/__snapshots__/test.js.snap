@@ -1,29 +1,29 @@
 exports[`SearchBar component snapshot renders basic required data 1`] = `
 <p
   className="bar_t04vgp">
-  <button
-    className="empty_1b6lvt9"
-    type="submit">
+  <Button
+    empty={true}>
     <i
       className="icon_48j6am fa fa-search" />
-  </button>
+  </Button>
   <input
-    className="input_bvvtu9" />
+    className="input_bvvtu9"
+    type="search" />
 </p>
 `;
 
 exports[`SearchBar component snapshot renders with additional style, value and extra attributes 1`] = `
 <p
-  className="bar_t04vgp-o_O-searchBar_70d19d">
-  <button
-    className="empty_1b6lvt9"
-    type="submit">
+  className="bar_t04vgp-o_O-additional_70d19d">
+  <Button
+    empty={true}>
     <i
       className="icon_48j6am fa fa-search" />
-  </button>
+  </Button>
   <input
     className="input_bvvtu9"
     placeholder="This is Search Box"
+    type="search"
     value="name" />
 </p>
 `;

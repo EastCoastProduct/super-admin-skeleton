@@ -1,37 +1,39 @@
-exports[`Navigation component snapshot renders component 1`] = `
+exports[`Navigation component snapshot renders 1`] = `
 <aside
   className="aside_r524fi">
   <nav>
     <ul>
       <li>
-        <a
+        <IndexLink
+          activeClassName="navLinkActive_8fjitp"
           className="navLink_1dyv036"
-          onClick={[Function]}
-          style={Object {}}>
+          to="/">
           <i
             className="navIcon_11u5mqt fa fa-user" />
           Users
-        </a>
+        </IndexLink>
       </li>
       <li>
-        <a
+        <Link
+          activeClassName="navLinkActive_8fjitp"
           className="navLink_1dyv036"
-          onClick={[Function]}
+          onlyActiveOnIndex={false}
           style={Object {}}>
           <i
             className="navIcon_11u5mqt fa fa-asterisk" />
           Placeholder
-        </a>
+        </Link>
       </li>
       <li>
-        <a
+        <Link
+          activeClassName="navLinkActive_8fjitp"
           className="navLink_1dyv036"
-          onClick={[Function]}
+          onlyActiveOnIndex={false}
           style={Object {}}>
           <i
             className="navIcon_11u5mqt fa fa-asterisk" />
           Placeholder
-        </a>
+        </Link>
       </li>
     </ul>
   </nav>

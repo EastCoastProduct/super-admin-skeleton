@@ -1,0 +1,51 @@
+exports[`BoxButtons component snapshot renders basic required data 1`] = `
+<div>
+  <Button
+    className={
+      Object {
+        "_definition": Object {
+          "display": "inline-block",
+          "verticalAlign": "middle",
+          "width": 150,
+        },
+        "_name": "button_1q6mnjs",
+      }
+    }
+    disabled={false}>
+    Create
+  </Button>
+  <Link
+    className="link_1mjr7jy"
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/users">
+    Cancel
+  </Link>
+</div>
+`;
+
+exports[`BoxButtons component snapshot renders disabled and different link 1`] = `
+<div>
+  <Button
+    className={
+      Object {
+        "_definition": Object {
+          "display": "inline-block",
+          "verticalAlign": "middle",
+          "width": 150,
+        },
+        "_name": "button_1q6mnjs",
+      }
+    }
+    disabled={true}>
+    Save
+  </Button>
+  <Link
+    className="link_1mjr7jy"
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/user/1">
+    Cancel
+  </Link>
+</div>
+`;

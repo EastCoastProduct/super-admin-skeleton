@@ -63,7 +63,6 @@ export class EditUserComponent extends Component {
               component={Input}
               id={form}
               label="First Name"
-              type="text"
               placeholder="First Name"
               maxLength="30"
             />
@@ -72,7 +71,6 @@ export class EditUserComponent extends Component {
               component={Input}
               id={form}
               label="Last Name"
-              type="text"
               placeholder="Last Name"
               maxLength="30"
             />

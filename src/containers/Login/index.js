@@ -9,6 +9,7 @@ import Input from '../../components/Input';
 import ErrorMsg from '../../components/ErrorMsg';
 import Button from '../../components/Button';
 import styles from './styles';
+import logoImg from '../../images/ecp_logo.png';
 
 export class LoginComponent extends Component {
   static propTypes = {
@@ -38,8 +39,7 @@ export class LoginComponent extends Component {
         <section className={css(styles.box, error && styles.boxErr)}>
           <img
             className={css(styles.logo)}
-            src={'http://wp.streetwise.co/wp-content/uploads//2015/10//' +
-              'fullECPlogo_Black4.png'}
+            src={logoImg}
             alt="Company Logo"
           />
           <h1 className={css(styles.header)}>Login to your account</h1>
@@ -66,7 +66,6 @@ export class LoginComponent extends Component {
             />
             <Button
               className={styles.button}
-              type="submit"
               disabled={submitting}
             >Login</Button>
             {error && <ErrorMsg className={styles.error}>{error}</ErrorMsg>}

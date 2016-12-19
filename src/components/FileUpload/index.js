@@ -11,7 +11,7 @@ export const backgroundStyle = (value) => {
   };
 };
 
-const FileUpload = (props) => {
+function FileUpload(props) {
   const { id, image, input: { value, ...input }, meta: { error }, preview,
     validated } = props;
 
@@ -40,7 +40,7 @@ const FileUpload = (props) => {
       {error && <ErrorMsg htmlFor={`${id}-${input.name}`}>{error}</ErrorMsg>}
     </p>
   );
-};
+}
 
 FileUpload.defaultProps = {
   input: {},

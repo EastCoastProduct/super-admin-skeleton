@@ -2,12 +2,12 @@ exports[`Input component snapshot renders as textarea with max length 1`] = `
 <p>
   <label
     className="label_7wpiph"
-    htmlFor="Form-bio">
+    htmlFor="Login-bio">
     Bio
   </label>
   <textarea
     className="textarea_1huv73q"
-    id="Form-bio"
+    id="Login-bio"
     maxLength="1000"
     name="bio"
     placeholder="Bio"
@@ -19,10 +19,10 @@ exports[`Input component snapshot renders basic required data 1`] = `
 <p>
   <label
     className="label_7wpiph"
-    htmlFor="Form-email" />
+    htmlFor="Login-email" />
   <input
     className="input_10e10cq"
-    id="Form-email"
+    id="Login-email"
     name="email"
     type="email" />
 </p>
@@ -32,12 +32,12 @@ exports[`Input component snapshot renders extra info and it is active and invali
 <p>
   <label
     className="label_7wpiph"
-    htmlFor="Form-email">
+    htmlFor="Login-email">
     Email
   </label>
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83"
-    id="Form-email"
+    id="Login-email"
     name="email"
     placeholder="Email"
     type="email"
@@ -49,22 +49,19 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
 <p>
   <label
     className="label_7wpiph"
-    htmlFor="Form-email">
+    htmlFor="Login-email">
     Email
   </label>
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83-o_O-inputErr_229bd5"
-    id="Form-email"
+    id="Login-email"
     name="email"
     type="email"
     value="notAnEmail" />
-  <label
-    className="error_1pg0y0x"
-    htmlFor="Form-email">
-    <i
-      className="icon_1w16ibx fa fa-exclamation-triangle" />
+  <ErrorMsg
+    htmlFor="Login-email">
     Input is invalid
-  </label>
+  </ErrorMsg>
 </p>
 `;
 
@@ -72,21 +69,18 @@ exports[`Input component snapshot renders label and input is required 1`] = `
 <p>
   <label
     className="label_7wpiph"
-    htmlFor="Form-email">
+    htmlFor="Login-email">
     Email
   </label>
   <input
     className="input_10e10cq-o_O-validatedInput_4hnf83-o_O-inputErr_229bd5"
-    id="Form-email"
+    id="Login-email"
     name="email"
     type="email" />
-  <label
-    className="error_1pg0y0x"
-    htmlFor="Form-email">
-    <i
-      className="icon_1w16ibx fa fa-exclamation-triangle" />
+  <ErrorMsg
+    htmlFor="Login-email">
     Input required
-  </label>
+  </ErrorMsg>
 </p>
 `;
 
@@ -94,12 +88,12 @@ exports[`Input component snapshot renders label and is focused 1`] = `
 <p>
   <label
     className="label_7wpiph"
-    htmlFor="Form-firstname">
-    Email
+    htmlFor="EditUser-firstname">
+    First Name
   </label>
   <input
     className="input_10e10cq"
-    id="Form-firstname"
+    id="EditUser-firstname"
     name="firstname"
     type="text"
     value="John" />

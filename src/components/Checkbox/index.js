@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { css } from 'aphrodite/no-important';
 import styles from './styles';
 
-const Checkbox = (props) => {
+function Checkbox(props) {
   const { className, id, label, input, meta: _, onChange, ...rest } = props;
 
   return (
@@ -27,7 +27,7 @@ const Checkbox = (props) => {
       {label}
     </label>
   );
-};
+}
 
 Checkbox.propTypes = {
   className: PropTypes.object,

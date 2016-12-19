@@ -1,0 +1,24 @@
+exports[`Button component snapshot renders basic required data 1`] = `
+<button
+  className="button_w1w7v0"
+  type="submit">
+  Login
+</button>
+`;
+
+exports[`Button component snapshot renders empty button 1`] = `
+<button
+  className="empty_1b6lvt9"
+  type="submit">
+  Login
+</button>
+`;
+
+exports[`Button component snapshot renders with additional styles and attributes 1`] = `
+<button
+  className="button_w1w7v0-o_O-additional_1433df3"
+  disabled={true}
+  type="button">
+  Delete
+</button>
+`;
