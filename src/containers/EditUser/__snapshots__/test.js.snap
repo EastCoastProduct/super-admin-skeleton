@@ -1,0 +1,116 @@
+exports[`EditUser component snapshot renders required data 1`] = `
+<UserBox
+  header="Edit Profile"
+  profile={
+    Object {
+      "bio": null,
+      "confirmed": true,
+      "createdAt": "2016-11-24T15:32:51.695Z",
+      "email": "test@email.com",
+      "firstname": null,
+      "id": 1,
+      "lastname": null,
+      "resourceId": null,
+      "updatedAt": "2016-11-24T15:32:51.695Z",
+    }
+  }>
+  <form
+    noValidate={true}
+    onSubmit={[Function]}>
+    <Field
+      component={[Function]}
+      id="EditUser"
+      name="image"
+      validate={[Function]}
+      validated={true} />
+    <Field
+      component={[Function]}
+      id="EditUser"
+      label="First Name"
+      maxLength="30"
+      name="firstname"
+      placeholder="First Name" />
+    <Field
+      component={[Function]}
+      id="EditUser"
+      label="Last Name"
+      maxLength="30"
+      name="lastname"
+      placeholder="Last Name" />
+    <Field
+      component={[Function]}
+      id="EditUser"
+      label="Bio"
+      maxLength="1000"
+      name="bio"
+      placeholder="Bio"
+      textarea={true} />
+    <BoxButtons
+      disabled={true}
+      link="/user/1">
+      Save
+    </BoxButtons>
+  </form>
+</UserBox>
+`;
+
+exports[`EditUser component snapshot renders required data with error 1`] = `
+<UserBox
+  header="Edit Profile"
+  profile={
+    Object {
+      "bio": "This is my bio.",
+      "confirmed": true,
+      "createdAt": "2016-11-24T15:32:51.695Z",
+      "email": "test@email.com",
+      "firstname": "John",
+      "id": 1,
+      "image": "https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg",
+      "lastname": "Doe",
+      "resourceId": 1,
+      "updatedAt": "2016-11-24T15:32:51.695Z",
+    }
+  }>
+  <form
+    noValidate={true}
+    onSubmit={[Function]}>
+    <Field
+      component={[Function]}
+      id="EditUser"
+      image="https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg"
+      name="image"
+      validate={[Function]}
+      validated={true} />
+    <Field
+      component={[Function]}
+      id="EditUser"
+      label="First Name"
+      maxLength="30"
+      name="firstname"
+      placeholder="First Name" />
+    <Field
+      component={[Function]}
+      id="EditUser"
+      label="Last Name"
+      maxLength="30"
+      name="lastname"
+      placeholder="Last Name" />
+    <Field
+      component={[Function]}
+      id="EditUser"
+      label="Bio"
+      maxLength="1000"
+      name="bio"
+      placeholder="Bio"
+      textarea={true} />
+    <BoxButtons
+      disabled={false}
+      link="/user/999">
+      Save
+    </BoxButtons>
+    <ErrorMsg>
+      User not found.
+    </ErrorMsg>
+  </form>
+</UserBox>
+`;

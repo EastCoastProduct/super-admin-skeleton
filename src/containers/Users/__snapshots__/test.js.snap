@@ -7,7 +7,7 @@ exports[`Users component snapshot renders empty required data 1`] = `
   </h1>
   <div
     className="filters_cljdc4">
-    <UsersFiltersForm
+    <ReduxForm
       className={
         Object {
           "_definition": Object {
@@ -18,12 +18,13 @@ exports[`Users component snapshot renders empty required data 1`] = `
         }
       }
       handleFiltersSubmit={[Function]} />
-    <a
+    <Link
       className="button_rr5u1q"
-      onClick={[Function]}
-      style={Object {}}>
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="/user">
       Add User
-    </a>
+    </Link>
   </div>
 </main>
 `;
@@ -37,7 +38,7 @@ exports[`Users component snapshot renders full required data 1`] = `
   </h1>
   <div
     className="filters_cljdc4">
-    <UsersFiltersForm
+    <ReduxForm
       className={
         Object {
           "_definition": Object {
@@ -48,12 +49,13 @@ exports[`Users component snapshot renders full required data 1`] = `
         }
       }
       handleFiltersSubmit={[Function]} />
-    <a
+    <Link
       className="button_rr5u1q"
-      onClick={[Function]}
-      style={Object {}}>
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="/user">
       Add User
-    </a>
+    </Link>
   </div>
   <table
     className="table_jphaas">
@@ -329,12 +331,19 @@ exports[`Users component snapshot renders full required data 1`] = `
       <tr>
         <td
           colSpan="4">
-          <div
-            className="pagination_gdz6aw">
-            <p>
-              Showing all of 10 results
-            </p>
-          </div>
+          <Pagination
+            className={
+              Object {
+                "_definition": Object {
+                  "padding": "25px 35px",
+                },
+                "_name": "pagination_gdz6aw",
+              }
+            }
+            currentPage={1}
+            handlePaginationChange={[Function]}
+            itemsPerPage={10}
+            total={10} />
         </td>
       </tr>
     </tfoot>

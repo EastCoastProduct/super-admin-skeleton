@@ -1,0 +1,101 @@
+exports[`ViewUser component snapshot renders empty required data 1`] = `
+<UserBox
+  header="View Profile"
+  profile={
+    Object {
+      "bio": null,
+      "confirmed": true,
+      "createdAt": "2016-11-24T15:32:51.695Z",
+      "email": "test@email.com",
+      "firstname": null,
+      "id": 1,
+      "lastname": null,
+      "resourceId": null,
+      "updatedAt": "2016-11-24T15:32:51.695Z",
+    }
+  }>
+  <dl>
+    <dt
+      className="term_1hjxy0q">
+      Email
+    </dt>
+    <dd
+      className="data_g380iq">
+      test@email.com
+    </dd>
+  </dl>
+  <Link
+    className="link_1jhb6p"
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/user/1/edit">
+    Edit
+  </Link>
+</UserBox>
+`;
+
+exports[`ViewUser component snapshot renders full required data 1`] = `
+<UserBox
+  header="View Profile"
+  profile={
+    Object {
+      "bio": "This is my bio.",
+      "confirmed": true,
+      "createdAt": "2016-11-24T15:32:51.695Z",
+      "email": "test@email.com",
+      "firstname": "John",
+      "id": 1,
+      "image": "https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg",
+      "lastname": "Doe",
+      "resourceId": 1,
+      "updatedAt": "2016-11-24T15:32:51.695Z",
+    }
+  }>
+  <dl>
+    <FileUpload
+      image="https://s3.amazonaws.com/ecp-boilerplate/images/9049ffe0-b70f-11e6-92c0-51aa519864b8.jpg"
+      input={Object {}}
+      meta={Object {}}
+      preview={true} />
+    <dt
+      className="term_1hjxy0q">
+      Email
+    </dt>
+    <dd
+      className="data_g380iq">
+      test@email.com
+    </dd>
+    <dt
+      className="term_1hjxy0q">
+      First Name
+    </dt>
+    <dd
+      className="data_g380iq">
+      John
+    </dd>
+    <dt
+      className="term_1hjxy0q">
+      Last Name
+    </dt>
+    <dd
+      className="data_g380iq">
+      Doe
+    </dd>
+    <dt
+      className="term_1hjxy0q">
+      Bio
+    </dt>
+    <dd
+      className="data_g380iq">
+      This is my bio.
+    </dd>
+  </dl>
+  <Link
+    className="link_1jhb6p"
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/user/1/edit">
+    Edit
+  </Link>
+</UserBox>
+`;

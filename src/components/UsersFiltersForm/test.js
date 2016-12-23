@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { StyleSheet } from 'aphrodite/no-important';
 import deepMerge from 'deepmerge';
-import { UsersFiltersForm } from './';
+import { UsersFiltersFormComponent } from './';
 
 describe('UsersFiltersForm component', () => {
   const props = {
@@ -10,7 +10,7 @@ describe('UsersFiltersForm component', () => {
     handleFiltersSubmit: jest.fn(f => f),
     handleSubmit: jest.fn(cb => cb(() => {})),
   };
-  const wrapper = shallow(<UsersFiltersForm {...props} />);
+  const wrapper = shallow(<UsersFiltersFormComponent {...props} />);
 
   describe('snapshot', () => {
     it('renders required data', () => {
@@ -18,16 +18,16 @@ describe('UsersFiltersForm component', () => {
     });
 
     it('renders required data with style', () => {
-      const style = StyleSheet.create({
+      const styles = StyleSheet.create({
         additional: {
           margin: 0,
           padding: 0,
         },
       });
       const newProps = deepMerge(props, {
-        className: style.additional,
+        className: styles.additional,
       });
-      const newWrapper = shallow(<UsersFiltersForm {...newProps} />);
+      const newWrapper = shallow(<UsersFiltersFormComponent {...newProps} />);
 
       expect(newWrapper).toMatchSnapshot();
     });

@@ -1,0 +1,60 @@
+exports[`CreateUser component snapshot renders required data 1`] = `
+<UserBox
+  header="Create New User">
+  <form
+    noValidate={true}
+    onSubmit={[Function]}>
+    <Field
+      component={[Function]}
+      id="CreateUser"
+      label="Email"
+      name="email"
+      placeholder="Email"
+      type="email"
+      validate={
+        Array [
+          [Function],
+          [Function],
+        ]
+      }
+      validated={true} />
+    <BoxButtons
+      disabled={true}
+      link="/">
+      Create
+    </BoxButtons>
+  </form>
+</UserBox>
+`;
+
+exports[`CreateUser component snapshot renders required data with error 1`] = `
+<UserBox
+  header="Create New User">
+  <form
+    noValidate={true}
+    onSubmit={[Function]}>
+    <Field
+      component={[Function]}
+      id="CreateUser"
+      label="Email"
+      name="email"
+      placeholder="Email"
+      type="email"
+      validate={
+        Array [
+          [Function],
+          [Function],
+        ]
+      }
+      validated={true} />
+    <BoxButtons
+      disabled={false}
+      link="/">
+      Create
+    </BoxButtons>
+    <ErrorMsg>
+      User already exists.
+    </ErrorMsg>
+  </form>
+</UserBox>
+`;

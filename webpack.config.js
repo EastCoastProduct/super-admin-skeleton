@@ -47,21 +47,15 @@ module.exports = {
     ],
   },
   imageWebpackLoader: {
+    gifsicle: {
+      optimizationLevel: 3,
+    },
     mozjpeg: {
       quality: 65,
     },
     pngquant: {
       quality: '65-90',
       speed: 4,
-    },
-    svgo: {
-      plugins: [
-        {
-          removeViewBox: false,
-        }, {
-          removeEmptyAttrs: false,
-        },
-      ],
     },
   },
 };

@@ -14,6 +14,10 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('common-[chunkhash].js'),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index.tpl.html'),
       inject: 'body',
@@ -23,10 +27,6 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
       __API_URL__: JSON.stringify(process.env.API_URL),
     }),
-    new webpack.optimize.CommonsChunkPlugin('common-[chunkhash].js'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
   ],
   module: {
     loaders: [
@@ -47,21 +47,15 @@ module.exports = {
     ],
   },
   imageWebpackLoader: {
+    gifsicle: {
+      optimizationLevel: 3,
+    },
     mozjpeg: {
       quality: 65,
     },
     pngquant: {
       quality: '65-90',
       speed: 4,
-    },
-    svgo: {
-      plugins: [
-        {
-          removeViewBox: false,
-        }, {
-          removeEmptyAttrs: false,
-        },
-      ],
     },
   },
 };

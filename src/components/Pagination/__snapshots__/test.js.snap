@@ -9,9 +9,9 @@ exports[`Pagination component snapshot renders just message for 1 item 1`] = `
 </div>
 `;
 
-exports[`Pagination component snapshot renders just message with extra style for small number of items 1`] = `
+exports[`Pagination component snapshot renders just message with extra style for low number of items 1`] = `
 <div
-  className="pagination_70d19d">
+  className="additional_70d19d">
   <p>
     Showing all of 5 results
   </p>
@@ -32,59 +32,59 @@ exports[`Pagination component snapshot renders required data with current page 1
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         2
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         3
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         4
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         5
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-right" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-double-right" />
-      </button>
+      </Button>
     </li>
   </ul>
 </div>
@@ -100,41 +100,41 @@ exports[`Pagination component snapshot renders required data with current page 5
     className="pagination_1ka7v26">
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-double-left" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-left" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         3
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         4
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p-o_O-selected_1mzzwq6">
@@ -142,41 +142,41 @@ exports[`Pagination component snapshot renders required data with current page 5
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         6
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         7
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-right" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-double-right" />
-      </button>
+      </Button>
     </li>
   </ul>
 </div>
@@ -192,59 +192,59 @@ exports[`Pagination component snapshot renders required data with current page b
     className="pagination_1ka7v26">
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-double-left" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-left" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         4
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         5
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         6
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         7
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p-o_O-selected_1mzzwq6">
@@ -264,22 +264,22 @@ exports[`Pagination component snapshot renders required data with less than 5 pa
     className="pagination_1ka7v26">
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-left" />
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         1
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p-o_O-selected_1mzzwq6">
@@ -287,22 +287,22 @@ exports[`Pagination component snapshot renders required data with less than 5 pa
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         3
-      </button>
+      </Button>
     </li>
     <li
       className="item_ifw64p">
-      <button
-        className="empty_1b6lvt9"
+      <Button
+        empty={true}
         onClick={[Function]}
         type="button">
         <i
           className="fa fa-angle-right" />
-      </button>
+      </Button>
     </li>
   </ul>
 </div>

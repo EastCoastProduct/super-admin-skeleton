@@ -1,61 +1,80 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
-import { StyleSheetTestUtils } from 'aphrodite/no-important';
-import { fullProfile } from '../../fixtures/user';
+import deepMerge from 'deepmerge';
+import { fullProfile, profile } from '../../fixtures/user';
 import { createFile, createFileList } from '../../fixtures/fileAPI';
 import { EditUserComponent } from './';
 import * as Actions from '../../actions/user';
-import { FILE_SIZE_MSG } from '../../constants/errors';
 
 describe('EditUser component', () => {
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-    jest.resetAllMocks(); // move to before when clearAllMocks gets out
-  });
-
-  Actions.userGetFetch = jest.fn();
-  Actions.userUpdateFetch = jest.fn();
   const props = {
     dispatch: jest.fn(() => Promise.resolve()),
     form: 'EditUser',
-    handleSubmit: () => {},
-    params: { userId: 1 },
-    profile: fromJS(fullProfile),
-    router: { push: jest.fn() },
-    submitting: false,
+    handleSubmit: f => f,
+    params: {
+      userId: 1
+    },
+    profile: fromJS(profile),
+    router: {
+      push: jest.fn(),
+    },
+    submitting: true,
   };
-  const wrapper = shallow(
-    <EditUserComponent {...props} />
-  );
-  const instance = wrapper.instance();
+  const wrapper = shallow(<EditUserComponent {...props} />);
 
-  it('handleUserUpdate method', () => {
-    const values = fromJS({
-      image: createFileList(),
-      firstname: 'John',
-      lastname: 'Doe',
-      bio: 'This is my bio.',
+  describe('snapshot', () => {
+    it('renders required data', () => {
+      expect(wrapper).toMatchSnapshot();
     });
-    const p = instance.handleUserUpdate(values);
 
-    expect(Actions.userUpdateFetch)
-      .toHaveBeenCalledWith(values, instance.props.params.userId);
-    expect(instance.props.dispatch).toHaveBeenCalled();
-    return p.then(() => {
-      expect(instance.props.router.push).toHaveBeenCalledWith(
-        `/user/${instance.props.params.userId}`);
+    it('renders required data with error', () => {
+      const newProps = deepMerge(props, {
+        error: 'User not found.',
+        params: {
+          userId: 999,
+        },
+        submitting: false,
+      });
+      newProps.profile = fromJS(fullProfile);
+      const newWrapper = shallow(<EditUserComponent {...newProps} />);
+
+      expect(newWrapper).toMatchSnapshot();
     });
   });
 
-  it('handleGetUser method', () => {
-    instance.handleGetUser();
+  describe('instance', () => {
+    afterEach(() => {
+      jest.resetAllMocks(); // move to before when clearAllMocks gets out
+    });
+    Actions.userGetFetch = jest.fn();
+    Actions.userUpdateFetch = jest.fn();
+    const instance = wrapper.instance();
 
-    expect(Actions.userGetFetch)
-      .toHaveBeenCalledWith(instance.props.params.userId);
-    expect(instance.props.dispatch).toHaveBeenCalled();
+    it('handleUserUpdate method', () => {
+      const values = fromJS({
+        image: createFileList(),
+        firstname: 'John',
+        lastname: 'Doe',
+        bio: 'This is my bio.',
+      });
+      const p = instance.handleUserUpdate(values);
+
+      expect(Actions.userUpdateFetch)
+        .toHaveBeenCalledWith(values, instance.props.params.userId);
+      expect(instance.props.dispatch).toHaveBeenCalled();
+      return p.then(() => {
+        expect(instance.props.router.push).toHaveBeenCalledWith(
+          `/user/${instance.props.params.userId}`);
+      });
+    });
+
+    it('handleGetUser method', () => {
+      instance.handleGetUser();
+
+      expect(Actions.userGetFetch)
+        .toHaveBeenCalledWith(instance.props.params.userId);
+      expect(instance.props.dispatch).toHaveBeenCalled();
+    });
   });
 });

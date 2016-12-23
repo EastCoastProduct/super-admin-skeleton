@@ -1,0 +1,24 @@
+exports[`App component snapshot renders basic required data 1`] = `
+<div>
+  <Header
+    handleLogout={[Function]}
+    superadmin={
+      Object {
+        "bio": null,
+        "createdAt": "2016-11-24T14:48:32.000Z",
+        "email": "super.admin@mail.com",
+        "firstname": "superadmin",
+        "id": 1,
+        "lastname": "superadmin",
+        "updatedAt": "2016-11-24T14:48:32.000Z",
+      }
+    } />
+  <Navigation />
+  <div
+    className="content_dqivkm">
+    <main>
+      Test
+    </main>
+  </div>
+</div>
+`;

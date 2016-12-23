@@ -5,17 +5,17 @@ exports[`Page404 component snapshot renders page 1`] = `
   </p>
   <p>
     Go back to 
-    <a
-      onClick={[Function]}
-      style={Object {}}>
+    <IndexLink
+      to="/">
       Home
-    </a>
+    </IndexLink>
      page or 
-    <a
-      onClick={[Function]}
-      style={Object {}}>
+    <Link
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="/login">
       Login
-    </a>
+    </Link>
      page.
   </p>
 </main>

@@ -5,7 +5,7 @@ import Checkbox from '../Checkbox';
 import SearchBar from '../SearchBar';
 import styles from './styles';
 
-export function UsersFiltersForm(props) {
+export function UsersFiltersFormComponent(props) {
   const { className, form, handleFiltersSubmit, handleSubmit } = props;
 
   return (
@@ -34,7 +34,7 @@ export function UsersFiltersForm(props) {
   );
 }
 
-UsersFiltersForm.propTypes = {
+UsersFiltersFormComponent.propTypes = {
   className: PropTypes.object,
   form: PropTypes.string.isRequired,
   handleFiltersSubmit: PropTypes.func.isRequired,
@@ -43,4 +43,4 @@ UsersFiltersForm.propTypes = {
 
 export default reduxForm({
   form: 'UsersFilters',
-})(UsersFiltersForm);
+})(UsersFiltersFormComponent);

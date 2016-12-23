@@ -1,35 +1,52 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
-import { StyleSheetTestUtils } from 'aphrodite/no-important';
-import { fullProfile } from '../../fixtures/user';
+import deepMerge from 'deepmerge';
+import { fullProfile, profile } from '../../fixtures/user';
 import { ViewUserComponent } from './';
 import * as Actions from '../../actions/user';
 
 describe('ViewUser component', () => {
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-    jest.resetAllMocks();
+  const props = {
+    dispatch: jest.fn(),
+    params: {
+      userId: profile.id,
+    },
+    profile: fromJS(profile),
+  };
+  const wrapper = shallow(<ViewUserComponent {...props} />);
+
+  describe('snapshot', () => {
+    it('renders empty required data', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('renders full required data', () => {
+      const newProps = deepMerge(props, {
+        params: {
+          userId: fullProfile.id,
+        },
+      });
+      newProps.profile = fromJS(fullProfile);
+      const newWrapper = shallow(<ViewUserComponent {...newProps} />);
+
+      expect(newWrapper).toMatchSnapshot();
+    });
   });
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
 
-  Actions.userGetFetch = jest.fn();
-  const wrapper = shallow(
-    <ViewUserComponent
-      dispatch={jest.fn()}
-      params={{ userId: fullProfile.id }}
-      profile={fromJS(fullProfile)}
-    />
-  );
-  const instance = wrapper.instance();
+  describe('instance', () => {
+    beforeEach(() => {
+      jest.resetAllMocks();
+    });
+    Actions.userGetFetch = jest.fn();
+    const instance = wrapper.instance();
 
-  it('handleGetUser method', () => {
-    instance.handleGetUser();
+    it('handleGetUser method', () => {
+      instance.handleGetUser();
 
-    expect(Actions.userGetFetch)
-      .toHaveBeenCalledWith(instance.props.params.userId);
-    expect(instance.props.dispatch).toHaveBeenCalled();
+      expect(Actions.userGetFetch)
+        .toHaveBeenCalledWith(instance.props.params.userId);
+      expect(instance.props.dispatch).toHaveBeenCalled();
+    });
   });
 });

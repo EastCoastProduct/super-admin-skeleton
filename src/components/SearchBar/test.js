@@ -11,7 +11,7 @@ describe('SearchBar component snapshot', () => {
   });
 
   it('renders with additional style, value and extra attributes', () => {
-    const style = StyleSheet.create({
+    const styles = StyleSheet.create({
       additional: {
         margin: 10,
         padding: 10,
@@ -19,7 +19,7 @@ describe('SearchBar component snapshot', () => {
     });
     const wrapper = shallow(
       <SearchBar
-        className={style.additional}
+        className={styles.additional}
         input={{ value: 'name' }}
         meta={{}}
         placeholder="This is Search Box"

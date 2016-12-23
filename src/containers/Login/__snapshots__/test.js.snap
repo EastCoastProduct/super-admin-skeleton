@@ -6,7 +6,7 @@ exports[`Login component snapshot renders required data 1`] = `
     <img
       alt="Company Logo"
       className="logo_2al8b9"
-      src="http://wp.streetwise.co/wp-content/uploads//2015/10//fullECPlogo_Black4.png" />
+      src="ecp_logo.png" />
     <h1
       className="header_ky8f4n">
       Login to your account
@@ -42,12 +42,18 @@ exports[`Login component snapshot renders required data 1`] = `
           ]
         }
         validated={true} />
-      <button
-        className="button_w1w7v0-o_O-button_ltlwnu"
-        disabled={true}
-        type="submit">
+      <Button
+        className={
+          Object {
+            "_definition": Object {
+              "width": "39%",
+            },
+            "_name": "button_ltlwnu",
+          }
+        }
+        disabled={true}>
         Login
-      </button>
+      </Button>
     </form>
   </section>
 </main>
@@ -61,7 +67,7 @@ exports[`Login component snapshot renders required data with error 1`] = `
     <img
       alt="Company Logo"
       className="logo_2al8b9"
-      src="http://wp.streetwise.co/wp-content/uploads//2015/10//fullECPlogo_Black4.png" />
+      src="ecp_logo.png" />
     <h1
       className="header_ky8f4n">
       Login to your account
@@ -97,18 +103,29 @@ exports[`Login component snapshot renders required data with error 1`] = `
           ]
         }
         validated={true} />
-      <button
-        className="button_w1w7v0-o_O-button_ltlwnu"
-        disabled={false}
-        type="submit">
+      <Button
+        className={
+          Object {
+            "_definition": Object {
+              "width": "39%",
+            },
+            "_name": "button_ltlwnu",
+          }
+        }
+        disabled={false}>
         Login
-      </button>
-      <p
-        className="error_1pg0y0x-o_O-error_1f65vod">
-        <i
-          className="icon_1w16ibx fa fa-exclamation-triangle" />
+      </Button>
+      <ErrorMsg
+        className={
+          Object {
+            "_definition": Object {
+              "margin": "10px 0 0",
+            },
+            "_name": "error_1f65vod",
+          }
+        }>
         User not found.
-      </p>
+      </ErrorMsg>
     </form>
   </section>
 </main>
