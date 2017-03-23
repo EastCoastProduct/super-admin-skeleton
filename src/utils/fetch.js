@@ -15,21 +15,28 @@ export const mergeDefaults = (options = {}) => {
   });
 };
 
-const parseJSON = resp => resp.json();
-
-export const checkStatus = (resp) => {
-  if (!resp.error) return resp;
-
-  const error = new Error(resp.message);
-  Object.assign(error, resp);
-  return Promise.reject(error);
-};
-
-export default (url, options) =>
-  fetch(url, mergeDefaults(options))
-    .then(parseJSON)
-    .then(checkStatus)
-    .catch((err) => {
-      if (err.error.status === 401) browserHistory.push('/login');
-      return Promise.reject(err);
+export default function (url, options) {
+  return new Promise((resolve, reject) => {
+    const resolveRequest = response => response.json().then(resolve);
+    const rejectRequest = response => response.json().then((err) => {
+      const error = new Error(err.message);
+      Object.assign(error, err);
+      return reject(error);
     });
+
+    return fetch(url, mergeDefaults(options))
+      .then((response) => {
+        if (response.ok) return resolveRequest(response);
+
+        switch (response.status) {
+          case 401:
+            return browserHistory.push('/login');
+          default:
+            return rejectRequest(response);
+        }
+      })
+      .catch(() =>
+        reject('Network error!'),
+      );
+  });
+}

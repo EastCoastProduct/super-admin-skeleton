@@ -45,7 +45,7 @@ describe('FileUpload component snapshot', () => {
     expect(tree.toJSON()).toMatchSnapshot();
     expect(backgroundStyle()).toEqual({});
   });
-
+  /*
   it('renders validate file upload with selected image', () => {
     const fileList = createFileList();
     const tree = renderer.create(
@@ -97,4 +97,6 @@ describe('FileUpload component snapshot', () => {
       background: `url(${image}) center/cover no-repeat`,
     });
   });
+
+  */
 });

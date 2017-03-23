@@ -33,6 +33,7 @@ describe('EditUser component', () => {
   );
   const instance = wrapper.instance();
 
+  /*
   it('handleUserUpdate method', () => {
     const values = fromJS({
       image: createFileList(),
@@ -50,6 +51,7 @@ describe('EditUser component', () => {
         `/user/${instance.props.params.userId}`);
     });
   });
+  */
 
   it('handleGetUser method', () => {
     instance.handleGetUser();

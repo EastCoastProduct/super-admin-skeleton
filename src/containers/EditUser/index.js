@@ -38,7 +38,7 @@ export class EditUserComponent extends Component {
   handleUserUpdate(values) {
     const { dispatch, params: { userId }, router } = this.props;
     return dispatch(userUpdateFetch(values, userId)).then(() =>
-      router.push(`/user/${userId}`),
+      router.push(`/users/${userId}`),
     );
   }
 
@@ -87,7 +87,7 @@ export class EditUserComponent extends Component {
             />
             <BoxButtons
               disabled={submitting}
-              link={`/user/${params.userId}`}
+              link={`/users/${params.userId}`}
             >Save</BoxButtons>
             {error && <ErrorMsg>{error}</ErrorMsg>}
           </form>
