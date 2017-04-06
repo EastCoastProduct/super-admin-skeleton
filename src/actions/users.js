@@ -1,4 +1,4 @@
-// import queryString from 'query-string';
+import queryString from 'query-string';
 import { USERS_GET_SUCCESS, USERS_GET_FAILED, USERS_PAGINATION_CHANGE }
   from '../constants/actions';
 import { API_URL } from '../constants/application';
@@ -20,9 +20,9 @@ export const paginationChange = page => ({
   page,
 });
 
-export const usersGetFetch = () =>
+export const usersGetFetch = qs =>
   dispatch =>
-    fetch(`${API_URL}/superAdmin/users`)
+    fetch(`${API_URL}/superAdmin/users?${queryString.stringify(qs)}`)
       .then(resp =>
         dispatch(usersGetSuccess(resp.rows, resp.count)),
       ).catch(err =>
