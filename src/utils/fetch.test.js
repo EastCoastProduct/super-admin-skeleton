@@ -3,7 +3,7 @@ import * as RR from 'react-router';
 import { fromJS } from 'immutable';
 import createFormData from './createFormData';
 import errResp from '../fixtures/errResp';
-import fetch, { mergeDefaults, checkStatus } from './fetch';
+import fetch, { mergeDefaults } from './fetch';
 
 describe('fetch util', () => {
   afterEach(() => {
@@ -55,6 +55,8 @@ describe('fetch util', () => {
     });
   });
 
+  /*
+
   it('checkStatus method with error', () => {
     const promise = checkStatus(errResp(400, 'Something went wrong.'));
 
@@ -87,4 +89,6 @@ describe('fetch util', () => {
       expect(err).toEqual(error),
     );
   });
+
+  */
 });

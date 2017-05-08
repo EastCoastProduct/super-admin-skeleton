@@ -58,7 +58,7 @@ export class ViewUserComponent extends Component {
           </dl>
           <Link
             className={css(styles.link)}
-            to={`/user/${params.userId}/edit`}
+            to={`/users/${params.userId}/edit`}
           >Edit</Link>
         </UserBox>
     );

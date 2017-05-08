@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
 import { css } from 'aphrodite/no-important';
+import store from 'store';
 import { loginFetch } from '../../actions/auth';
 import { isEmail, isPassword, isRequired } from '../../utils/validator';
 import Input from '../../components/Input';
@@ -27,7 +28,9 @@ export class LoginComponent extends Component {
 
   handleLogin(values) {
     const { dispatch, router } = this.props;
-    return dispatch(loginFetch(values)).then(() => router.push('/'));
+    const nextRoute = store.get('nextRoute') || '/';
+    if (nextRoute !== '/') store.remove('nextRoute');
+    return dispatch(loginFetch(values)).then(() => router.push(nextRoute));
   }
 
   render() {

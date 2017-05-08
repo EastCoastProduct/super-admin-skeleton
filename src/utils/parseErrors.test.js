@@ -3,7 +3,7 @@ import parseErrors from './parseErrors';
 
 describe('parseErrors util', () => {
   it('returns error without debugInfo', () => {
-    const error = errResp(400, 'Something went wrong.');
+    const error = errResp(400, 'Something went wrong.').body;
     const submissionError = parseErrors(error);
 
     expect(submissionError.errors).toEqual({ _error: 'Something went wrong.' });

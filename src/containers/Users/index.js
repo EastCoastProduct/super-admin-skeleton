@@ -62,7 +62,7 @@ export class UsersComponent extends Component {
 
   handleUserClick(id) {
     const { router } = this.props;
-    router.push(`/user/${id}`);
+    router.push(`/users/${id}`);
   }
 
   clickHandler(id) {
@@ -100,7 +100,9 @@ export class UsersComponent extends Component {
             className={styles.userFilters}
             handleFiltersSubmit={this.handleFiltersSubmit}
           />
-          <Link className={css(styles.button)} to="/user">Add User</Link>
+          <Link className={css(styles.button)} to="/users/create">
+            Add User
+          </Link>
         </div>
         {users.get('listTotal') > 0 &&
           <table className={css(styles.table)}>
